@@ -23,5 +23,31 @@ const getPublication = async (req, res) => {
   return data;
 };
 
-//Exporter la fonction getPublication pour pouvoir l'utiliser dans le fichier publicationControllers.js
-module.exports = { getPublication };
+//Requête pour obtenir une publication à partir de son id :
+const getPublicationById = async (req, res) => {
+  const { data, error } = await supabase
+    .from("Publications")
+    .select("*")
+    .eq("id", req.params.id);
+
+  if (error) throw error;
+  console.log(data);
+  return data;
+};
+const filterPublication = async (req, res) => {
+  const { data, error } = await supabase
+    .from("Publications")
+    .select(
+      `
+    Publications.*,
+    Couleur(couleur).couleur as couleur_name`
+    )
+    .eq("Couleur(couleur).couleur", "bleu");
+  if (error) {
+    throw error;
+  }
+  return data;
+};
+
+//Exporter les fonctions pour pouvoir les utiliser dans le fichier publicationControllers.js
+module.exports = { getPublication, getPublicationById, filterPublication };

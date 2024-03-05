@@ -7,8 +7,10 @@ const publicationControllers = require("../controllers/publicationControllers");
 //Création d'un router
 const router = express.Router();
 
-//Définition de la méthode GET pour la route "/"
+//Définition des méthodes GET :
 router.get("/", publicationControllers.getAllPublication);
+router.get("/filter", publicationControllers.filterPublication);
+router.get("/:id", publicationControllers.getPublicationById);
 
 //Export de router pour pouvoir l'utiliser dans le fichier app.js
 module.exports = router;

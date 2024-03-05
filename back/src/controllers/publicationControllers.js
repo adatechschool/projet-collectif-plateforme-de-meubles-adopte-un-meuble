@@ -14,5 +14,26 @@ const getAllPublication = async (req, res) => {
   }
 };
 
-//Export de la fonction getAllpublication pour pouvoir l'utiliser dans le fichier publicationRoute.js
-module.exports = { getAllPublication };
+//Afficher une publication à partir de son id
+const getPublicationById = async (req, res) => {
+  try {
+    const publication = await publicationModel.getPublicationById(req, res);
+    res.send(publication);
+    console.log(publication);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+const filterPublication = async (req, res) => {
+  try {
+    const publication = await publicationModel.filterPublication(req, res);
+    res.send(publication);
+    console.log(publication);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+//Export des fonctions pour pouvoir les utiliser dans le fichier publicationRoute.js
+module.exports = { getAllPublication, getPublicationById, filterPublication };
