@@ -1,6 +1,6 @@
 //Fichier qui lance le serveur
 
-//Récupérer express et la fonction meublesRoute
+//Récupérer express et la fonction publicationRoute
 const express = require("express");
 
 const publicationRoute = require("./routes/publicationRoute");

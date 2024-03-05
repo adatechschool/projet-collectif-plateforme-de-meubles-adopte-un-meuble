@@ -1,6 +1,6 @@
 //Fichier qui crée les routes
 
-//Récupérer express et la fonction meublesControllers
+//Récupérer express et la fonction publicationControllers
 const express = require("express");
 const publicationControllers = require("../controllers/publicationControllers");
 

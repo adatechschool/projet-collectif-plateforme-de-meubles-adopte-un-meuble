@@ -14,7 +14,7 @@ console.log(supabaseKey);
 //Obtenir l'autorisation d'utiliser la BDD à partir de l'URL et de la clé d'API : on récupère une key ou token
 const supabase = createClient(supabaseUrl, supabaseKey);
 
-//Requête pour obtenir tous les publications de la BDD :
+//Requête pour obtenir toutes les publications de la BDD :
 const getPublication = async (req, res) => {
   const { data, error } = await supabase.from("Publications").select("*");
 
@@ -23,5 +23,5 @@ const getPublication = async (req, res) => {
   return data;
 };
 
-//Exporter la fonction getPublication pour pouvoir l'utiliser dans le fichier meublesControllers.js
+//Exporter la fonction getPublication pour pouvoir l'utiliser dans le fichier publicationControllers.js
 module.exports = { getPublication };

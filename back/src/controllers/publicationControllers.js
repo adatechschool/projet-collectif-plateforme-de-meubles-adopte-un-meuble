@@ -1,9 +1,9 @@
 //Fichier qui détermine l'utilisation des données de la requête
 
-//Importe la fonction getMeubles du fichier publicationModel.js
+//Importe la fonction getPublication du fichier publicationModel.js
 const publicationModel = require("../models/publicationModel");
 
-//Fonction pour afficher la liste de meuble récupérée dans meubleModel.js
+//Fonction pour afficher la liste de publications récupérée dans publicationModel.js
 const getAllPublication = async (req, res) => {
   try {
     const publication = await publicationModel.getPublication();
@@ -14,5 +14,5 @@ const getAllPublication = async (req, res) => {
   }
 };
 
-//Export de la fonction getAllpublication pour pouvoir l'utiliser dans le fichier meublesRoute.js
+//Export de la fonction getAllpublication pour pouvoir l'utiliser dans le fichier publicationRoute.js
 module.exports = { getAllPublication };
