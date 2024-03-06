@@ -2,38 +2,50 @@ import { useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
+import ProductCard from "./Components/ProductCard.jsx"
 
 function App() {
   const [count, setCount] = useState(0);
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <div className="cards_section">
+        <ProductCard
+          image='src/assets/cat(1).jpg'
+          title='Baby Cat'
+          price='2$'
+          divers='this is a cat'
+          seller='Amy'
+        />
+        <ProductCard
+          image='src/assets/cat(2).jpg'
+          title='Unhappy Cat'
+          price='5$'
+          divers='this is a cat'
+          seller='Ames'
+        />
+        <ProductCard
+          image='src/assets/cat(3).jpg'
+          title='Anxious Cat'
+          price='3$'
+          divers='this is a cat'
+          seller='Anna'
+        />
+        <ProductCard
+          image='src/assets/cat(4).jpg'
+          title='Trying his best Cat'
+          price='1 candy'
+          divers='this is a cat'
+          seller='Marie'
+        />
+        <ProductCard
+          image='src/assets/cat(5).jpg'
+          title='gen Z Cat'
+          price='for free'
+          divers='this is a cat'
+          seller='Yuna'
+        />
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-      <h1 className="text-lightMode-text text-9xl">Hello AMY !!!!!!</h1>
-      <h1 className="text-lightMode-secondarytext text-9xl">
-        Hello AMY !!!!!!
-      </h1>
-
-      <div className="w-[200px] h-[200px] bg-red-400"></div>
     </>
   );
 }
