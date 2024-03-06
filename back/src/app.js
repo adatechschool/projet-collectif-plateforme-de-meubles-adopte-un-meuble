@@ -7,7 +7,7 @@ const express = require("express");
 const publicationRoute = require("./routes/publicationRoute");
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 app.use(express.static('public')) 
 
@@ -15,7 +15,6 @@ app.use(express.static('public'))
 app.use(express.json());
 
 app.use("/api/publication", publicationRoute);
-
 
 //Lancer le serveur
 app.listen(port, () => {
