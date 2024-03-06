@@ -46,18 +46,19 @@ const filterPublication = async (req, res) => {
     const minPrice = req.query.minPrice;
     const maxPrice = req.query.maxPrice;
 
-  if (type) {
-    query = query.eq("Type.type", type);
-  }
-  if (couleur) {
-    query = query.eq("Couleur.couleur", couleur);
-  }
-  if (minPrice) {
-    query = query.gte("prix", minPrice);
-  }
-  if (maxPrice) {
-    query = query.lte("prix", maxPrice);
-  }
+    //si ... se trouve dans la requete, alors on ajoute le filtre
+    if (type) { 
+        query = query.eq("Type.type", type);
+    }
+    if (couleur) {
+        query = query.eq("Couleur.couleur", couleur);
+    }
+    if (minPrice) {
+        query = query.gte("prix", minPrice);
+    }
+    if (maxPrice) {
+        query = query.lte("prix", maxPrice);
+    }
 
   const { data, error } = await query;
   if (error) {
@@ -66,6 +67,7 @@ const filterPublication = async (req, res) => {
   return data;
 };
 
+// peremt de récupérer le titre, la photo et le prix présent dans publications, utile pour la page d'accueil du front
 const getEssentials = async (req, res) => {
   const { data, error } = await supabase
     .from("Publications")
