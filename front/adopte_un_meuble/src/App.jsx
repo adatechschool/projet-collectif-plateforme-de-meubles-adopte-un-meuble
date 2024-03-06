@@ -29,7 +29,7 @@ function App() {
         Click on the Vite and React logos to learn more
       </p>
       <h1 className="text-lightMode-text text-9xl">Hello AMY !!!!!!</h1>
-      <h1 className="text-lightMode-secondarytext text-9xl">
+      <h1 className="text-lightMode-secondarytext text-inter text-9xl">
         Hello AMY !!!!!!
       </h1>
 
