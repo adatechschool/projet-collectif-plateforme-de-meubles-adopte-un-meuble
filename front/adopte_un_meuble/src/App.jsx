@@ -1,41 +1,15 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
+import React from "react";
 import "./App.css";
 
-function App() {
-  const [count, setCount] = useState(0);
+function Footer(){
+  return( <div className="flex-col justify-start items-start gap-[5px] inline-flex absolute bottom-[1.875rem] left-[1.875rem]">
+  <div className="text-lightMode-text text-2xl">à propos</div>
+  <div className="text-lightMode-secondarytext text-base">© 2024 Adopte un Meuble</div>
+</div>
+)}
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-      <h1 className="text-lightMode-text text-9xl">Hello AMY !!!!!!</h1>
-      <h1 className="text-lightMode-secondarytext text-9xl">
-        Hello AMY !!!!!!
-      </h1>
+export default Footer;
 
-      <div className="w-[200px] h-[200px] bg-red-400"></div>
-    </>
-  );
-}
 
-export default App;
+
+
