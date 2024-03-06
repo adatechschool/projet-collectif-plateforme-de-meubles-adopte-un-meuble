@@ -13,6 +13,7 @@ app.use(express.json());
 
 app.use("/api/publication", publicationRoute);
 
+
 //Lancer le serveur
 app.listen(port, () => {
   console.log(`Server listening at http://localhost:${port}`);
