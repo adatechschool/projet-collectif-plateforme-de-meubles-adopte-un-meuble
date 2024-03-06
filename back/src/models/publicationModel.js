@@ -8,7 +8,7 @@ require("dotenv").config();
 
 //Lien entre BDD et API
 const supabaseUrl = "https://zfrowkmhwhnhmyzwxlez.supabase.co";
-const supabaseKey = process.env.SUPABASE_KEY;
+const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inpmcm93a21od2huaG15end4bGV6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDk1NTg5NjUsImV4cCI6MjAyNTEzNDk2NX0.6HS7PaiqkOQtN3JPNCCBAW2058bJNQoAuECWeurKlYM";
 console.log(supabaseKey);
 
 //Obtenir l'autorisation d'utiliser la BDD à partir de l'URL et de la clé d'API : on récupère une key ou token
@@ -16,14 +16,20 @@ const supabase = createClient(supabaseUrl, supabaseKey);
 
 //Requête pour obtenir toutes les publications de la BDD :
 const getPublication = async (req, res) => {
-    const { data, error } = await supabase.from("Publications").select("*");
+    const { data, error } = await supabase
+    .from("Publications")
+    .select("User!inner(pseudo),Type!inner(type), description, date, Statut_Publication!inner(statut), titre, prix, photos, Couleur!inner(couleur), Matière!inner(matière), État_Meuble!inner(état), Dimensions!inner(hauteur,largeur,longueur), Pièce!inner(pièce)");
     if (error) throw error;
     return data;
+    //nom de vendeur,nom de type, status, couleur, dimension, pièce 
 };
 
 //Requête pour obtenir une publication à partir de son id :
 const getPublicationById = async (req, res) => {
-    const { data, error } = await supabase.from("Publications").select("*").eq("id", req.params.id);
+    const { data, error } = await supabase
+    .from("Publications")
+    .select("User!inner(pseudo),Type!inner(type), description, date, Statut_Publication!inner(statut), titre, prix, photos, Couleur!inner(couleur), Matière!inner(matière), État_Meuble!inner(état), Dimensions!inner(hauteur,largeur,longueur), Pièce!inner(pièce)")
+    .eq("id", req.params.id);
     if (error) throw error;
     return data;
 };
@@ -31,7 +37,9 @@ const getPublicationById = async (req, res) => {
 // front doit renvoyer l'id de couleur, l'id de type et le prix
 // permet de filtrer les publications
 const filterPublication = async (req, res) => {
-    let query = supabase.from("Publications").select("*, Couleur!inner(id, couleur), Type!inner(id, type)");
+    let query = supabase
+    .from("Publications")
+    .select("User!inner(pseudo),Type!inner(type), description, date, Statut_Publication!inner(statut), titre, prix, photos, Couleur!inner(couleur), Matière!inner(matière), État_Meuble!inner(état), Dimensions!inner(hauteur,largeur,longueur), Pièce!inner(pièce)");
     const type = req.query.type;
     const couleur = req.query.couleur;
     const minPrice = req.query.minPrice;
@@ -63,5 +71,13 @@ const getEssentials = async (req, res) => {
     return data;
 };
 
+const getNewPost = async (req, res) => {
+  const { data, error } = await supabase.from("Publications")
+  .insert([
+  ]);
+  if (error) throw error;
+  return data;
+};
+
 //Exporter les fonctions pour pouvoir les utiliser dans le fichier publicationControllers.js
-module.exports = { getPublication, getPublicationById, filterPublication, getEssentials };
+module.exports = { getPublication, getPublicationById, filterPublication, getEssentials, getNewPost };

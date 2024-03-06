@@ -43,5 +43,14 @@ const getEssentials = async (req, res) => {
     }
 };
 
+const getNewPost = async (req, res) => {
+    try {
+        const newPost = await publicationModel.getNewPost(req, res);
+        res.send(newPost);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
+
 //Export des fonctions pour pouvoir les utiliser dans le fichier publicationRoute.js
-module.exports = { getAllPublication, getPublicationById, filterPublication, getEssentials };
+module.exports = { getAllPublication, getPublicationById, filterPublication, getEssentials, getNewPost };

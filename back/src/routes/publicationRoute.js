@@ -12,6 +12,7 @@ router.get("/all", publicationControllers.getAllPublication);
 router.get("/filter", publicationControllers.filterPublication);
 router.get("/:id", publicationControllers.getPublicationById);
 router.get("/", publicationControllers.getEssentials);
+router.post("/create",publicationControllers.getNewPost)
 
 //Export de router pour pouvoir l'utiliser dans le fichier app.js
 module.exports = router;
