@@ -31,13 +31,16 @@ const getPublicationById = async (req, res) => {
 // front doit renvoyer l'id de couleur, l'id de type et le prix
 // permet de filtrer les publications
 const filterPublication = async (req, res) => {
-    let query = supabase.from("Publications").select("*, Couleur!inner(id, couleur), Type!inner(id, type)");
-    const type = req.query.type;
-    const couleur = req.query.couleur;
+    let query = supabase.from("Publications").select("*, Couleur!inner(id, couleur), Type!inner(id, type)"); // ici on fait une requete de base sur publications oú on récupére toutes les infos puis on fait une jointure sur couleur et type avec !inner et on sélectionne id et couleur de Couleur, et id et type de Type
+
+    // on récupère les query param donné dans l'URL quand la requête est faite
+    const type = req.query.type; 
+    const couleur = req.query.couleur; 
     const minPrice = req.query.minPrice;
     const maxPrice = req.query.maxPrice;
 
-    if (type) {
+    //si ... se trouve dans la requete, alors on ajoute le filtre
+    if (type) { 
         query = query.eq("Type.type", type);
     }
     if (couleur) {
@@ -57,6 +60,7 @@ const filterPublication = async (req, res) => {
     return data;
 };
 
+// peremt de récupérer le titre, la photo et le prix présent dans publications, utile pour la page d'accueil du front
 const getEssentials = async (req, res) => {
     const { data, error } = await supabase.from("Publications").select("titre, photos, prix");
     if (error) throw error;
