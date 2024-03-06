@@ -3,32 +3,27 @@ import {useState} from "react";
 //import CrossMenuBurgerIcon from '../assets/crossMenuBurger.svg';
 
 function Navbar(){
+    //variable d'état qui contrôle l'affichage du menu
+    //initialisé sur false car menu fermé
    const [isOpen, setIsOpen] = useState(false);
 
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-  };
 
-  const closeMenu = () => {
-    setIsOpen(false);
-  };
-    return(
-        <nav className="navbar">
+   return (
+    <nav className="navbar">
       <div className="logo">Logo</div>
-      <div className="menu-icon" onClick={() => toggleMenu}>
-        <i>{isOpen ? 'X' : '≡'}</i>
+      <div className="menu-icon" onClick={() => setIsOpen(!isOpen)}>
+        {isOpen ? 'X' : '≡'}
       </div>
-      <ul className={`nav-links ${isOpen ? 'open' : ''}`} onClick={closeMenu}>
-        <li><a href="/connexion">connexion</a></li>
-        <li><a href="/vendre">vendre</a></li>
-        <li><a href="/recherche">recherche</a></li>
-        <li><a href="/panier">panier</a></li>
-      </ul>
+      {isOpen && (
+        <ul className="nav-links">
+          <li><a href="/connexion" onClick={() => setIsOpen(false)}>connexion</a></li>
+          <li><a href="/vendre" onClick={() => setIsOpen(false)}>vendre</a></li>
+          <li><a href="/recherche" onClick={() => setIsOpen(false)}>recherche</a></li>
+          <li><a href="/panier" onClick={() => setIsOpen(false)}>panier</a></li>
+        </ul>
+      )}
     </nav>
-
-    );
-
-
-}
-
-export default Navbar;
+  );
+      }
+    
+    export default Navbar;
