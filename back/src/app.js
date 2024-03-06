@@ -6,13 +6,12 @@ const express = require("express");
 const publicationRoute = require("./routes/publicationRoute");
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 //Middleware pour parser le JSON et utiliser le fichier JSON
 app.use(express.json());
 
 app.use("/api/publication", publicationRoute);
-
 
 //Lancer le serveur
 app.listen(port, () => {

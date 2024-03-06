@@ -8,7 +8,7 @@ const publicationControllers = require("../controllers/publicationControllers");
 const router = express.Router();
 
 //Définition des méthodes GET :
-router.get("/all", publicationControllers.getAllPublication);
+router.get("/", publicationControllers.getAllPublication);
 router.get("/filter", publicationControllers.filterPublication);
 router.get("/:id", publicationControllers.getPublicationById);
 router.get("/", publicationControllers.getEssentials);
