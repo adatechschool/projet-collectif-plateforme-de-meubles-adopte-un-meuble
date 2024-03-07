@@ -2,7 +2,6 @@ import React from "react";
 import Navbar from "./components/Navbar";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
 import {
   Select,
   SelectContent,
@@ -13,6 +12,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
 
 function PaymentPage() {
   return (
@@ -67,6 +67,7 @@ function PaymentPage() {
             <Input type="email" id="card" placeholder="" />
           </div>
         </div>
+        <Separator className="my-[2rem]" />
         <div className="flex w-full gap-[0.625rem] justify-center items-start">
           <div className="grid w-full items-center gap-1.5">
             <Label htmlFor="titre">nom</Label>
