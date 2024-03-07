@@ -21,11 +21,11 @@ const imageNames = ["one", "two", "three", "four", "five"];
 function App() {
   return (
     <div className="flex w-full h-full">
-      <div className="h-[39px] w-full bg-orange-400 fixed top-0 z-10">
+      <div className="h-[39px] w-full bg-orange-100 fixed top-0 z-10">
         navbar
       </div>
       {/* <div className="h-[100px] w-[100px] bg-pink-400 hidden sm:block"></div> */}
-      <div className="sm:hidden flex w-full flex-col content-center justify-start items-start bg-violet-500">
+      <div className="sm:hidden flex w-full flex-col content-center justify-start items-start">
         <Carousel
           plugins={[
             Autoplay({
@@ -72,37 +72,50 @@ function App() {
           </div>
         </div>
       </div>
-      <div className="hidden sm:flex justify-center items-center h-screen w-screen pt-[39px] bg-orange-800">
-        {/* <div className="w-[20rem] h-[20rem] bg-green-500"></div> */}
-        <Carousel
-          plugins={[
-            Autoplay({
-              delay: 3000,
-              stopOnMouseEnter: true,
-              stopOnInteraction: false,
-            }),
-          ]}
-          opts={{
-            align: "start",
-            loop: true,
-          }}
-          orientation="vertical"
-          className="w-[30rem] "
-        >
-          <CarouselContent className="h-[30rem] flex">
-            {images.map((imageUrl, index) => (
-              <CarouselItem className="h-full" key={index}>
-                <div className="flex aspect-square items-center">
-                  <img
-                    className="max-h-full max-w-none h-full"
-                    src={imageUrl}
-                    alt={`Image ${index + 1}`}
-                  />
-                </div>
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-        </Carousel>
+      <div className="hidden sm:flex justify-center items-center h-screen w-screen pt-[39px]">
+        <div className="flex flex-col items-center gap-[0.3125rem]">
+          <div className="flex justify-between items-start self-stretch">
+            <h1 className="text-lightMode-secondarytext font-bold text-2xl">
+              article du moment
+            </h1>
+            <h2 className="text-lightMode-text font-bold text-2xl">€250</h2>
+          </div>
+          <Carousel
+            plugins={[
+              Autoplay({
+                delay: 3000,
+                stopOnMouseEnter: true,
+                stopOnInteraction: false,
+              }),
+            ]}
+            opts={{
+              align: "start",
+              loop: true,
+            }}
+            orientation="vertical"
+            className="w-[30rem] "
+          >
+            <CarouselContent className="h-[30rem] flex">
+              {images.map((imageUrl, index) => (
+                <CarouselItem className="h-full" key={index}>
+                  <div className="flex aspect-square items-center">
+                    <img
+                      className="max-h-full max-w-none h-full"
+                      src={imageUrl}
+                      alt={`Image ${index + 1}`}
+                    />
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+          </Carousel>
+          <div className="flex justify-between items-start self-stretch">
+            <h1 className="text-lightMode-text font-bold text-2xl">
+              canapé vert 1990
+            </h1>
+            <h2 className="text-lightMode-text font-normal text-2xl">salon</h2>
+          </div>
+        </div>
       </div>
     </div>
   );
