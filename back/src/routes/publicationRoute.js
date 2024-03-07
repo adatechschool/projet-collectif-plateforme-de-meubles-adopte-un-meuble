@@ -13,8 +13,15 @@ router.get("/filter", publicationControllers.filterPublication);
 router.get("/:id", publicationControllers.getPublicationById);
 router.get("/", publicationControllers.getEssentials);
 
-//Définition des méthodes POST : 
+
+//Méthode post pour créer un post :
 router.post("/createPost",publicationControllers.getNewPost);
+
+//Méthode put pour updater le statut d'une publication selon l'id :
+router.put("/updatestatut/:id", publicationControllers.updateStatut);
+
+//Méthode delete pour supprimer une publi :
+router.delete("/delete/:id", publicationControllers.getDeletePost);
 
 //Export de router pour pouvoir l'utiliser dans le fichier app.js
 module.exports = router;
