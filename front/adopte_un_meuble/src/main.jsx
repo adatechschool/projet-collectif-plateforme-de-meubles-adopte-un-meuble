@@ -4,6 +4,7 @@ import App from "./App.jsx";
 import "./index.css";
 import Login from "./components/Login.jsx";
 import SellPage from "./SellPage.jsx";
+import PaymentPage from "./PaymentPage.jsx";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 const router = createBrowserRouter([
@@ -18,6 +19,10 @@ const router = createBrowserRouter([
   {
     path: "/sell",
     element: <SellPage />,
+  },
+  {
+    path: "/payment",
+    element: <PaymentPage />,
   },
 ]);
 
