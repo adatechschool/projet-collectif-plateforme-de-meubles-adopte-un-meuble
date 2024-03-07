@@ -26,13 +26,13 @@ function Navbar(){
                 </div>
         </nav>
 
-            <div className="w-full flex flex-col items-end text-[2rm] p-[0.9375rem]" >
+            <div className="w-full flex flex-col items-end text-[2rem] p-[0.9375rem]" >
             {isOpen && (
-            <ul>
-                <li><a href="/connexion" onClick={() => setIsOpen(false)}>connexion</a></li>
-                <li><a href="/vendre" onClick={() => setIsOpen(false)}>vendre</a></li>
-                <li><a href="/recherche" onClick={() => setIsOpen(false)}>recherche</a></li>
-                <li><a href="/panier" onClick={() => setIsOpen(false)}>panier</a></li>
+            <ul onClick={() => setIsOpen(false)}>
+                <li><a href="/connexion">connexion</a></li>
+                <li><a href="/vendre" >vendre</a></li>
+                <li><a href="/recherche">recherche</a></li>
+                <li><a href="/panier">panier</a></li>
             </ul>
                 )}
             </div>
