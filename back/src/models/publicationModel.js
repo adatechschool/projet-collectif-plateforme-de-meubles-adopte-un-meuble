@@ -78,11 +78,28 @@ const getEssentials = async (req, res) => {
 
 const getNewPost = async (req, res) => {
   const { data, error } = await supabase.from("Publications")
-  .insert([
-  ]);
+  .insert([{ 
+    //A corriger avec les infos de front
+    id : 10,
+    vendeur_id : req.body.idSession,
+    type_id : 1,
+    description : req.body.description,
+    date :  req.body.date,
+    statut_id : 4,
+    titre : req.body.titre,
+    prix : req.body.prix,
+    photos : req.body.photos,
+    couleur_id : 1,
+    matière_id : 1,
+    état_id : 1,
+    dimension_id : 1,
+    pièce_id : 1
+  }])
+  .select();
   if (error) throw error;
   return data;
 };
+
 
 //Exporter les fonctions pour pouvoir les utiliser dans le fichier publicationControllers.js
 module.exports = { getPublication, getPublicationById, filterPublication, getEssentials, getNewPost };
