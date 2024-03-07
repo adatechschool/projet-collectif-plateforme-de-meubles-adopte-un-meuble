@@ -93,5 +93,14 @@ const deletePost = async(req, res) => {
     return data
 };
 
+//fonction pour supprimer un élement du panier
+const deletePanier = async(req,res) => {
+    const { data, error} = await supabase.from("Panier")
+    .delete("*")
+    .eq("id", req.params.id)
+    if(error) throw error;
+    return data
+}
+
 //Exporter les fonctions pour pouvoir les utiliser dans le fichier publicationControllers.js
-module.exports = { getPublication, getPublicationById, filterPublication, getEssentials, getNewPost, deletePost };
+module.exports = { getPublication, getPublicationById, filterPublication, getEssentials, getNewPost, deletePost,deletePanier };

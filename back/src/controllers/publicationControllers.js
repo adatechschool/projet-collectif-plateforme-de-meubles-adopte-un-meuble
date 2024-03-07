@@ -53,7 +53,6 @@ const getNewPost = async (req, res) => {
 };
 
 const getDeletePost = async (req, res) => {
-    console.log("controllersDelete")
     try {
         const deletePost = await publicationModel.deletePost(req, res);
         res.send(deletePost);
@@ -62,5 +61,14 @@ const getDeletePost = async (req, res) => {
     }
 };
 
+const getDeletePanier = async(req, res) => {
+    try {
+        const deletePanier = await publicationModel.deletePanier(req, res);
+        res.send(deletePanier);
+    } catch (error) {
+        res.status(500).json({error: error.message})
+    }
+}
+
 //Export des fonctions pour pouvoir les utiliser dans le fichier publicationRoute.js
-module.exports = { getAllPublication, getPublicationById, filterPublication, getEssentials, getNewPost, getDeletePost };
+module.exports = { getAllPublication, getPublicationById, filterPublication, getEssentials, getNewPost, getDeletePost, getDeletePanier };
