@@ -52,15 +52,6 @@ const updateStatut = async (req, res) => {
   }
 };
 
-const getDeletePost = async (req, res) => {
-
-  try {
-    const deletePost = await publicationModel.deletePost(req, res);
-    res.send(deletePost);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-};
 
 const getNewPost = async (req, res) => {
 
@@ -72,13 +63,24 @@ const getNewPost = async (req, res) => {
     }
   };
 
-//Export des fonctions pour pouvoir les utiliser dans le fichier publicationRoute.js
-module.exports = {
-  getAllPublication,
-  getPublicationById,
-  filterPublication,
-  getEssentials,
-  updateStatut,
-  getDeletePost,
-  getNewPost,
+const getDeletePost = async (req, res) => {
+    try {
+        const deletePost = await publicationModel.deletePost(req, res);
+        res.send(deletePost);
+    } catch (error) {
+        res.status(500).json({error: error.message})
+    }
 };
+
+const getDeletePanier = async(req, res) => {
+    try {
+        const deletePanier = await publicationModel.deletePanier(req, res);
+        res.send(deletePanier);
+    } catch (error) {
+        res.status(500).json({error: error.message})
+    }
+}
+
+//Export des fonctions pour pouvoir les utiliser dans le fichier publicationRoute.js
+
+module.exports = { getAllPublication, getPublicationById, filterPublication, getEssentials, updateStatut, getNewPost, getDeletePost, getDeletePanier };

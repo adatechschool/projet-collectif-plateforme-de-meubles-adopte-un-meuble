@@ -118,24 +118,22 @@ const updateStatut = async (req, res) => {
 };
 
 //fonction pour supprimer une annonce en fonction de id
-const deletePost = async (req, res) => {
-  const { data, error } = await supabase
-    .from("Publications")
+const deletePost = async(req, res) => {
+    const { data, error } = await supabase.from("Publications")
     .delete("*")
     .eq("id", req.params.id);
-
-  if (error) throw error;
-  return data;
+    if(error) throw error;
+    return data
 };
 
+//fonction pour supprimer un élement du panier
+const deletePanier = async(req,res) => {
+    const { data, error} = await supabase.from("Panier")
+    .delete("*")
+    .eq("id", req.params.id)
+    if(error) throw error;
+    return data
+}
 
 //Exporter les fonctions pour pouvoir les utiliser dans le fichier publicationControllers.js
-module.exports = {
-  getPublication,
-  getPublicationById,
-  filterPublication,
-  getEssentials,
-  updateStatut,
-  getNewPost,
-  deletePost,
-};
+module.exports = { getPublication, getPublicationById, filterPublication, getEssentials, getNewPost,updateStatut, deletePost,deletePanier };
