@@ -19,7 +19,6 @@ router.get("/", publicationControllers.getEssentials);
 router.put("/updatestatut/:id", publicationControllers.updateStatut);
 
 //Méthode delete pour supprimer une publi :
-router.delete("/delete/:id", publicationControllers.getDeletePost);
 router.post("/create",publicationControllers.getNewPost)
 router.delete("/delete/:id", publicationControllers.getDeletePost)
 router.delete("/deletePanier/:id", publicationControllers.getDeletePanier)
