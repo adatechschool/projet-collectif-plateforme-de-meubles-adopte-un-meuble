@@ -10,7 +10,6 @@ require("dotenv").config();
 const supabaseUrl = "https://zfrowkmhwhnhmyzwxlez.supabase.co";
 const supabaseKey =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inpmcm93a21od2huaG15end4bGV6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDk1NTg5NjUsImV4cCI6MjAyNTEzNDk2NX0.6HS7PaiqkOQtN3JPNCCBAW2058bJNQoAuECWeurKlYM";
-console.log(supabaseKey);
 
 //Obtenir l'autorisation d'utiliser la BDD à partir de l'URL et de la clé d'API : on récupère une key ou token
 const supabase = createClient(supabaseUrl, supabaseKey);
@@ -82,20 +81,19 @@ const getNewPost = async (req, res) => {
   const { data, error } = await supabase.from("Publications")
   .insert([{ 
     //A corriger avec les infos de front
-    id : 10,
     vendeur_id : req.body.idSession,
-    type_id : 1,
+    type_id : 1, //A corriger avec les infos de front
     description : req.body.description,
     date :  req.body.date,
-    statut_id : 4,
+    statut_id : 4, 
     titre : req.body.titre,
     prix : req.body.prix,
     photos : req.body.photos,
-    couleur_id : 1,
-    matière_id : 1,
-    état_id : 1,
-    dimension_id : 1,
-    pièce_id : 1
+    couleur_id : 1, //A corriger avec les infos de front
+    matière_id : 1, //A corriger avec les infos de front
+    état_id : 1, //A corriger avec les infos de front
+    dimension_id : 1, //A corriger avec les infos de front
+    pièce_id : 1 //A corriger avec les infos de front
   }])
   .select();
   if (error) {
