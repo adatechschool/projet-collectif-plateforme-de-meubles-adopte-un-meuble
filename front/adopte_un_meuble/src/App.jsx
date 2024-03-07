@@ -1,4 +1,4 @@
-import Footer from "./Components/Footer.jsx";
+import Footer from "./components/Footer.jsx";
 import "./App.css";
 import ProductCard from "./components/ProductCard";
 import {
@@ -23,6 +23,7 @@ const imageNames = ["one", "two", "three", "four", "five"];
 function App() {
   return (
     <div className="flex w-full h-full">
+      <Footer />
       <div className="h-[39px] w-full bg-orange-100 fixed top-0 z-10">
         navbar
       </div>
@@ -123,3 +124,4 @@ function App() {
   );
 }
 
+export default App;
