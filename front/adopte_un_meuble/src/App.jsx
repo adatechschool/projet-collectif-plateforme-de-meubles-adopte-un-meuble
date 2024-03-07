@@ -1,6 +1,5 @@
-
 //import { useState } from "react";
-import Navbar from './components/Navbar';
+import Navbar from "./components/Navbar";
 
 import Footer from "./components/Footer.jsx";
 
@@ -15,7 +14,6 @@ import {
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
 
-
 const images = [
   "./public/cabinet_1.png",
   "./public/chair_1.png",
@@ -28,12 +26,7 @@ const imageNames = ["one", "two", "three", "four", "five"];
 
 function App() {
   return (
-    <div className="flex w-full h-full">
-      <Footer />
-      <div className="h-[39px] w-full bg-orange-100 fixed top-0 z-10">
-        navbar
-      </div>
-      {/* <div className="h-[100px] w-[100px] bg-pink-400 hidden sm:block"></div> */}
+    <div className="flex w-full h-full flex-col">
       <div className="sm:hidden flex w-full flex-col content-center justify-start items-start">
         <Carousel
           plugins={[
@@ -81,7 +74,7 @@ function App() {
           </div>
         </div>
       </div>
-      <div className="hidden sm:flex justify-center items-center h-screen w-screen pt-[39px]">
+      <div className="hidden sm:flex justify-center items-center h-screen w-screen">
         <div className="flex flex-col items-center gap-[0.3125rem]">
           <div className="flex justify-between items-start self-stretch">
             <h1 className="text-lightMode-secondarytext font-bold text-2xl">
@@ -102,9 +95,9 @@ function App() {
               loop: true,
             }}
             orientation="vertical"
-            className="w-[30rem] "
+            className="w-[60vh] "
           >
-            <CarouselContent className="h-[30rem] flex">
+            <CarouselContent className="h-[60vh] flex">
               {images.map((imageUrl, index) => (
                 <CarouselItem className="h-full" key={index}>
                   <div className="flex aspect-square items-center">
@@ -127,7 +120,7 @@ function App() {
         </div>
       </div>
       <Navbar />
-
+      <Footer />
     </div>
   );
 }
