@@ -117,6 +117,11 @@ function Navbar() {
                   supprimer
                 </h4>
               </div>
+              <div className="w-full flex flex-col items-start gap-y-1">
+                <h4 className="text-lightMode-secondarytext text-2xl font-bold">
+                  total -&gt; €500
+                </h4>
+              </div>
             </div>
             <Button className="w-[87%] absolute bottom-5 right-0 left-0 mx-auto">
               payer
