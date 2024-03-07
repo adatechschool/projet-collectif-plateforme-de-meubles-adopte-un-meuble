@@ -1,4 +1,9 @@
+
+//import { useState } from "react";
+import Navbar from './components/Navbar';
+
 import Footer from "./components/Footer.jsx";
+
 import "./App.css";
 import ProductCard from "./components/ProductCard";
 import {
@@ -9,6 +14,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
+
 
 const images = [
   "./public/cabinet_1.png",
@@ -120,6 +126,8 @@ function App() {
           </div>
         </div>
       </div>
+      <Navbar />
+
     </div>
   );
 }
