@@ -17,48 +17,50 @@ const supabase = createClient(supabaseUrl, supabaseKey);
 
 //Requête pour obtenir toutes les publications de la BDD :
 const getPublication = async (req, res) => {
-    const { data, error } = await supabase
-    .from("Publications")
-    .select("User!inner(pseudo),Type!inner(type), description, date, Statut_Publication!inner(statut), titre, prix, photos, Couleur!inner(couleur), Matière!inner(matière), État_Meuble!inner(état), Dimensions!inner(hauteur,largeur,longueur), Pièce!inner(pièce)");
-    if (error) throw error;
-    return data;
-    //nom de vendeur,nom de type, status, couleur, dimension, pièce 
+  const { data, error } = await supabase.from("Publications").select("*");
+  if (error) throw error;
+  return data;
+  //nom de vendeur,nom de type, status, couleur, dimension, pièce
 };
 
 //Requête pour obtenir une publication à partir de son id :
 const getPublicationById = async (req, res) => {
-    const { data, error } = await supabase
+  const { data, error } = await supabase
     .from("Publications")
-    .select("User!inner(pseudo),Type!inner(type), description, date, Statut_Publication!inner(statut), titre, prix, photos, Couleur!inner(couleur), Matière!inner(matière), État_Meuble!inner(état), Dimensions!inner(hauteur,largeur,longueur), Pièce!inner(pièce)")
+    .select(
+      "User!inner(pseudo),Type!inner(type), description, date, Statut_Publication!inner(statut), titre, prix, photos, Couleur!inner(couleur), Matière!inner(matière), État_Meuble!inner(état), Dimensions!inner(hauteur,largeur,longueur), Pièce!inner(pièce)"
+    )
     .eq("id", req.params.id);
-    if (error) throw error;
-    return data;
+  if (error) throw error;
+  return data;
 };
 
 // front doit renvoyer l'id de couleur, l'id de type et le prix
 // permet de filtrer les publications
 const filterPublication = async (req, res) => {
-    let query = supabase
+  let query = supabase
     .from("Publications")
-    .select("User!inner(pseudo),Type!inner(type), description, date, Statut_Publication!inner(statut), titre, prix, photos, Couleur!inner(couleur), Matière!inner(matière), État_Meuble!inner(état), Dimensions!inner(hauteur,largeur,longueur), Pièce!inner(pièce)");
-    const type = req.query.type;
-    const couleur = req.query.couleur;
-    const minPrice = req.query.minPrice;
-    const maxPrice = req.query.maxPrice;
+    .select(
+      "id, User!inner(pseudo),Type!inner(type), description, date, Statut_Publication!inner(statut), titre, prix, photos, Couleur!inner(couleur), Matière!inner(matière), État_Meuble!inner(état), Dimensions!inner(hauteur,largeur,longueur), Pièce!inner(pièce)"
+    );
+  const type = req.query.type;
+  const couleur = req.query.couleur;
+  const minPrice = req.query.minPrice;
+  const maxPrice = req.query.maxPrice;
 
-    //si ... se trouve dans la requete, alors on ajoute le filtre
-    if (type) { 
-        query = query.eq("Type.type", type);
-    }
-    if (couleur) {
-        query = query.eq("Couleur.couleur", couleur);
-    }
-    if (minPrice) {
-        query = query.gte("prix", minPrice);
-    }
-    if (maxPrice) {
-        query = query.lte("prix", maxPrice);
-    }
+  //si ... se trouve dans la requete, alors on ajoute le filtre
+  if (type) {
+    query = query.eq("Type.type", type);
+  }
+  if (couleur) {
+    query = query.eq("Couleur.couleur", couleur);
+  }
+  if (minPrice) {
+    query = query.gte("prix", minPrice);
+  }
+  if (maxPrice) {
+    query = query.lte("prix", maxPrice);
+  }
 
   const { data, error } = await query;
   if (error) {
@@ -76,13 +78,25 @@ const getEssentials = async (req, res) => {
   return data;
 };
 
-const getNewPost = async (req, res) => {
-  const { data, error } = await supabase.from("Publications")
-  .insert([
-  ]);
-  if (error) throw error;
+//Changer le statut d'une publication de "à valider" -> "validé"
+//Récupérer l'id de la publication via front
+const updateStatut = async (req, res) => {
+  const { data, error } = await supabase
+    .from("Publications")
+    .update({ satut_id: 1 })
+    .eq("id", req.params.id)
+    .select();
+  if (error) {
+    console.log(error);
+  }
   return data;
 };
 
 //Exporter les fonctions pour pouvoir les utiliser dans le fichier publicationControllers.js
-module.exports = { getPublication, getPublicationById, filterPublication, getEssentials, getNewPost };
+module.exports = {
+  getPublication,
+  getPublicationById,
+  filterPublication,
+  getEssentials,
+  updateStatut,
+};
