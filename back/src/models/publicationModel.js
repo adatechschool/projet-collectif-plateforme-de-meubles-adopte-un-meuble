@@ -117,4 +117,17 @@ const deletePanier = async (req, res) => {
 };
 
 //Exporter les fonctions pour pouvoir les utiliser dans le fichier publicationControllers.js
-module.exports = { getPublication, getPublicationById, filterPublication, getEssentials, getNewPost, updateStatut, deletePost, deletePanier };
+
+const getPanier = async (req, res) => {
+  const { data, error } = await supabase
+    .from("Panier")
+    .select("date,Statut_Publication!inner(statut),User!inner(pseudo),Publications!inner(prix)")
+    //peut-être changer id comme session_id ?
+    .eq("acheteur_id", req.params.id);
+  if (error) throw error;
+  return data;
+};
+
+
+//Exporter les fonctions pour pouvoir les utiliser dans le fichier publicationControllers.js
+module.exports = {getPublication,getPublicationById,filterPublication,getEssentials,updateStatut,getNewPost,deletePost,deletePanier, getPanier};

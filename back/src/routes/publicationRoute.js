@@ -12,8 +12,7 @@ router.get("/all", publicationControllers.getAllPublication);
 router.get("/filter", publicationControllers.filterPublication);
 router.get("/:id", publicationControllers.getPublicationById);
 router.get("/", publicationControllers.getEssentials);
-
-
+router.get("/panier/:id", publicationControllers.getPanier);
 
 //Méthode put pour updater le statut d'une publication selon l'id :
 router.put("/updatestatut/:id", publicationControllers.updateStatut);

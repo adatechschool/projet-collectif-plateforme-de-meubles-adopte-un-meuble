@@ -70,7 +70,15 @@ const getDeletePost = async (req, res) => {
     } catch (error) {
         res.status(500).json({error: error.message})
     }
-};
+  }
+const getPanier = async (req, res) => {
+  try {
+    const panier = await publicationModel.getPanier(req, res);
+    res.send(panier);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+  };
 
 const getDeletePanier = async(req, res) => {
     try {
@@ -82,5 +90,4 @@ const getDeletePanier = async(req, res) => {
 }
 
 //Export des fonctions pour pouvoir les utiliser dans le fichier publicationRoute.js
-
-module.exports = { getAllPublication, getPublicationById, filterPublication, getEssentials, updateStatut, getNewPost, getDeletePost, getDeletePanier };
+module.exports = { getAllPublication, getPublicationById, filterPublication, getEssentials, updateStatut, getNewPost, getDeletePost, getDeletePanier, getPanier };
