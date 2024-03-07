@@ -1,3 +1,4 @@
+import Footer from "./Components/Footer.jsx";
 import "./App.css";
 import ProductCard from "./components/ProductCard";
 import {
@@ -122,4 +123,3 @@ function App() {
   );
 }
 
-export default App;
