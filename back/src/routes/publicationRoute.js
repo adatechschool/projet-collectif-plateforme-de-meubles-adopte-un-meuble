@@ -8,13 +8,19 @@ const publicationControllers = require("../controllers/publicationControllers");
 const router = express.Router();
 
 //Définition des méthodes GET :
-router.get("/", publicationControllers.getAllPublication);
+router.get("/all", publicationControllers.getAllPublication);
 router.get("/filter", publicationControllers.filterPublication);
 router.get("/:id", publicationControllers.getPublicationById);
 router.get("/", publicationControllers.getEssentials);
 
 //Méthode put pour updater le statut d'une publication selon l'id :
 router.put("/updatestatut/:id", publicationControllers.updateStatut);
+
+//Méthode post pour créer un post :
+router.post("/create", publicationControllers.getNewPost);
+
+//Méthode delete pour supprimer une publi :
+router.delete("/delete/:id", publicationControllers.getDeletePost);
 
 //Export de router pour pouvoir l'utiliser dans le fichier app.js
 module.exports = router;
