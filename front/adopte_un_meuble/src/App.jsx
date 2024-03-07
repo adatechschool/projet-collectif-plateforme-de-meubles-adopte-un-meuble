@@ -14,7 +14,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
-
+import Categories from './components/Categories';
 
 const images = [
   "./public/cabinet_1.png",
@@ -30,9 +30,9 @@ function App() {
   return (
     <div className="flex w-full h-full">
       <Footer />
-      <div className="h-[39px] w-full bg-orange-100 fixed top-0 z-10">
+      {/* <div className="h-[39px] w-full bg-orange-100 fixed top-0 z-10">
         navbar
-      </div>
+      </div> */}
       {/* <div className="h-[100px] w-[100px] bg-pink-400 hidden sm:block"></div> */}
       <div className="sm:hidden flex w-full flex-col content-center justify-start items-start">
         <Carousel
@@ -127,7 +127,7 @@ function App() {
         </div>
       </div>
       <Navbar />
-
+      
     </div>
   );
 }

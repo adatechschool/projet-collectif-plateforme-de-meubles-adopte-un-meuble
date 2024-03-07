@@ -1,4 +1,5 @@
 import {useState} from "react";
+import Categories from "./Categories";
 
 
 function Navbar(){
@@ -25,17 +26,19 @@ function Navbar(){
                 </svg>}
                 </div>
         </nav>
-
-            <div className="w-full flex flex-col items-end text-[2rem] p-[0.9375rem]" >
-            {isOpen && (
+  {isOpen && (
+            <div className="w-full flex flex-col bg-red-400 items-end text-[2rem] p-[0.9375rem]" >
+          
             <ul onClick={() => setIsOpen(false)}>
                 <li><a href="/connexion">connexion</a></li>
                 <li><a href="/vendre" >vendre</a></li>
                 <li><a href="/recherche">recherche</a></li>
                 <li><a href="/panier">panier</a></li>
             </ul>
-                )}
+            <Categories />
+                
             </div>
+            )}
     </div>
         );
 }
