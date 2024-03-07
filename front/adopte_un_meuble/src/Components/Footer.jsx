@@ -1,4 +1,4 @@
-import React from "react";
+
 
 function Footer(){
     return( <div className="flex-col justify-start items-start gap-[5px] inline-flex absolute bottom-[1.875rem] left-[1.875rem]">
