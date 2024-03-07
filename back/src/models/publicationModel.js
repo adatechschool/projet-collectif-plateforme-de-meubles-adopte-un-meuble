@@ -17,7 +17,7 @@ const supabase = createClient(supabaseUrl, supabaseKey);
 
 //Requête pour obtenir toutes les publications de la BDD :
 const getPublication = async (req, res) => {
-  const { data, error } = await supabase.from("Publications").select("*");
+  const { data, error } = await supabase.from("Publications").select("User!inner(pseudo),Type!inner(type), description, date, Statut_Publication!inner(statut), titre, prix, photos, Couleur!inner(couleur), Matière!inner(matière), État_Meuble!inner(état), Dimensions!inner(hauteur,largeur,longueur), Pièce!inner(pièce),id");
   if (error) throw error;
   return data;
   //nom de vendeur,nom de type, status, couleur, dimension, pièce
@@ -28,7 +28,7 @@ const getPublicationById = async (req, res) => {
   const { data, error } = await supabase
     .from("Publications")
     .select(
-      "User!inner(pseudo),Type!inner(type), description, date, Statut_Publication!inner(statut), titre, prix, photos, Couleur!inner(couleur), Matière!inner(matière), État_Meuble!inner(état), Dimensions!inner(hauteur,largeur,longueur), Pièce!inner(pièce)"
+      "User!inner(pseudo),Type!inner(type), description, date, Statut_Publication!inner(statut), titre, prix, photos, Couleur!inner(couleur), Matière!inner(matière), État_Meuble!inner(état), Dimensions!inner(hauteur,largeur,longueur), Pièce!inner(pièce),id"
     )
     .eq("id", req.params.id);
   if (error) throw error;
