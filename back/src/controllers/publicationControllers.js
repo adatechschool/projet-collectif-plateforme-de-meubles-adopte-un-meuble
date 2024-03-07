@@ -72,6 +72,16 @@ const getNewPost = async (req, res) => {
     }
   };
 
+
+const getPanier = async (req, res) => {
+  try {
+    const panier = await publicationModel.getPanier(req, res);
+    res.send(panier);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+  };
+
 //Export des fonctions pour pouvoir les utiliser dans le fichier publicationRoute.js
 module.exports = {
   getAllPublication,
@@ -81,4 +91,5 @@ module.exports = {
   updateStatut,
   getDeletePost,
   getNewPost,
+  getPanier
 };

@@ -12,6 +12,7 @@ router.get("/all", publicationControllers.getAllPublication);
 router.get("/filter", publicationControllers.filterPublication);
 router.get("/:id", publicationControllers.getPublicationById);
 router.get("/", publicationControllers.getEssentials);
+router.get("/panier/:id", publicationControllers.getPanier);
 
 
 //Méthode post pour créer un post :

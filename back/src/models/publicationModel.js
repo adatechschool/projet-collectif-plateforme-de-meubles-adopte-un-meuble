@@ -128,6 +128,16 @@ const deletePost = async (req, res) => {
   return data;
 };
 
+const getPanier = async (req, res) => {
+  const { data, error } = await supabase
+    .from("Panier")
+    .select("date,Statut_Publication!inner(statut),User!inner(pseudo),Publications!inner(prix)")
+    //peut-être changer id comme session_id ?
+    .eq("acheteur_id", req.params.id);
+  if (error) throw error;
+  return data;
+};
+
 
 //Exporter les fonctions pour pouvoir les utiliser dans le fichier publicationControllers.js
 module.exports = {
@@ -138,4 +148,5 @@ module.exports = {
   updateStatut,
   getNewPost,
   deletePost,
+  getPanier
 };
