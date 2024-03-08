@@ -24,7 +24,7 @@ Projet collectif qui s'est déroulé sur 2 semaines. Le projet comprenait 1 grou
 2. Naviguer jusqu'au dossier front -> `npm install`
 3. Naviguer jusqu'au dossier back -> `npm install` 
 > [!WARNING]
-> Créer un fichier .env et y inscrire la clé Supabase
+> Créer un fichier .env à la racine du dossier Back et y inscrire la clé Supabase
 
 ## Démarrer le projet : 
 1. Naviguer jusqu'au dossier front -> `npm run dev`
