@@ -7,18 +7,18 @@ function ProductCard(props) {
         <img className="w-[576px]" src={props.image} />
       </div>
       <div className="self-stretch flex-col justify-start items-start gap-[5px] flex">
-        <div className="text-stone-900 text-3xl font-bold font-['Inter']">
+        <div className="text-lightMode-text text-3xl font-bold">
           {props.title}
         </div>
         <div className="flex-col justify-start items-start flex">
-          <div className="text-black text-xl font-bold font-['Inter']">
+          <div className="text-lightMode-text text-xl font-bold">
             {props.price}
           </div>
         </div>
-        <div className="text-stone-900 text-xl font-medium font-['Inter']">
+        <div className="text-lightMode-secondarytext text-xl font-medium">
           {props.divers}
         </div>
-        <div className="text-stone-900 text-xl font-medium font-['Inter']">
+        <div className="text-lightMode-secondarytext text-xl font-medium">
           {props.seller}
         </div>
       </div>
