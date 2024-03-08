@@ -17,48 +17,58 @@ const supabase = createClient(supabaseUrl, supabaseKey);
 
 //Requête pour obtenir toutes les publications de la BDD :
 const getPublication = async (req, res) => {
-    const { data, error } = await supabase
+  const { data, error } = await supabase
     .from("Publications")
-    .select("User!inner(pseudo),Type!inner(type), description, date, Statut_Publication!inner(statut), titre, prix, photos, Couleur!inner(couleur), Matière!inner(matière), État_Meuble!inner(état), Dimensions!inner(hauteur,largeur,longueur), Pièce!inner(pièce)");
-    if (error) throw error;
-    return data;
-    //nom de vendeur,nom de type, status, couleur, dimension, pièce 
+    .select(
+      "User!inner(pseudo , admin),Type!inner(type), description, date, Statut_Publication!inner(statut),id, titre, prix, photos, Couleur!inner(couleur), Matière!inner(matière), État_Meuble!inner(état), Dimensions!inner(hauteur,largeur,longueur), Pièce!inner(pièce)"
+    );
+  if (error) throw error;
+  return data;
+  //nom de vendeur,nom de type, status, couleur, dimension, pièce
 };
 
 //Requête pour obtenir une publication à partir de son id :
 const getPublicationById = async (req, res) => {
-    const { data, error } = await supabase
+  const { data, error } = await supabase
     .from("Publications")
-    .select("User!inner(pseudo),Type!inner(type), description, date, Statut_Publication!inner(statut), titre, prix, photos, Couleur!inner(couleur), Matière!inner(matière), État_Meuble!inner(état), Dimensions!inner(hauteur,largeur,longueur), Pièce!inner(pièce)")
+    .select(
+      "User!inner(pseudo),Type!inner(type), description, date, Statut_Publication!inner(statut), titre, prix, photos, Couleur!inner(couleur), Matière!inner(matière), État_Meuble!inner(état), Dimensions!inner(hauteur,largeur,longueur), Pièce!inner(pièce)"
+    )
     .eq("id", req.params.id);
-    if (error) throw error;
-    return data;
+  if (error) throw error;
+  return data;
 };
 
 // front doit renvoyer l'id de couleur, l'id de type et le prix
 // permet de filtrer les publications
 const filterPublication = async (req, res) => {
-    let query = supabase
+  let query = supabase
     .from("Publications")
-    .select("User!inner(pseudo),Type!inner(type), description, date, Statut_Publication!inner(statut), titre, prix, photos, Couleur!inner(couleur), Matière!inner(matière), État_Meuble!inner(état), Dimensions!inner(hauteur,largeur,longueur), Pièce!inner(pièce)");
-    const type = req.query.type;
-    const couleur = req.query.couleur;
-    const minPrice = req.query.minPrice;
-    const maxPrice = req.query.maxPrice;
+    .select(
+      "User!inner(pseudo),Type!inner(type), description, date, Statut_Publication!inner(statut), id,titre, prix, photos, Couleur!inner(couleur), Matière!inner(matière), État_Meuble!inner(état), Dimensions!inner(hauteur,largeur,longueur), Pièce!inner(pièce)"
+    );
+  const type = req.query.type;
+  const couleur = req.query.couleur;
+  const minPrice = req.query.minPrice;
+  const maxPrice = req.query.maxPrice;
+  const status = req.query.status;
 
-    //si ... se trouve dans la requete, alors on ajoute le filtre
-    if (type) { 
-        query = query.eq("Type.type", type);
-    }
-    if (couleur) {
-        query = query.eq("Couleur.couleur", couleur);
-    }
-    if (minPrice) {
-        query = query.gte("prix", minPrice);
-    }
-    if (maxPrice) {
-        query = query.lte("prix", maxPrice);
-    }
+  //si ... se trouve dans la requete, alors on ajoute le filtre
+  if (type) {
+    query = query.eq("Type.type", type);
+  }
+  if (couleur) {
+    query = query.eq("Couleur.couleur", couleur);
+  }
+  if (minPrice) {
+    query = query.gte("prix", minPrice);
+  }
+  if (maxPrice) {
+    query = query.lte("prix", maxPrice);
+  }
+  if (status) {
+    query = query.eq("Statut_Publication.statut", status);
+  }
 
   const { data, error } = await query;
   if (error) {
@@ -77,12 +87,16 @@ const getEssentials = async (req, res) => {
 };
 
 const getNewPost = async (req, res) => {
-  const { data, error } = await supabase.from("Publications")
-  .insert([
-  ]);
+  const { data, error } = await supabase.from("Publications").insert([]);
   if (error) throw error;
   return data;
 };
 
 //Exporter les fonctions pour pouvoir les utiliser dans le fichier publicationControllers.js
-module.exports = { getPublication, getPublicationById, filterPublication, getEssentials, getNewPost };
+module.exports = {
+  getPublication,
+  getPublicationById,
+  filterPublication,
+  getEssentials,
+  getNewPost,
+};
