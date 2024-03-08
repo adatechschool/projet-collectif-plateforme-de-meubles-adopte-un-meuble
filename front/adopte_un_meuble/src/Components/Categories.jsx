@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+
 import { createClient } from '@supabase/supabase-js';
 
 const supabaseUrl = 'https://zfrowkmhwhnhmyzwxlez.supabase.co';
@@ -9,16 +9,16 @@ const supabase = createClient(supabaseUrl, supabaseKey);
 
 function Categories(){
 
-const [selectedCategory, setSelectedCategory] = useState('');
-const history = useHistory();
+// const [selectedCategory, setSelectedCategory] = useState('');
+// //const history = useHistory();
 
   const handleCategoryClick = async (category) => {
-    setSelectedCategory(category);
+    // setSelectedCategory(category);
     // Requête à Supabase pour récupérer les produits de la catégorie sélectionnée
     const { data, error } = await supabase
       .from('produits')
       .select('*')
-      .eq('categorie', category);
+    //   .eq('categorie', category);
 
     if (error) {
       console.error('Erreur lors de la récupération des produits:', error.message);
@@ -26,6 +26,7 @@ const history = useHistory();
       // Rediriger vers la page des produits avec la catégorie sélectionnée dans les paramètres de l'URL
       history.push(`/produits/${category}`, { produits: data });
     }
+
   };
 
 

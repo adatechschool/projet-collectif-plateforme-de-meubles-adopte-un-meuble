@@ -1,5 +1,5 @@
 
-//import { useState } from "react";
+import { useState } from "react";
 import Navbar from './components/Navbar';
 
 import Footer from "./components/Footer.jsx";
@@ -14,9 +14,9 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Categories from './CategoriesList';
-import ProductPage from './ProductPage';
+// import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+// import Categories from './components/Categories';
+//import ProductPage from './ProductPage';
 
 const images = [
   "./public/cabinet_1.png",
@@ -129,12 +129,12 @@ function App() {
         </div>
       </div>
       <Navbar />
-       <Router>
+       {/* <Router>
       <Switch>
-        <Route exact path="/" component={Categories} />
-        <Route path="/produits/:category" component={ProductPage} />
-      </Switch>
-    </Router>
+        {/* <Route exact path="/" component={Categories} /> */}
+        {/* <Route path="/produits/:category" component={ProductPage} /> */}
+      {/* </Switch> */}
+    {/* </Router> */} 
     </div>
   );
 }
