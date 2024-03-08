@@ -21,7 +21,9 @@ function Navbar() {
   return (
     <div className="flex fixed top-0 z-10 w-full flex-col items-start ">
       <nav className="flex p-[0.9375rem]  justify-between items-center shrink-0 self-stretch">
-        <h3 className="text-lg text-lightMode-text">adopte un meuble</h3>
+        <h3 className="text-lg text-lightMode-text">
+          <a href="/">adopte un meuble</a>
+        </h3>
 
         <div className="flex items-center gap-5">
           <Sheet>
