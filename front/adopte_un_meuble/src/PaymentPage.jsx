@@ -2,7 +2,6 @@
 import Navbar from "./components/Navbar";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-// import { Textarea } from "@/components/ui/textarea";
 import {
   Select,
   SelectContent,
@@ -13,12 +12,13 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
 
 function PaymentPage() {
   return (
     <div className="w-screen flex justify-center items-center py-[5rem] bg-lightMode-background">
       <Navbar />
-      <div className="w-full px-[0.625rem] flex flex-col items-center gap-[1rem] max-w-2xl">
+      <div className="w-full px-[0.625rem] flex flex-col items-center gap-[1rem] max-w-xl">
         <div className="grid w-full items-center gap-1.5">
           <Label htmlFor="titre">numéro de carte</Label>
           <Input type="email" id="card" placeholder="" />
@@ -73,6 +73,7 @@ function PaymentPage() {
             <Input type="email" id="card" placeholder="" />
           </div>
         </div>
+        <Separator className="my-[2rem]" />
         <div className="flex w-full gap-[0.625rem] justify-center items-start">
           <div className="grid w-full items-center gap-1.5">
             <Label htmlFor="titre">nom</Label>
