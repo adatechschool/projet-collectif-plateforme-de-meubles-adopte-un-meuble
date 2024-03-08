@@ -1,4 +1,4 @@
-import React from "react";
+// import React from "react";
 import Navbar from "./components/Navbar";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -29,34 +29,40 @@ function PaymentPage() {
               <Label htmlFor="titre">mois</Label>
               <Select>
                 <SelectTrigger className="w-full">
-                  <SelectValue placeholder="Select a fruit" />
+                  <SelectValue placeholder="Mois" />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectGroup>
-                    <SelectLabel>Fruits</SelectLabel>
-                    <SelectItem value="apple">Apple</SelectItem>
-                    <SelectItem value="banana">Banana</SelectItem>
-                    <SelectItem value="blueberry">Blueberry</SelectItem>
-                    <SelectItem value="grapes">Grapes</SelectItem>
-                    <SelectItem value="pineapple">Pineapple</SelectItem>
+                    <SelectLabel>Mois</SelectLabel>
+                    <SelectItem value="janvier">01</SelectItem>
+                    <SelectItem value="février">02</SelectItem>
+                    <SelectItem value="mars">03</SelectItem>
+                    <SelectItem value="avril">04</SelectItem>
+                    <SelectItem value="mai">05</SelectItem>
+                    <SelectItem value="juin">06</SelectItem>
+                    <SelectItem value="juillet">07</SelectItem>
+                    <SelectItem value="août">08</SelectItem>
+                    <SelectItem value="septembre">09</SelectItem>
+                    <SelectItem value="octobre">10</SelectItem>
+                    <SelectItem value="novembre">11</SelectItem>
+                    <SelectItem value="décembre">12</SelectItem>
                   </SelectGroup>
                 </SelectContent>
               </Select>
             </div>
             <div className="grid w-full max-w-sm items-center gap-1.5">
-              <Label htmlFor="titre">année</Label>
+              <Label htmlFor="titre">Année</Label>
               <Select>
                 <SelectTrigger className="w-full">
-                  <SelectValue placeholder="Select a fruit" />
+                  <SelectValue placeholder="Année" />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectGroup>
-                    <SelectLabel>Fruits</SelectLabel>
-                    <SelectItem value="apple">Apple</SelectItem>
-                    <SelectItem value="banana">Banana</SelectItem>
-                    <SelectItem value="blueberry">Blueberry</SelectItem>
-                    <SelectItem value="grapes">Grapes</SelectItem>
-                    <SelectItem value="pineapple">Pineapple</SelectItem>
+                    <SelectLabel>Année</SelectLabel>
+                    <SelectItem value="2024">2024</SelectItem>
+                    <SelectItem value="2025">2025</SelectItem>
+                    <SelectItem value="2026">2026</SelectItem>
+                    <SelectItem value="2027">2027</SelectItem>
                   </SelectGroup>
                 </SelectContent>
               </Select>

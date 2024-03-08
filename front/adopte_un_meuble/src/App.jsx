@@ -1,10 +1,11 @@
 //import { useState } from "react";
-import Navbar from "./components/Navbar";
+
+import Navbar from './components/Navbar.jsx';
 
 import Footer from "./components/Footer.jsx";
 
 import "./App.css";
-import ProductCard from "./components/ProductCard";
+import ProductCard from "./components/ProductCard.jsx";
 import {
   Carousel,
   CarouselContent,
@@ -26,6 +27,7 @@ const imageNames = ["one", "two", "three", "four", "five"];
 
 function App() {
   return (
+
     <div className="flex w-full h-full flex-col">
       <div className="sm:hidden flex w-full flex-col content-center justify-start items-start">
         <Carousel
