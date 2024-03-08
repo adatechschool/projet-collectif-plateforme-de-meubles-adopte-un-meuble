@@ -8,8 +8,8 @@ require("dotenv").config();
 
 //Lien entre BDD et API
 const supabaseUrl = "https://zfrowkmhwhnhmyzwxlez.supabase.co";
-const supabaseKey =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inpmcm93a21od2huaG15end4bGV6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDk1NTg5NjUsImV4cCI6MjAyNTEzNDk2NX0.6HS7PaiqkOQtN3JPNCCBAW2058bJNQoAuECWeurKlYM";
+const supabaseKey = process.env.SUPABASE_KEY
+
 
 //Obtenir l'autorisation d'utiliser la BDD à partir de l'URL et de la clé d'API : on récupère une key ou token
 const supabase = createClient(supabaseUrl, supabaseKey);

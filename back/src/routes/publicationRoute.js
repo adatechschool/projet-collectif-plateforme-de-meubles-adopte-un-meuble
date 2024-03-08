@@ -17,9 +17,13 @@ router.get("/panier/:id", publicationControllers.getPanier);
 //Méthode put pour updater le statut d'une publication selon l'id :
 router.put("/updatestatut/:id", publicationControllers.updateStatut);
 
-//Méthode delete pour supprimer une publi :
+//Méthode post pour créer une publi :
 router.post("/create",publicationControllers.getNewPost)
+
+//Méthode delete pour supprimer une publi :
 router.delete("/delete/:id", publicationControllers.getDeletePost)
+
+//Méthode delete pour supprimer un panier :
 router.delete("/deletePanier/:id", publicationControllers.getDeletePanier)
 
 //Export de router pour pouvoir l'utiliser dans le fichier app.js
