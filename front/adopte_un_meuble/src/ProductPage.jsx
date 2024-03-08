@@ -3,15 +3,21 @@ import ProductCard from "./components/ProductCard";
 import Navbar from "./components/Navbar";
 
 function ProductPage() {
+  const numberOfCards = 10;
   return (
-    <div className="">
-      <ProductCard
-        image="./public/cabinet_1.png"
-        title="Canapé Vintage Rétro"
-        price="€250"
-        divers="Divers"
-        seller="Vendeur"
-      />
+    <div className="flex justify-center pt-[5rem]">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+        {Array.from({ length: numberOfCards }, (_, index) => (
+          <ProductCard
+            key={index}
+            image="./public/cabinet_1.png"
+            title="Canapé Vintage Rétro"
+            price="€250"
+            divers="Divers"
+            seller="Vendeur"
+          />
+        ))}
+      </div>
       <Navbar />
     </div>
   );
