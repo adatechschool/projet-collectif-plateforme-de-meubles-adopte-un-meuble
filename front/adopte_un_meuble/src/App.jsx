@@ -14,7 +14,9 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
-import Categories from './components/Categories';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Categories from './CategoriesList';
+import ProductPage from './ProductPage';
 
 const images = [
   "./public/cabinet_1.png",
@@ -127,7 +129,12 @@ function App() {
         </div>
       </div>
       <Navbar />
-      
+       <Router>
+      <Switch>
+        <Route exact path="/" component={Categories} />
+        <Route path="/produits/:category" component={ProductPage} />
+      </Switch>
+    </Router>
     </div>
   );
 }
