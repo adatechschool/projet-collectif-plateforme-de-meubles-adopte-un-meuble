@@ -8,6 +8,7 @@ import PaymentPage from "./PaymentPage.jsx";
 import ProductPage from "./ProductPage.jsx";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Articlepage from "./Articlepage.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -28,6 +29,11 @@ const router = createBrowserRouter([
   {
     path: "/product",
     element: <ProductPage />,
+  },
+
+  {
+    path: "/article",
+    element: <Articlepage />,
   },
 ]);
 
