@@ -29,8 +29,8 @@ function Navbar(){
             <div className="w-full flex flex-col items-end text-[2rem] p-[0.9375rem]" >
             {isOpen && (
             <ul onClick={() => setIsOpen(false)}>
-                <li><a href="/connexion">connexion</a></li>
-                <li><a href="/vendre" >vendre</a></li>
+                <li><a href="/login">connexion</a></li>
+                <li><a href="/sell" >vendre</a></li>
                 <li><a href="/recherche">recherche</a></li>
                 <li><a href="/panier">panier</a></li>
             </ul>

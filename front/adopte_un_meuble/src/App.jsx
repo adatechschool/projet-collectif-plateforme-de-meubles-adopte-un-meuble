@@ -1,11 +1,11 @@
 
 //import { useState } from "react";
-import Navbar from './components/Navbar';
+import Navbar from './components/Navbar.jsx';
 
 import Footer from "./components/Footer.jsx";
 
 import "./App.css";
-import ProductCard from "./components/ProductCard";
+import ProductCard from "./components/ProductCard.jsx";
 import {
   Carousel,
   CarouselContent,
@@ -31,7 +31,6 @@ function App() {
     <div className="flex w-full h-full">
       <Footer />
       <div className="h-[39px] w-full bg-orange-100 fixed top-0 z-10">
-        navbar
       </div>
       {/* <div className="h-[100px] w-[100px] bg-pink-400 hidden sm:block"></div> */}
       <div className="sm:hidden flex w-full flex-col content-center justify-start items-start">
