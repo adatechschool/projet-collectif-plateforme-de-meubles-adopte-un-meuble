@@ -15,14 +15,6 @@ import {
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
 
-const images = [
-  "./public/cabinet_1.png",
-  "./public/chair_1.png",
-  "./public/couch_1.png",
-  "./public/couch_2.png",
-  "./public/lights_1.png",
-];
-
 const articles = [
   {
     id: 1,
