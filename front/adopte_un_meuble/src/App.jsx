@@ -1,6 +1,6 @@
 //import { useState } from "react";
 
-import Navbar from './components/Navbar.jsx';
+import Navbar from "./components/Navbar.jsx";
 
 import Footer from "./components/Footer.jsx";
 
@@ -23,12 +23,9 @@ const images = [
   "./public/lights_1.png",
 ];
 
-const imageNames = ["one", "two", "three", "four", "five"];
-
 function App() {
   return (
-
-    <div className="flex w-full h-full flex-col">
+    <div className="flex w-screen h-screen flex-col">
       <div className="sm:hidden flex w-full flex-col content-center justify-start items-start">
         <Carousel
           plugins={[
@@ -78,47 +75,49 @@ function App() {
       </div>
       <div className="hidden sm:flex justify-center items-center h-screen w-screen">
         <div className="flex flex-col items-center gap-[0.3125rem]">
-          <div className="flex justify-between items-start self-stretch">
+          {/* <div className="flex justify-between items-start self-stretch">
             <h1 className="text-lightMode-secondarytext font-bold text-2xl">
               article du moment
             </h1>
             <h2 className="text-lightMode-text font-bold text-2xl">€250</h2>
-          </div>
+          </div> */}
           <Carousel
-            plugins={[
-              Autoplay({
-                delay: 3000,
-                stopOnMouseEnter: true,
-                stopOnInteraction: false,
-              }),
-            ]}
+            // plugins={[
+            //   Autoplay({
+            //     delay: 3000,
+            //     stopOnMouseEnter: true,
+            //     stopOnInteraction: false,
+            //   }),
+            // ]}
             opts={{
-              align: "start",
+              align: "center",
               loop: true,
             }}
             orientation="vertical"
-            className="w-[60vh] "
+            className="w-full"
           >
-            <CarouselContent className="h-[60vh] flex">
+            <CarouselContent className="-mt-1 h-screen">
               {images.map((imageUrl, index) => (
-                <CarouselItem className="h-full" key={index}>
-                  <div className="flex aspect-square items-center">
-                    <img
-                      className="max-h-full max-w-none h-full"
-                      src={imageUrl}
-                      alt={`Image ${index + 1}`}
-                    />
+                <CarouselItem className="pt-1 basis-1/3" key={index}>
+                  <div className="py-[5vh]">
+                    <div className="flex aspect-square items-center w-[60vh]">
+                      <img
+                        className="max-h-full max-w-none h-full"
+                        src={imageUrl}
+                        alt={`Image ${index + 1}`}
+                      />
+                    </div>
                   </div>
                 </CarouselItem>
               ))}
             </CarouselContent>
           </Carousel>
-          <div className="flex justify-between items-start self-stretch">
+          {/* <div className="flex justify-between items-start self-stretch">
             <h1 className="text-lightMode-text font-bold text-2xl">
               canapé vert 1990
             </h1>
             <h2 className="text-lightMode-text font-normal text-2xl">salon</h2>
-          </div>
+          </div> */}
         </div>
       </div>
       <Navbar />
