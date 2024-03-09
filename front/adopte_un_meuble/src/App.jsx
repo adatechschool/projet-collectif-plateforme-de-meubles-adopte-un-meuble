@@ -87,7 +87,7 @@ function App() {
         <Carousel
           plugins={[
             Autoplay({
-              delay: 3000,
+              delay: 6000,
               stopOnMouseEnter: true,
               stopOnInteraction: false,
             }),
@@ -96,50 +96,47 @@ function App() {
             align: "start",
             loop: true,
           }}
-          // methods={{
-          //   slidesInView: () => 2,
-          // }}
           orientation="horizontal"
           className="w-full"
         >
           <CarouselContent className="flex">
-            {images.map((imageUrl, index) => (
-              <CarouselItem className="h-full" key={index}>
+            {articles.map((article, index) => (
+              <CarouselItem className="h-full" key={article.id}>
                 <div className="flex aspect-square items-center">
                   <img
                     className="max-h-full max-w-none h-full"
-                    src={imageUrl}
-                    alt={`Image ${index + 1}`}
+                    src={article.photo}
+                    alt={`Image ${article.id}`}
                   />
+                </div>
+                <div className="flex p-[0.9375rem] flex-col items-start gap-[0.3125rem] self-stretch">
+                  <h1 className="text-2xl font-bold text-lightMode-text">
+                    {article.name}
+                  </h1>
+                  <div className="flex flex-col items-start">
+                    <h2 className="text-lg font-bold text-lightMode-text">
+                      {article.state}
+                    </h2>
+                    <h2 className="text-lg font-bold text-lightMode-text">
+                      €{article.price}
+                    </h2>
+                  </div>
                 </div>
               </CarouselItem>
             ))}
           </CarouselContent>
-          {/* <CarouselPrevious />
-        <CarouselNext /> */}
         </Carousel>
-        <div className="flex p-[0.9375rem] flex-col items-start gap-[0.3125rem] self-stretch">
-          <h1 className="text-lg font-bold text-lightMode-secondarytext">
-            article du moment
-          </h1>
-          <div className="flex flex-col items-start">
-            <h2 className="text-lg font-bold text-lightMode-text">
-              canapé vert 1990
-            </h2>
-            <h2 className="text-lg font-bold text-lightMode-text">€250</h2>
-          </div>
-        </div>
       </div>
       <div className="hidden sm:flex justify-center items-center h-screen w-screen">
         <div className="flex flex-col items-center gap-[0.3125rem]">
           <Carousel
-            // plugins={[
-            //   Autoplay({
-            //     delay: 3000,
-            //     stopOnMouseEnter: true,
-            //     stopOnInteraction: false,
-            //   }),
-            // ]}
+            plugins={[
+              Autoplay({
+                delay: 6000,
+                stopOnMouseEnter: true,
+                stopOnInteraction: false,
+              }),
+            ]}
             opts={{
               align: "center",
               loop: true,
