@@ -25,7 +25,7 @@ const login = async (req, res) => {
     console.log(email, password);
     const user = await authModels.loginUser(email, password);
     res.status(200).json({ user });
-    console.log("user a bien ete cree", user);
+    console.log("login ok ", user);
   } catch (error) {
     res.status(401).json({ error: error.message });
   }
