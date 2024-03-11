@@ -23,64 +23,64 @@ async function getArticles() {
   return data;
 }
 
-getArticles();
+let articles = await getArticles();
 
-const articles = [
-  {
-    id: 1,
-    name: "dofa douilletHavre",
-    type: "canapé",
-    color: "vert",
-    state: "bon état",
-    photo: "./public/cabinet_1.png",
-    price: "250",
-  },
-  {
-    id: 2,
-    name: "Sofa Supreme",
-    type: "canapé",
-    color: "bleu",
-    state: "excellent état",
-    photo: "./public/chair_1.png",
-    price: "34",
-  },
-  {
-    id: 3,
-    name: "Elegant Coffee Table",
-    type: "table basse",
-    color: "marron",
-    state: "comme neuf",
-    photo: "./public/couch_1.png",
-    price: "6600",
-  },
-  {
-    id: 4,
-    name: "Vintage Armchair",
-    type: "fauteuil",
-    color: "rouge",
-    state: "état vintage",
-    photo: "./public/couch_2.png",
-    price: "400",
-  },
-  {
-    id: 5,
-    name: "lampe",
-    type: "luminaire",
-    color: "blanc",
-    state: "bon état",
-    photo: "./public/lights_1.png",
-    price: "50",
-  },
-  {
-    id: 6,
-    name: "testststsetest",
-    type: "luminaire",
-    color: "blanc",
-    state: "bon état",
-    photo: "./public/lights_1.png",
-    price: "50",
-  },
-];
+// const articles = [
+//   {
+//     id: 1,
+//     name: "dofa douilletHavre",
+//     type: "canapé",
+//     color: "vert",
+//     state: "bon état",
+//     photo: "./public/cabinet_1.png",
+//     price: "250",
+//   },
+//   {
+//     id: 2,
+//     name: "Sofa Supreme",
+//     type: "canapé",
+//     color: "bleu",
+//     state: "excellent état",
+//     photo: "./public/chair_1.png",
+//     price: "34",
+//   },
+//   {
+//     id: 3,
+//     name: "Elegant Coffee Table",
+//     type: "table basse",
+//     color: "marron",
+//     state: "comme neuf",
+//     photo: "./public/couch_1.png",
+//     price: "6600",
+//   },
+//   {
+//     id: 4,
+//     name: "Vintage Armchair",
+//     type: "fauteuil",
+//     color: "rouge",
+//     state: "état vintage",
+//     photo: "./public/couch_2.png",
+//     price: "400",
+//   },
+//   {
+//     id: 5,
+//     name: "lampe",
+//     type: "luminaire",
+//     color: "blanc",
+//     state: "bon état",
+//     photo: "./public/lights_1.png",
+//     price: "50",
+//   },
+//   {
+//     id: 6,
+//     name: "testststsetest",
+//     type: "luminaire",
+//     color: "blanc",
+//     state: "bon état",
+//     photo: "./public/lights_1.png",
+//     price: "50",
+//   },
+// ];
 
 function App() {
   return (
@@ -154,21 +154,23 @@ function App() {
                       <div className="absolute inset-0">
                         <img
                           className="max-h-full max-w-none h-full w-full object-cover"
-                          src={article.photo}
+                          src={
+                            "http://localhost:3000/photos/" + article.photos[0]
+                          }
                           alt={`Image ${article.id}`}
                         />
                       </div>
                       <div className="flex flex-col items-start relative z-10 ">
                         <h2 className="text-2xl text-lightMode-text font-bold bg-lightMode-background py-1 px-2.5">
-                          {article.name}
+                          {article.titre}
                         </h2>
                         <h3 className="text-lg text-lightMode-text font-medium bg-lightMode-background py-1 px-2.5">
-                          {article.state}
+                          {article.État_Meuble.état}
                         </h3>
                       </div>
                       <div className="flex items-start justify-between w-full relative z-10">
                         <h3 className="text-lg text-lightMode-text font-medium bg-lightMode-background py-1 px-2.5">
-                          €{article.price}
+                          €{article.prix}
                         </h3>
                         {/* <div className="flex content-center items-center p-[0.22rem] bg-lightMode-background">
                           <svg
