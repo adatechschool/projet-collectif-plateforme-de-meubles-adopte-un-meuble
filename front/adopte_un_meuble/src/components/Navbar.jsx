@@ -137,6 +137,9 @@ function Navbar() {
               <a href="/login">connexion</a>
             </li>
             <li>
+              <a href="/deconnexion">déconnexion</a>
+            </li>
+            <li>
               <a href="/sell">vendre</a>
             </li>
             <li>
