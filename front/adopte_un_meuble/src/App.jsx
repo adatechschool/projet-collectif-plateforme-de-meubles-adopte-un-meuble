@@ -15,6 +15,16 @@ import {
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
 
+async function getArticles() {
+  let response = await fetch("http://localhost:3000/api/publication/");
+
+  let data = await response.json();
+  console.log(data);
+  return data;
+}
+
+getArticles();
+
 const articles = [
   {
     id: 1,
