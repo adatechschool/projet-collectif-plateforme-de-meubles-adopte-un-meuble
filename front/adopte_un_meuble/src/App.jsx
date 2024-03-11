@@ -1,11 +1,6 @@
-//import { useState } from "react";
-
 import Navbar from "./components/Navbar.jsx";
-
 import Footer from "./components/Footer.jsx";
-
 import "./App.css";
-import ProductCard from "./components/ProductCard.jsx";
 import {
   Carousel,
   CarouselContent,
@@ -17,70 +12,12 @@ import Autoplay from "embla-carousel-autoplay";
 
 async function getArticles() {
   let response = await fetch("http://localhost:3000/api/publication/");
-
   let data = await response.json();
   console.log(data);
   return data;
 }
 
 let articles = await getArticles();
-
-// const articles = [
-//   {
-//     id: 1,
-//     name: "dofa douilletHavre",
-//     type: "canapé",
-//     color: "vert",
-//     state: "bon état",
-//     photo: "./public/cabinet_1.png",
-//     price: "250",
-//   },
-//   {
-//     id: 2,
-//     name: "Sofa Supreme",
-//     type: "canapé",
-//     color: "bleu",
-//     state: "excellent état",
-//     photo: "./public/chair_1.png",
-//     price: "34",
-//   },
-//   {
-//     id: 3,
-//     name: "Elegant Coffee Table",
-//     type: "table basse",
-//     color: "marron",
-//     state: "comme neuf",
-//     photo: "./public/couch_1.png",
-//     price: "6600",
-//   },
-//   {
-//     id: 4,
-//     name: "Vintage Armchair",
-//     type: "fauteuil",
-//     color: "rouge",
-//     state: "état vintage",
-//     photo: "./public/couch_2.png",
-//     price: "400",
-//   },
-//   {
-//     id: 5,
-//     name: "lampe",
-//     type: "luminaire",
-//     color: "blanc",
-//     state: "bon état",
-//     photo: "./public/lights_1.png",
-//     price: "50",
-//   },
-//   {
-//     id: 6,
-//     name: "testststsetest",
-//     type: "luminaire",
-//     color: "blanc",
-//     state: "bon état",
-//     photo: "./public/lights_1.png",
-//     price: "50",
-//   },
-// ];
 
 function App() {
   return (
