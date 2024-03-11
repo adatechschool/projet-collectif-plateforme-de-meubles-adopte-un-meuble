@@ -1,11 +1,6 @@
-//import { useState } from "react";
-
 import Navbar from "./components/Navbar.jsx";
-
 import Footer from "./components/Footer.jsx";
-
 import "./App.css";
-import ProductCard from "./components/ProductCard.jsx";
 import {
   Carousel,
   CarouselContent,
@@ -15,62 +10,14 @@ import {
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
 
-const articles = [
-  {
-    id: 1,
-    name: "dofa douilletHavre",
-    type: "canapé",
-    color: "vert",
-    state: "bon état",
-    photo: "./public/cabinet_1.png",
-    price: "250",
-  },
-  {
-    id: 2,
-    name: "Sofa Supreme",
-    type: "canapé",
-    color: "bleu",
-    state: "excellent état",
-    photo: "./public/chair_1.png",
-    price: "34",
-  },
-  {
-    id: 3,
-    name: "Elegant Coffee Table",
-    type: "table basse",
-    color: "marron",
-    state: "comme neuf",
-    photo: "./public/couch_1.png",
-    price: "6600",
-  },
-  {
-    id: 4,
-    name: "Vintage Armchair",
-    type: "fauteuil",
-    color: "rouge",
-    state: "état vintage",
-    photo: "./public/couch_2.png",
-    price: "400",
-  },
-  {
-    id: 5,
-    name: "lampe",
-    type: "luminaire",
-    color: "blanc",
-    state: "bon état",
-    photo: "./public/lights_1.png",
-    price: "50",
-  },
-  {
-    id: 6,
-    name: "testststsetest",
-    type: "luminaire",
-    color: "blanc",
-    state: "bon état",
-    photo: "./public/lights_1.png",
-    price: "50",
-  },
-];
+async function getArticles() {
+  let response = await fetch("http://localhost:3000/api/publication/");
+  let data = await response.json();
+  console.log(data);
+  return data;
+}
+
+let articles = await getArticles();
 
 function App() {
   return (
@@ -94,26 +41,28 @@ function App() {
           <CarouselContent className="flex">
             {articles.map((article, index) => (
               <CarouselItem className="h-full" key={article.id}>
-                <div className="flex aspect-square items-center">
-                  <img
-                    className="max-h-full max-w-none h-full"
-                    src={article.photo}
-                    alt={`Image ${article.id}`}
-                  />
-                </div>
-                <div className="flex p-[0.9375rem] flex-col items-start gap-[0.3125rem] self-stretch">
-                  <h1 className="text-2xl font-bold text-lightMode-text">
-                    {article.name}
-                  </h1>
-                  <div className="flex flex-col items-start">
-                    <h2 className="text-lg font-bold text-lightMode-text">
-                      {article.state}
-                    </h2>
-                    <h2 className="text-lg font-bold text-lightMode-text">
-                      €{article.price}
-                    </h2>
+                <a href={"http://localhost:3000/" + article.id}>
+                  <div className="flex aspect-square items-center">
+                    <img
+                      className="max-h-full max-w-none h-full"
+                      src={"http://localhost:3000/photos/" + article.photos[0]}
+                      alt={`Image ${article.id}`}
+                    />
                   </div>
-                </div>
+                  <div className="flex p-[0.9375rem] flex-col items-start gap-[0.3125rem] self-stretch">
+                    <h1 className="text-2xl font-bold text-lightMode-text">
+                      {article.titre}
+                    </h1>
+                    <div className="flex flex-col items-start">
+                      <h2 className="text-lg font-bold text-lightMode-text">
+                        {article.État_Meuble.état}
+                      </h2>
+                      <h2 className="text-lg font-bold text-lightMode-text">
+                        €{article.prix}
+                      </h2>
+                    </div>
+                  </div>
+                </a>
               </CarouselItem>
             ))}
           </CarouselContent>
@@ -139,28 +88,32 @@ function App() {
             <CarouselContent className="-mt-1 h-screen">
               {articles.map((article, index) => (
                 <CarouselItem className="pt-1 basis-1/3" key={article.id}>
-                  <div className="py-[5vh]">
-                    <div className="flex flex-col justify-between items-start aspect-square w-[60vh] bg-red-500 p-[0.625rem] relative">
-                      <div className="absolute inset-0">
-                        <img
-                          className="max-h-full max-w-none h-full w-full object-cover"
-                          src={article.photo}
-                          alt={`Image ${article.id}`}
-                        />
-                      </div>
-                      <div className="flex flex-col items-start relative z-10 ">
-                        <h2 className="text-2xl text-lightMode-text font-bold bg-lightMode-background py-1 px-2.5">
-                          {article.name}
-                        </h2>
-                        <h3 className="text-lg text-lightMode-text font-medium bg-lightMode-background py-1 px-2.5">
-                          {article.state}
-                        </h3>
-                      </div>
-                      <div className="flex items-start justify-between w-full relative z-10">
-                        <h3 className="text-lg text-lightMode-text font-medium bg-lightMode-background py-1 px-2.5">
-                          €{article.price}
-                        </h3>
-                        {/* <div className="flex content-center items-center p-[0.22rem] bg-lightMode-background">
+                  <a href={"http://localhost:3000/" + article.id}>
+                    <div className="py-[5vh]">
+                      <div className="flex flex-col justify-between items-start aspect-square w-[60vh] bg-red-500 p-[0.625rem] relative">
+                        <div className="absolute inset-0">
+                          <img
+                            className="max-h-full max-w-none h-full w-full object-cover"
+                            src={
+                              "http://localhost:3000/photos/" +
+                              article.photos[0]
+                            }
+                            alt={`Image ${article.id}`}
+                          />
+                        </div>
+                        <div className="flex flex-col items-start relative z-10 ">
+                          <h2 className="text-2xl text-lightMode-text font-bold bg-lightMode-background py-1 px-2.5">
+                            {article.titre}
+                          </h2>
+                          <h3 className="text-lg text-lightMode-text font-medium bg-lightMode-background py-1 px-2.5">
+                            {article.État_Meuble.état}
+                          </h3>
+                        </div>
+                        <div className="flex items-start justify-between w-full relative z-10">
+                          <h3 className="text-lg text-lightMode-text font-medium bg-lightMode-background py-1 px-2.5">
+                            €{article.prix}
+                          </h3>
+                          {/* <div className="flex content-center items-center p-[0.22rem] bg-lightMode-background">
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             width="29"
@@ -196,9 +149,10 @@ function App() {
                             />
                           </svg>
                         </div> */}
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  </a>
                 </CarouselItem>
               ))}
             </CarouselContent>

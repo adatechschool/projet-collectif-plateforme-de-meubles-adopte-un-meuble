@@ -8,8 +8,7 @@ require("dotenv").config();
 
 //Lien entre BDD et API
 const supabaseUrl = "https://zfrowkmhwhnhmyzwxlez.supabase.co";
-const supabaseKey = process.env.SUPABASE_KEY
-
+const supabaseKey = process.env.SUPABASE_KEY;
 
 //Obtenir l'autorisation d'utiliser la BDD à partir de l'URL et de la clé d'API : on récupère une key ou token
 const supabase = createClient(supabaseUrl, supabaseKey);
@@ -19,7 +18,7 @@ const getPublication = async (req, res) => {
   const { data, error } = await supabase
     .from("Publications")
     .select(
-      "Utilisateur!inner(pseudo , admin),Type!inner(type), description, date, Statut_Publication!inner(statut),id, titre, prix, photos, Couleur!inner(couleur), Matière!inner(matière), État_Meuble!inner(état), Dimensions!inner(hauteur,largeur,longueur), Pièce!inner(pièce)"
+      "Utilisateur!inner(pseudo , admin),Type!inner(type), description, date, Statut_Publication!inner(statut),id, titre, prix, photos, Couleur!inner(couleur), Matière!inner(matière), État_Meuble!inner(état), Dimensions!inner(hauteur,largeur,longueur), Pièce!inner(pièce), en_valeur"
     );
   if (error) throw error;
   return data;
@@ -31,7 +30,7 @@ const getPublicationById = async (req, res) => {
   const { data, error } = await supabase
     .from("Publications")
     .select(
-      "Utilisateur!inner(pseudo),Type!inner(type), description, date, Statut_Publication!inner(statut), titre, prix, photos, Couleur!inner(couleur), Matière!inner(matière), État_Meuble!inner(état), Dimensions!inner(hauteur,largeur,longueur), Pièce!inner(pièce),id"
+      "Utilisateur!inner(pseudo),Type!inner(type), description, date, Statut_Publication!inner(statut), titre, prix, photos, Couleur!inner(couleur), Matière!inner(matière), État_Meuble!inner(état), Dimensions!inner(hauteur,largeur,longueur), Pièce!inner(pièce),id, en_valeur"
     )
     .eq("id", req.params.id);
   if (error) throw error;
@@ -44,13 +43,14 @@ const filterPublication = async (req, res) => {
   let query = supabase
     .from("Publications")
     .select(
-      "Utilisateur!inner(pseudo),Type!inner(type), description, date, Statut_Publication!inner(statut), id,titre, prix, photos, Couleur!inner(couleur), Matière!inner(matière), État_Meuble!inner(état), Dimensions!inner(hauteur,largeur,longueur), Pièce!inner(pièce)"
+      "Utilisateur!inner(pseudo),Type!inner(type), description, date, Statut_Publication!inner(statut), id,titre, prix, photos, Couleur!inner(couleur), Matière!inner(matière), État_Meuble!inner(état), Dimensions!inner(hauteur,largeur,longueur), Pièce!inner(pièce), en_valeur"
     );
   const type = req.query.type;
   const couleur = req.query.couleur;
   const minPrice = req.query.minPrice;
   const maxPrice = req.query.maxPrice;
   const status = req.query.status;
+  const en_valeur = req.query.en_valeur;
 
   //si ... se trouve dans la requete, alors on ajoute le filtre
   if (type) {
@@ -68,6 +68,9 @@ const filterPublication = async (req, res) => {
   if (status) {
     query = query.eq("Statut_Publication.statut", status);
   }
+  if (en_valeur) {
+    query = query.eq("en_valeur", en_valeur);
+  }
 
   const { data, error } = await query;
   if (error) {
@@ -80,7 +83,8 @@ const filterPublication = async (req, res) => {
 const getEssentials = async (req, res) => {
   const { data, error } = await supabase
     .from("Publications")
-    .select("titre, photos, prix");
+    .select("id, titre, photos, prix, État_Meuble!inner(état), en_valeur")
+    .eq("en_valeur", true);
   if (error) throw error;
   return data;
 };
