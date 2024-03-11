@@ -19,7 +19,7 @@ const getPublication = async (req, res) => {
   const { data, error } = await supabase
     .from("Publications")
     .select(
-      "User!inner(pseudo , admin),Type!inner(type), description, date, Statut_Publication!inner(statut),id, titre, prix, photos, Couleur!inner(couleur), Matière!inner(matière), État_Meuble!inner(état), Dimensions!inner(hauteur,largeur,longueur), Pièce!inner(pièce)"
+      "Utilisateur!inner(pseudo , admin),Type!inner(type), description, date, Statut_Publication!inner(statut),id, titre, prix, photos, Couleur!inner(couleur), Matière!inner(matière), État_Meuble!inner(état), Dimensions!inner(hauteur,largeur,longueur), Pièce!inner(pièce)"
     );
   if (error) throw error;
   return data;
@@ -31,7 +31,7 @@ const getPublicationById = async (req, res) => {
   const { data, error } = await supabase
     .from("Publications")
     .select(
-      "User!inner(pseudo),Type!inner(type), description, date, Statut_Publication!inner(statut), titre, prix, photos, Couleur!inner(couleur), Matière!inner(matière), État_Meuble!inner(état), Dimensions!inner(hauteur,largeur,longueur), Pièce!inner(pièce),id"
+      "Utilisateur!inner(pseudo),Type!inner(type), description, date, Statut_Publication!inner(statut), titre, prix, photos, Couleur!inner(couleur), Matière!inner(matière), État_Meuble!inner(état), Dimensions!inner(hauteur,largeur,longueur), Pièce!inner(pièce),id"
     )
     .eq("id", req.params.id);
   if (error) throw error;
@@ -44,7 +44,7 @@ const filterPublication = async (req, res) => {
   let query = supabase
     .from("Publications")
     .select(
-      "User!inner(pseudo),Type!inner(type), description, date, Statut_Publication!inner(statut), id,titre, prix, photos, Couleur!inner(couleur), Matière!inner(matière), État_Meuble!inner(état), Dimensions!inner(hauteur,largeur,longueur), Pièce!inner(pièce)"
+      "Utilisateur!inner(pseudo),Type!inner(type), description, date, Statut_Publication!inner(statut), id,titre, prix, photos, Couleur!inner(couleur), Matière!inner(matière), État_Meuble!inner(état), Dimensions!inner(hauteur,largeur,longueur), Pièce!inner(pièce)"
     );
   const type = req.query.type;
   const couleur = req.query.couleur;
@@ -152,7 +152,7 @@ const getPanier = async (req, res) => {
   const { data, error } = await supabase
     .from("Panier")
     .select(
-      "date,Statut_Publication!inner(statut),User!inner(pseudo),Publications!inner(prix)"
+      "date,Statut_Publication!inner(statut),Utilisateur!inner(pseudo),Publications!inner(prix)"
     )
     //peut-être changer id comme session_id ?
     .eq("acheteur_id", req.params.id);
