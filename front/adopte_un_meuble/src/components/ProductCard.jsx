@@ -12,7 +12,7 @@ function ProductCard(props) {
         </div>
         <div className="flex-col justify-start items-start flex">
           <div className="text-lightMode-text text-xl font-bold">
-            {props.price}
+            €{props.price}
           </div>
         </div>
         <div className="text-lightMode-secondarytext text-xl font-medium">
