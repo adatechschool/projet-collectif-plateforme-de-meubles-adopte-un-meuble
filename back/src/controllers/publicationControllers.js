@@ -75,6 +75,7 @@ const getPanier = async (req, res) => {
         const panier = await publicationModel.getPanier(req, res);
         res.send(panier);
     } catch (error) {
+        console.log(error)
         res.status(500).json({ error: error.message });
     }
 };

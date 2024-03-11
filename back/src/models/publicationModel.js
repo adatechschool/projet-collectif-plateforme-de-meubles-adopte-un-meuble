@@ -152,7 +152,7 @@ const getPanier = async (req, res) => {
   const { data, error } = await supabase
     .from("Panier")
     .select(
-      "date,Statut_Publication!inner(statut),Utilisateur!inner(pseudo),Publications!inner(prix)"
+      "date,Statut_Publication!inner(statut), Utilisateur!public_Panier_acheteur_id_fkey(pseudo), Publications!inner(prix)"
     )
     //peut-être changer id comme session_id ?
     .eq("acheteur_id", req.params.id);
