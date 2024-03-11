@@ -1,50 +1,43 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
-function ShoppingCartItem(props) {
+function ShoppingCartContainer() {
+  const [publications, setPublications] = useState([]);
+
+  useEffect(() => {
+    async function fetchPublications() {
+      try {
+        const response = await fetch("/api/publication");
+        if (!response.ok) {
+          throw new Error("Erreur lors de la récupération des publications");
+        }
+        const data = await response.json();
+        setPublications(data);
+      } catch (error) {
+        console.error("Erreur:", error.message);
+      }
+    }
+    fetchPublications();
+  }, []);
+
+  async function handleSupprimerPublication(id) {
+    console.log("Supprimer publication avec l'ID:", id);
+    // Ici, vous pouvez ajouter la logique pour supprimer la publication
+  }
+
   return (
-    <div className="w-full flex flex-col items-start gap-y-1">
-      <h3 className="text-lightMode-text text-3xl font-bold">
-        {props.titre}
-      </h3>
-      <h4 className="text-lightMode-secondarytext text-2xl font-bold">{props.prix}</h4>
-      <h4 className="text-lightMode-secondarytext text-2xl font-bold underline">
-        {props.supprimer}
-      </h4>
+    <div>
+      {publications.map((publication) => (
+        <div key={publication.id}  className="w-full flex flex-col items-start gap-y-1">
+          <h3 className="text-lightMode-text text-3xl font-bold">{publication.titre}</h3>
+          <h4 className="text-lightMode-secondarytext text-2xl font-bold">{publication.prix}</h4>
+          <button onClick={() => handleSupprimerPublication(publication.id)} className="text-lightMode-secondarytext text-2xl font-bold underline">
+            Supprimer
+          </button>
+        </div>
+      ))}
     </div>
   );
 }
 
-export default ShoppingCartItem;
+export default ShoppingCartContainer;
 
-//récupération de la base de données
-//faire un if = id prendre le titre de id
-
-async function buyPublication(props) {
-  const rep = await fetch("api/publication");
-  const publication = await rep.json();
-  console.log("publication", publication);
-  const titre = publication[1].titre;
-  console.log("titre", titre)
-}
-
-buyPublication()
-
-//async function getFetchCart() {
-  //const reponse = await fetch("http://localhost:3000/api/publication/panier/4");
-  //const panier = await reponse.json();
-  //console.log("panier", panier);
-  //const publicationTitle = await publication[1].titre
-  //console.log("publicationTitle", publicationTitle)
-//}
-
-//getFetchCart()
-
-
-
-//fonction qui change le panier
-//function getCart() {
-  //const ex = ShoppingCartItem(props)
-  //console.log(ex, props.title)
-//}
-
-//getCart()
