@@ -83,7 +83,7 @@ const filterPublication = async (req, res) => {
 const getEssentials = async (req, res) => {
   const { data, error } = await supabase
     .from("Publications")
-    .select("titre, photos, prix, État_Meuble!inner(état), en_valeur")
+    .select("id, titre, photos, prix, État_Meuble!inner(état), en_valeur")
     .eq("en_valeur", true);
   if (error) throw error;
   return data;
