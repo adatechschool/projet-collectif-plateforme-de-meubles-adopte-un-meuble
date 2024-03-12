@@ -18,7 +18,12 @@ const getAllPublication = async (req, res) => {
 const getPublicationById = async (req, res) => {
     try {
         const publication = await publicationModel.getPublicationById(req, res);
-        res.send(publication);
+
+    //    res.set({
+    //     'Content-Type': 'application/json',
+    //     "Access-Control-Allow-Origin" : "*",
+    // });
+        res.json(publication); 
         console.log(publication);
     } catch (error) {
         res.status(500).json({ error: error.message });
