@@ -15,9 +15,12 @@ function CategoryList({ left }) {
       <ul
         className={`flex w-max flex-col ${left ? "items-start" : "items-end"}`}
       >
+        <h3 className="text-lightMode-text text-lg font-semibold">
+          Catégories
+        </h3>
         {categoryData.map((category, index) => (
           <a href={"/category/filter?type=" + category.type} key={index}>
-            <li className="text-2xl text-lightMode-text">{category.type}</li>
+            <li className="text-lg text-lightMode-text">{category.type}</li>
           </a>
         ))}
       </ul>

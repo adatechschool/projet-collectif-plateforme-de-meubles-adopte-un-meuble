@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
 import { Link } from "react-router-dom";
+import CategoryList from "./components/CategoryList.jsx";
 
 async function getArticles() {
   let response = await fetch("http://localhost:3000/api/publication/");
@@ -172,7 +173,14 @@ function App() {
           </Carousel>
         </div>
       </div>
-      <div className="bg-green-400 absolute p-[0.9375rem] bottom-0 right-0 h-[20rem] w-[20rem]"></div>
+      <div className="sm:absolute p-[0.9375rem] bottom-0 right-0">
+        <div className="hidden sm:flex">
+          <CategoryList left={false} />
+        </div>
+        <div className="sm:hidden">
+          <CategoryList left={true} />
+        </div>
+      </div>
       <Navbar />
       <Footer />
     </div>
