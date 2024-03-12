@@ -3,8 +3,11 @@ import React from "react";
 function ProductCard(props) {
   return (
     <div className="w-80 p-2.5 flex-col justify-start items-start gap-2.5 inline-flex">
-      <div className="self-stretch flex-col justify-center items-start flex">
-        <img className="w-[576px]" src={props.image} />
+      <div className="self-stretch flex-col justify-center items-start flex h-80 aspect-square overflow-hidden">
+        <img
+          className="max-h-full max-w-none h-full w-full object-cover"
+          src={props.image}
+        />
       </div>
       <div className="self-stretch flex-col justify-start items-start gap-[5px] flex">
         <div className="text-lightMode-text text-3xl font-bold">
