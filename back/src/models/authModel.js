@@ -5,7 +5,7 @@ require("dotenv").config();
 
 //Lien entre BDD et API
 const supabaseUrl = "https://zfrowkmhwhnhmyzwxlez.supabase.co";
-const supabaseKey = process.env.SUPABASE_KEY
+const supabaseKey = process.env.SUPABASE_KEY;
 
 //Obtenir l'autorisation d'utiliser la BDD à partir de l'URL et de la clé d'API : on récupère une key ou token
 const supabase = createClient(supabaseUrl, supabaseKey);
@@ -25,13 +25,13 @@ const createUser = async (email, password, nom, prenom) => {
     console.log("user", user);
 
     const { data: createData, error: errorInsert } = await supabase
-      .from("User")
+      .from("Utilisateur")
       .upsert([
         {
+          id: user.id,
           nom: nom,
           prénom: prenom,
           mail: email,
-          mdp: null,
           pseudo: null,
           admin: null,
         },
