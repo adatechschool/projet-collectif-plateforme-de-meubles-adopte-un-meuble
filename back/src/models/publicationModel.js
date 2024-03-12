@@ -25,12 +25,22 @@ const getPublication = async (req, res) => {
   //nom de vendeur,nom de type, status, couleur, dimension, pièce
 };
 
+const getCategoryList = async (req, res) => {
+  const { data, error } = await supabase
+    .from("Type")
+    .select("*")
+    .order("type", {
+      ascending: true,
+    });
+  if (error) throw error;
+  return data;
+};
+
 //Requête pour obtenir une publication à partir de son id :
 const getPublicationById = async (req, res) => {
   const { data, error } = await supabase
     .from("Publications")
     .select(
-
       "Utilisateur!inner(pseudo),Type!inner(type), description, date, Statut_Publication!inner(statut), titre, prix, photos, Couleur!inner(couleur), Matière!inner(matière), État_Meuble!inner(état), Dimensions!inner(hauteur,largeur,longueur), Pièce!inner(pièce),id, en_valeur"
     )
     .eq("id", req.params.id);
@@ -44,9 +54,7 @@ const filterPublication = async (req, res) => {
   let query = supabase
     .from("Publications")
     .select(
-
       "Utilisateur!inner(pseudo),Type!inner(type), description, date, Statut_Publication!inner(statut), id,titre, prix, photos, Couleur!inner(couleur), Matière!inner(matière), État_Meuble!inner(état), Dimensions!inner(hauteur,largeur,longueur), Pièce!inner(pièce), en_valeur"
-
     );
   const type = req.query.type;
   const couleur = req.query.couleur;
@@ -178,4 +186,5 @@ module.exports = {
   deletePost,
   deletePanier,
   getPanier,
+  getCategoryList,
 };
