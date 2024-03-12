@@ -15,7 +15,7 @@ function Navbar() {
   //initialisé sur false car menu fermé
   const [isOpen, setIsOpen] = useState(false);
 
-  const numberOfItemsInCart = 10;
+  const numberOfItemsInCart = 1;
 
   //navBar avec titre du site, menu burger déroulant
   return (
