@@ -2,6 +2,7 @@
 
 //Récupérer express et la fonction publicationRoute
 const express = require("express");
+const cors = require("cors");
 
 const publicationRoute = require("./routes/publicationRoute");
 const authRoute = require("./routes/authRoutes");
