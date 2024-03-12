@@ -1,5 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { createClient } from "@supabase/supabase-js";
 
 const supabaseKey =
@@ -28,9 +29,11 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const navigate = useNavigate();
+
   const handleLogin = async (e) => {
     e.preventDefault();
-    console.log("heu login");
+
     fetch("http://localhost:3000/api/auth/login", {
       method: "POST",
       headers: {
@@ -42,11 +45,8 @@ function Login() {
       .then((data) => {
         console.log(data);
       });
-    const { data, error } = await supabase.auth.getSession();
-    if (error) {
-      console.log("error", error);
-    }
-    console.log("login", data);
+    console.log("login");
+    navigate("/");
   };
 
   const handleRegister = (e) => {
@@ -64,6 +64,7 @@ function Login() {
         console.log(data);
       });
     console.log("register");
+    navigate("/login");
   };
   return (
     <div className="w-screen flex justify-center pt-[5rem]">
