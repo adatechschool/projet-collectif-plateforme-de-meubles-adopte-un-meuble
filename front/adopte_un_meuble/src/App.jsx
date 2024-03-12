@@ -53,8 +53,7 @@ function App() {
                 key={article.id}
                 onClick={() => {}}
               >
-                <Link to={"/article/" + article.id}>
-                  {/* <a href="/article/" + article.id}> */}
+                <Link to={"/article/filter?id=" + article.id}>
                   <div className="flex aspect-square items-center">
                     <img
                       className="max-h-full max-w-none h-full"
@@ -75,7 +74,6 @@ function App() {
                       </h2>
                     </div>
                   </div>
-                  {/* </a> */}
                 </Link>
               </CarouselItem>
             ))}
@@ -102,7 +100,7 @@ function App() {
             <CarouselContent className="-mt-1 h-screen">
               {articles.map((article, index) => (
                 <CarouselItem className="pt-1 basis-1/3" key={article.id}>
-                  <Link to={"/article/" + article.id}>
+                  <Link to={"/article/filter?id=" + article.id}>
                     <div className="py-[5vh]">
                       <div className="flex flex-col justify-between items-start aspect-square w-[60vh] bg-red-500 p-[0.625rem] relative">
                         <div className="absolute inset-0">
