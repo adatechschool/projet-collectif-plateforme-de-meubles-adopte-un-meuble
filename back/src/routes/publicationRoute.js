@@ -19,6 +19,7 @@ router.put("/updatestatut/:id", publicationControllers.updateStatut);
 
 //Méthode post pour créer une publi :
 router.post("/create", publicationControllers.getNewPost);
+router.post('/addpanier', publicationControllers.addCart);
 
 //Méthode delete pour supprimer une publi :
 router.delete("/delete/:id", publicationControllers.getDeletePost);
