@@ -8,12 +8,12 @@ const publicationControllers = require("../controllers/publicationControllers");
 const router = express.Router();
 
 //Définition des méthodes GET :
+router.get("/category", publicationControllers.getCategoryList);
 router.get("/all", publicationControllers.getAllPublication);
 router.get("/filter", publicationControllers.filterPublication);
 router.get("/:id", publicationControllers.getPublicationById);
 router.get("/", publicationControllers.getEssentials);
 router.get("/panier/:id", publicationControllers.getPanier);
-router.get("/category", publicationControllers.getCategoryList);
 
 //Méthode put pour updater le statut d'une publication selon l'id :
 router.put("/updatestatut/:id", publicationControllers.updateStatut);

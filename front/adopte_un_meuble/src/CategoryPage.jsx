@@ -1,9 +1,10 @@
 import React from "react";
+import CategoryList from "./components/CategoryList";
 
 function CategoryPage() {
   return (
     <div>
-      <h1>salutttt</h1>
+      <CategoryList />
     </div>
   );
 }
