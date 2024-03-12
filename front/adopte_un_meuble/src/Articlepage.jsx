@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import  Navbar  from "./components/Navbar";
 import {
     Carousel,
     CarouselContent,
@@ -48,11 +49,12 @@ function Articlepage() {
    
     return (
        <div className="w-screen h-screen flex overflow-hidden">
-          <div className="h-full w-full "> 
+        <Navbar className="overflow-hidden" />
+          <div className="h-auto w-full overflow-hidden flex items-center "> 
           <Carousel
           plugins={[
             Autoplay({
-              delay: 6000,
+              delay: 3000,
               stopOnMouseEnter: true,
               stopOnInteraction: false,
             }),
@@ -62,16 +64,16 @@ function Articlepage() {
             loop: true,
           }}
           orientation="vertical"
-          className="w-full"
+          className="w-full max-w-s"
         >
-          <CarouselContent className="flex">
+          <CarouselContent className=" -mt-50 - h-[20rem] items-center ">
             
             {meuble.photos.map((photo, index) => (
-              <CarouselItem className="w-full" key={photo}>
+              <CarouselItem className="pt-1 " key={photo}>
                   <div className="flex items-center">
                     <img
-                      className="max-h-full max-w-none h-[5rem] basis-1/3 "
-                      src={"http://localhost:3000/public/photos/" + meuble.photos.photo}
+                      className=" h-[20rem] items-center basis-1/3 w-full"
+                      src={"http://localhost:3000/photos/" + photo}
                       alt={`Image ${photo}`}
                     />
                   </div>
