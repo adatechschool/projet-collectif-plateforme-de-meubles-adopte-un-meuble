@@ -9,13 +9,15 @@ async function getCategoryList() {
 
 let categoryData = await getCategoryList();
 
-function CategoryList() {
+function CategoryList({ left }) {
   return (
-    <div>
-      <ul>
+    <div className="w-min">
+      <ul
+        className={`flex w-max flex-col ${left ? "items-start" : "items-end"}`}
+      >
         {categoryData.map((category, index) => (
           <a href={"/category/filter?type=" + category.type} key={index}>
-            <li>{category.type}</li>
+            <li className="text-2xl text-lightMode-text">{category.type}</li>
           </a>
         ))}
       </ul>

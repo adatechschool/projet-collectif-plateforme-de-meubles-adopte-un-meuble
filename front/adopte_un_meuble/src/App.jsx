@@ -9,7 +9,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
-import { Link, Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 async function getArticles() {
   let response = await fetch("http://localhost:3000/api/publication/");
@@ -102,7 +102,6 @@ function App() {
               {articles.map((article, index) => (
                 <CarouselItem className="pt-1 basis-1/3" key={article.id}>
                   <Link to={"/article/" + article.id}>
-                    {/* <a href={"/article/" + article.id}> */}
                     <div className="py-[5vh]">
                       <div className="flex flex-col justify-between items-start aspect-square w-[60vh] bg-red-500 p-[0.625rem] relative">
                         <div className="absolute inset-0">
@@ -166,7 +165,6 @@ function App() {
                         </div>
                       </div>
                     </div>
-                    {/* </a> */}
                   </Link>
                 </CarouselItem>
               ))}
@@ -174,6 +172,7 @@ function App() {
           </Carousel>
         </div>
       </div>
+      <div className="bg-green-400 absolute p-[0.9375rem] bottom-0 right-0 h-[20rem] w-[20rem]"></div>
       <Navbar />
       <Footer />
     </div>
