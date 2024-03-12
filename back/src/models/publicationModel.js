@@ -15,10 +15,14 @@ const supabase = createClient(supabaseUrl, supabaseKey);
 
 //Requête pour obtenir toutes les publications de la BDD :
 const getPublication = async (req, res) => {
-    const { data, error } = await supabase.from("Publications").select("Utilisateur!inner(pseudo , admin),Type!inner(type), description, date, Statut_Publication!inner(statut),id, titre, prix, photos, Couleur!inner(couleur), Matière!inner(matière), État_Meuble!inner(état), Dimensions!inner(hauteur,largeur,longueur), Pièce!inner(pièce), en_valeur");
-    if (error) throw error;
-    return data;
-    //nom de vendeur,nom de type, status, couleur, dimension, pièce
+  const { data, error } = await supabase
+    .from("Publications")
+    .select(
+      "Utilisateur!inner(pseudo , admin),Type!inner(type), description, date, Statut_Publication!inner(statut),id, titre, prix, photos, Couleur!inner(couleur), Matière!inner(matière), État_Meuble!inner(état), Dimensions!inner(hauteur,largeur,longueur), Pièce!inner(pièce), en_valeur"
+    );
+  if (error) throw error;
+  return data;
+  //nom de vendeur,nom de type, status, couleur, dimension, pièce
 };
 
 //Requête pour obtenir une publication à partir de son id :
@@ -31,13 +35,17 @@ const getPublicationById = async (req, res) => {
 // front doit renvoyer l'id de couleur, l'id de type et le prix
 // permet de filtrer les publications
 const filterPublication = async (req, res) => {
-    let query = supabase.from("Publications").select("Utilisateur!inner(pseudo),Type!inner(type), description, date, Statut_Publication!inner(statut), id,titre, prix, photos, Couleur!inner(couleur), Matière!inner(matière), État_Meuble!inner(état), Dimensions!inner(hauteur,largeur,longueur), Pièce!inner(pièce), en_valeur");
-    const type = req.query.type;
-    const couleur = req.query.couleur;
-    const minPrice = req.query.minPrice;
-    const maxPrice = req.query.maxPrice;
-    const status = req.query.status;
-    const en_valeur = req.query.en_valeur;
+  let query = supabase
+    .from("Publications")
+    .select(
+      "Utilisateur!inner(pseudo),Type!inner(type), description, date, Statut_Publication!inner(statut), id,titre, prix, photos, Couleur!inner(couleur), Matière!inner(matière), État_Meuble!inner(état), Dimensions!inner(hauteur,largeur,longueur), Pièce!inner(pièce), en_valeur"
+    );
+  const type = req.query.type;
+  const couleur = req.query.couleur;
+  const minPrice = req.query.minPrice;
+  const maxPrice = req.query.maxPrice;
+  const status = req.query.status;
+  const en_valeur = req.query.en_valeur;
 
     //si ... se trouve dans la requete, alors on ajoute le filtre
     if (type) {
@@ -162,14 +170,15 @@ const addCart = async (req, res) => {
 
 //Exporter les fonctions pour pouvoir les utiliser dans le fichier publicationControllers.js
 module.exports = {
-    getPublication,
-    getPublicationById,
-    filterPublication,
-    getEssentials,
-    updateStatut,
-    getNewPost,
-    deletePost,
-    deletePanier,
-    getPanier,
-    addCart,
+  getPublication,
+  getPublicationById,
+  filterPublication,
+  getEssentials,
+  updateStatut,
+  getNewPost,
+  deletePost,
+  deletePanier,
+  getPanier,
+  getCategoryList,
+  addCart,
 };
