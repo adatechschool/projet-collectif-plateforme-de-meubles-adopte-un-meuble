@@ -5,6 +5,7 @@ import "./index.css";
 import Login from "./components/Login.jsx";
 import SellPage from "./SellPage.jsx";
 import PaymentPage from "./PaymentPage.jsx";
+import FilteredCategoryPage from "./FilteredCategoryPage.jsx";
 import CategoryPage from "./CategoryPage.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Articlepage from "./Articlepage.jsx";
@@ -30,7 +31,10 @@ const router = createBrowserRouter([
     path: "/category",
     element: <CategoryPage />,
   },
-
+  {
+    path: "/category/:category",
+    element: <FilteredCategoryPage />,
+  },
   {
     path: "/article",
     element: <Articlepage />,
