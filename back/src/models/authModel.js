@@ -28,6 +28,7 @@ const createUser = async (email, password, nom, prenom) => {
       .from("Utilisateur")
       .upsert([
         {
+          id: user.id,
           nom: nom,
           prénom: prenom,
           mail: email,
