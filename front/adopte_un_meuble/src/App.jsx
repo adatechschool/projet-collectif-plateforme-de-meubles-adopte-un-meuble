@@ -9,6 +9,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
+import { Link, Navigate } from "react-router-dom";
 
 async function getArticles() {
   let response = await fetch("http://localhost:3000/api/publication/");
@@ -20,6 +21,12 @@ async function getArticles() {
 let articles = await getArticles();
 
 function App() {
+  // const navigate = Navigate()
+
+  // const handleClick = () => {
+  //   console.log("clicked");
+  // };
+
   return (
     <div className="flex w-screen h-screen flex-col">
       <div className="sm:hidden flex w-full flex-col content-center justify-start items-start">
@@ -40,8 +47,13 @@ function App() {
         >
           <CarouselContent className="flex">
             {articles.map((article, index) => (
-              <CarouselItem className="h-full" key={article.id}>
-                <a href={"http://localhost:3000/" + article.id}>
+              <CarouselItem
+                className="h-full"
+                key={article.id}
+                onClick={() => {}}
+              >
+                <Link to={"/article/" + article.id}>
+                  {/* <a href="/article/" + article.id}> */}
                   <div className="flex aspect-square items-center">
                     <img
                       className="max-h-full max-w-none h-full"
@@ -62,7 +74,8 @@ function App() {
                       </h2>
                     </div>
                   </div>
-                </a>
+                  {/* </a> */}
+                </Link>
               </CarouselItem>
             ))}
           </CarouselContent>
@@ -88,7 +101,8 @@ function App() {
             <CarouselContent className="-mt-1 h-screen">
               {articles.map((article, index) => (
                 <CarouselItem className="pt-1 basis-1/3" key={article.id}>
-                  <a href={"http://localhost:3000/" + article.id}>
+                  <Link to={"/article/" + article.id}>
+                    {/* <a href={"/article/" + article.id}> */}
                     <div className="py-[5vh]">
                       <div className="flex flex-col justify-between items-start aspect-square w-[60vh] bg-red-500 p-[0.625rem] relative">
                         <div className="absolute inset-0">
@@ -152,7 +166,8 @@ function App() {
                         </div>
                       </div>
                     </div>
-                  </a>
+                    {/* </a> */}
+                  </Link>
                 </CarouselItem>
               ))}
             </CarouselContent>
