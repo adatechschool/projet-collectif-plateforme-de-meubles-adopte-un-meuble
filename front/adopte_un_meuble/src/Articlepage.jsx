@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Navbar from "./components/Navbar";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
 
@@ -7,6 +8,38 @@ const fetchUrlCategoryType = new URLSearchParams(window.location.search);
 const id = fetchUrlCategoryType.get("id");
 
 console.log(id);
+
+function ajouterAuPanier() {
+    const date = new Date().toISOString(); 
+    // const idSession = ;/* Mettez ici l'ID de l'acheteur, par exemple, récupéré de votre session ou de votre état */
+    const idPublication = id
+
+    fetch('http://localhost:3000/api/publication/addpanier', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            date: date,
+            // idSession: idSession,
+            idPublication : idPublication
+        })
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Erreur lors de la requête');
+        }
+        return response.json();
+    })
+    .then(data => {
+        alert('Article ajouté au panier avec succès !');
+    })
+    .catch(error => {
+        console.error('Erreur:', error);
+    });
+}
+
+
 
 function Articlepage() {
     const [meuble, setMeuble] = useState(null);
@@ -44,6 +77,7 @@ function Articlepage() {
 
     return (
         <div className="w-screen h-screen flex overflow-hidden">
+            <Navbar />
             <div className="h-full w-full ">
                 <Carousel
                     plugins={[
@@ -62,10 +96,9 @@ function Articlepage() {
                 >
                     <CarouselContent className="-mt-1 h-screen">
                         {meuble.photos.map((photo, index) => (
-                            <CarouselItem className="pt-1 basis-1/3 bg-blue-500" key={index}>
+                            <CarouselItem className="pt-1 basis-1/3" key={index}>
                                 <div className="flex items-center">
-                                    <p>{photo}</p>
-                                    <img className="max-h-full max-w-none h-[5rem] basis-1/3" src={"http://localhost:3000/public/photos/" + photo} alt={`Image ${index}`} />
+                                    <img className="max-h-full max-w-none h-[5rem] basis-1/3" src={"http://localhost:3000/photos/" + photo} alt={`Image ${photo}`} />
                                 </div>
                             </CarouselItem>
                         ))}
@@ -79,7 +112,7 @@ function Articlepage() {
                     <div className="text-lightMode-text font-bold text-xl">€{meuble.prix}</div>
                     <div className="text-lightMode-text font-bold text-l">{meuble.pseudoUtilisateur}</div>
                     <div className="mt-5">
-                        <button className="text-lightMode-text font-bold text-xl underline" onClick="fetch(http://api/publication/addpanier)">
+                        <button className="text-lightMode-text font-bold text-xl underline" onClick={ajouterAuPanier}>
                             ajouter au panier
                         </button>
                     </div>

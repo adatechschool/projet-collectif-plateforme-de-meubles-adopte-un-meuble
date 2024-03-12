@@ -164,8 +164,8 @@ const addCart = async (req, res) => {
             {
                 date: req.body.date,
                 statut_id: 3,
-                acheteur_id: req.body.idSession,
-                publications_id: 5,
+                // acheteur_id: req.body.idSession,
+                publications_id: req.body.idPublication,
             },
         ]);
 
