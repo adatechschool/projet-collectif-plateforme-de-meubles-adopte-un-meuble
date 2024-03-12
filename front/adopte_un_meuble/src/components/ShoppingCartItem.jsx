@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 function ShoppingCartContainer() {
   const [publications, setPublications] = useState([]);
 
-  const idProduit = 3;
+  const idProduit = 13;
   useEffect(() => {
     async function fetchPublications(id) {
       try {
