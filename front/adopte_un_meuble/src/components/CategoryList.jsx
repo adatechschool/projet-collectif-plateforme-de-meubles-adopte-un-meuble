@@ -11,7 +11,7 @@ let categoryData = await getCategoryList();
 
 function CategoryList() {
   return (
-    <div className="flex justify-center items-center">
+    <div>
       <ul>
         {categoryData.map((category, index) => (
           <a href={"/category/filter?type=" + category.type} key={index}>

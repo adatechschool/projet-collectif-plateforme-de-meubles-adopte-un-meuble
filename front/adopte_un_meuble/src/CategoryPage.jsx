@@ -3,7 +3,7 @@ import CategoryList from "./components/CategoryList";
 
 function CategoryPage() {
   return (
-    <div>
+    <div className="h-screen w-screen flex flex-col content-center items-center">
       <CategoryList />
     </div>
   );

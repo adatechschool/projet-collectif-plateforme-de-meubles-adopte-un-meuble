@@ -26,7 +26,12 @@ const getPublication = async (req, res) => {
 };
 
 const getCategoryList = async (req, res) => {
-  const { data, error } = await supabase.from("Type").select("*");
+  const { data, error } = await supabase
+    .from("Type")
+    .select("*")
+    .order("type", {
+      ascending: true,
+    });
   if (error) throw error;
   return data;
 };
