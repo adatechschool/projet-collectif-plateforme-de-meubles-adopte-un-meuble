@@ -36,7 +36,7 @@ const router = createBrowserRouter([
     element: <FilteredCategoryPage />,
   },
   {
-    path: "/article",
+    path: "/article/:id",
     element: <Articlepage />,
   },
 ]);

@@ -1,12 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
+
+const fetchUrlCategoryType = new URLSearchParams(window.location.search);
+
+const id = fetchUrlCategoryType.get("id");
+
+console.log(id);
+
 function Articlepage() {
     const [meuble, setMeuble] = useState(null);
 
     useEffect(() => {
         const fetchData = async () => {
-            const response = await fetch("http://localhost:3000/api/publication/2");
+            const response = await fetch(`http://localhost:3000/api/publication/${id}`);
 
             const publications = await response.json();
             const publication = publications[0];
@@ -72,7 +79,7 @@ function Articlepage() {
                     <div className="text-lightMode-text font-bold text-xl">€{meuble.prix}</div>
                     <div className="text-lightMode-text font-bold text-l">{meuble.pseudoUtilisateur}</div>
                     <div className="mt-5">
-                        <button className="text-lightMode-text font-bold text-xl underline" onClick="href='/panier'">
+                        <button className="text-lightMode-text font-bold text-xl underline" onClick="fetch(http://api/publication/addpanier)">
                             ajouter au panier
                         </button>
                     </div>

@@ -114,9 +114,7 @@ const addCart = async (req, res) =>{
 }
 
 //Export des fonctions pour pouvoir les utiliser dans le fichier publicationRoute.js
-<<<<<<< HEAD
-module.exports = { getAllPublication, getPublicationById, filterPublication, getEssentials, updateStatut, getNewPost, getDeletePost, getDeletePanier, getPanier, addCart};
-=======
+
 module.exports = {
   getAllPublication,
   getPublicationById,
@@ -128,5 +126,5 @@ module.exports = {
   getDeletePanier,
   getPanier,
   getCategoryList,
+  addCart
 };
->>>>>>> 44db07776bbb215217024cb9c744e7106cc0bc75

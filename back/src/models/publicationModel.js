@@ -144,6 +144,17 @@ const getPanier = async (req, res) => {
     return data;
 };
 
+const getCategoryList = async (req, res) => {
+  const { data, error } = await supabase
+    .from("Type")
+    .select("*")
+    .order("type", {
+      ascending: true,
+    });
+  if (error) throw error;
+  return data;
+};
+
 const addCart = async (req, res) => {
     try {
         // const { statutId, acheteurId, vendeurId, publicationId } = req.body;
