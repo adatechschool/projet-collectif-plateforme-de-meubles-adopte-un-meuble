@@ -7,8 +7,17 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
 import { Button } from "@/components/ui/button";
 import ShoppingCartItem from "./ShoppingCartItem";
+import { useLocation } from "react-router-dom";
 
 function Navbar() {
   //variable d'état qui contrôle l'affichage du menu
@@ -17,19 +26,48 @@ function Navbar() {
 
   const numberOfItemsInCart = 1;
 
+  const location = useLocation();
+  const currentPage = location.pathname;
+
+  console.log("Current page", currentPage);
+
+  const fetchUrlCategoryType = new URLSearchParams(window.location.search);
+  const type = fetchUrlCategoryType.get("type");
+  console.log(type);
+
   //navBar avec titre du site, menu burger déroulant
   return (
     <div className="flex fixed top-0 z-10 w-full flex-col items-start ">
       <nav className="flex p-[0.9375rem]  justify-between items-center shrink-0 self-stretch">
-        <h3 className="text-lg text-lightMode-text">
+        {/* <h3 className="text-lg text-lightMode-text">
           <a href="/">adopte un meuble</a>
-        </h3>
-
+        </h3> */}
+        <Breadcrumb>
+          <BreadcrumbList>
+            <BreadcrumbItem>
+              <BreadcrumbLink href="/">
+                <p className="text-lg">adopte un meuble</p>
+              </BreadcrumbLink>
+            </BreadcrumbItem>
+            {currentPage.includes("category/filter") && (
+              <BreadcrumbItem>
+                <BreadcrumbSeparator>
+                  <p className="text-lg">-&gt;</p>
+                </BreadcrumbSeparator>
+                <BreadcrumbItem>
+                  <BreadcrumbLink href="/category">
+                    <p className="text-lg">{type}</p>
+                  </BreadcrumbLink>
+                </BreadcrumbItem>
+              </BreadcrumbItem>
+            )}
+          </BreadcrumbList>
+        </Breadcrumb>
         <div className="flex items-center gap-5">
           <Sheet>
             <SheetTrigger>
               <svg
-                className="hidden sm:flex"
+                className="hidden sm:flex hover:rotate-12 transition-transform"
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
                 height="19"
