@@ -4,7 +4,9 @@ import { useToast } from "@/components/ui/use-toast"
 function ShoppingCartContainer() {
   const { toast } = useToast()
   const [publications, setPublications] = useState([]);
-  const idUser = 'a4913f0f-7750-44ad-ae95-c3b7ec4b68de';
+  const idUser = sessionStorage.getItem("users");
+  //const idUser = "a4913f0f-7750-44ad-ae95-c3b7ec4b68de";
+  console.log(idUser)
   useEffect(() => {
     async function fetchPublications(id) {
       try {
