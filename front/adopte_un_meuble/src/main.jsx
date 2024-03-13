@@ -9,6 +9,7 @@ import FilteredCategoryPage from "./FilteredCategoryPage.jsx";
 import CategoryPage from "./CategoryPage.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Articlepage from "./Articlepage.jsx";
+import AdminPage from "./AdminPage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -38,6 +39,10 @@ const router = createBrowserRouter([
   {
     path: "/article/:id",
     element: <Articlepage />,
+  },
+  {
+    path: "/admin",
+    element: <AdminPage />,
   },
 ]);
 

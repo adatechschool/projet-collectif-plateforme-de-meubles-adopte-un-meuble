@@ -24,6 +24,16 @@ const getCategoryList = async (req, res) => {
   }
 };
 
+const getStatusList = async (req, res) => {
+  try {
+    const statusList = await publicationModel.getStatusList();
+    res.send(statusList);
+    console.log(statusList);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
 //Afficher une publication à partir de son id
 const getPublicationById = async (req, res) => {
   try {
@@ -86,13 +96,13 @@ const getDeletePost = async (req, res) => {
 };
 
 const getPanier = async (req, res) => {
-    try {
-        const panier = await publicationModel.getPanier(req, res);
-        res.send(panier);
-    } catch (error) {
-        console.log(error)
-        res.status(500).json({ error: error.message });
-    }
+  try {
+    const panier = await publicationModel.getPanier(req, res);
+    res.send(panier);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: error.message });
+  }
 };
 
 const getDeletePanier = async (req, res) => {
@@ -104,14 +114,14 @@ const getDeletePanier = async (req, res) => {
   }
 };
 
-const addCart = async (req, res) =>{
-    try {
-        const addCart = await publicationModel.addCart(req, res);
-        res.send(addCart);
-    } catch (error) {
-        res.status(500).json({ error: error.message });
-    }
-}
+const addCart = async (req, res) => {
+  try {
+    const addCart = await publicationModel.addCart(req, res);
+    res.send(addCart);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
 
 //Export des fonctions pour pouvoir les utiliser dans le fichier publicationRoute.js
 
@@ -126,5 +136,6 @@ module.exports = {
   getDeletePanier,
   getPanier,
   getCategoryList,
-  addCart
+  addCart,
+  getStatusList,
 };
