@@ -46,7 +46,7 @@ function Navbar() {
           <BreadcrumbList>
             <BreadcrumbItem>
               <BreadcrumbLink href="/">
-                <p className="text-lg">adopte un meuble</p>
+                <p className="text-lg text-black">adopte un meuble</p>
               </BreadcrumbLink>
             </BreadcrumbItem>
             {currentPage.includes("category/filter") && (
