@@ -54,7 +54,7 @@ function AdminPage() {
   // };
 
   return (
-    <div>
+    <div className="w-sceen">
       {/* <Navbar /> */}
       <Table>
         <TableCaption>admin page table</TableCaption>
@@ -77,7 +77,7 @@ function AdminPage() {
               {/* <TableCell className="text-right">
                 {article.Statut_Publication.statut}
               </TableCell> */}
-              <TableCell className="text-right">
+              <TableCell className="">
                 <Select
                   onValueChange={async (event) => {
                     const requestData = {
@@ -94,7 +94,7 @@ function AdminPage() {
                     console.log(event);
                   }}
                 >
-                  <SelectTrigger className="w-[180px]">
+                  <SelectTrigger className="w-full">
                     <SelectValue
                       placeholder={article.Statut_Publication.statut}
                     />
