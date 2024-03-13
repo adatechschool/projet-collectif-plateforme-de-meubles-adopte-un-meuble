@@ -104,7 +104,17 @@ const getDeletePanier = async (req, res) => {
   }
 };
 
+const addCart = async (req, res) =>{
+    try {
+        const addCart = await publicationModel.addCart(req, res);
+        res.send(addCart);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+}
+
 //Export des fonctions pour pouvoir les utiliser dans le fichier publicationRoute.js
+
 module.exports = {
   getAllPublication,
   getPublicationById,
@@ -116,4 +126,5 @@ module.exports = {
   getDeletePanier,
   getPanier,
   getCategoryList,
+  addCart
 };
