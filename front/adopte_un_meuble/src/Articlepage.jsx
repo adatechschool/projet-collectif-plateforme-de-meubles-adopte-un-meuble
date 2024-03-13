@@ -5,12 +5,12 @@ import Autoplay from "embla-carousel-autoplay";
 
 const fetchUrlCategoryType = new URLSearchParams(window.location.search);
 
-const id = fetchUrlCategoryType.get("id");
+const publicationId = fetchUrlCategoryType.get("id");
 
 function ajouterAuPanier() {
     const date = new Date().toISOString();
-    // const idSession = ;/* Mettez ici l'ID de l'acheteur, par exemple, récupéré de votre session ou de votre état */
-    const idPublication = id;
+    const idUser = sessionStorage.getItem("user");
+    const idPublication = publicationId;
 
     fetch("http://localhost:3000/api/publication/addpanier", {
         method: "POST",
@@ -19,7 +19,7 @@ function ajouterAuPanier() {
         },
         body: JSON.stringify({
             date: date,
-            // idSession: idSession,
+            idUser: idUser,
             idPublication: idPublication,
         }),
     })
@@ -30,6 +30,8 @@ function ajouterAuPanier() {
             return response.json();
         })
         .then((data) => {
+            console.log("userid");
+            console.log(idUser);
             alert("Article ajouté au panier avec succès !");
         })
         .catch((error) => {
@@ -107,7 +109,7 @@ function Articlepage() {
                     className="w-full max-w-s"
                 >
                     <CarouselContent className=" -mt-50 - h-[20rem] items-center ">
-                        {meuble.photos.length > 0 ? (
+                        {meuble.photos != null ? (
                             meuble.photos.map((photo, index) => (
                                 <CarouselItem className="pt-1" key={photo}>
                                     <div className="flex items-center">
@@ -116,7 +118,9 @@ function Articlepage() {
                                 </CarouselItem>
                             ))
                         ) : (
-                            <img className="h-[20rem] items-center basis-1/3 w-full" src={"http://localhost:3000/photos/logo.png"} alt="Image par défaut" />
+                            <div className="flex items-center">
+                                <img className="h-[20rem] items-center basis-1/3 w-full" src={"http://localhost:3000/photos/logo.png"} alt="Image par défaut" />
+                            </div>
                         )}
                     </CarouselContent>
                 </Carousel>
