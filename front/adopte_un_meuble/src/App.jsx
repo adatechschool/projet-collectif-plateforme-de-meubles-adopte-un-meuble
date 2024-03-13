@@ -102,7 +102,7 @@ function App() {
                 <CarouselItem className="pt-1 basis-1/3" key={article.id}>
                   <Link to={"/article/filter?id=" + article.id}>
                     <div className="py-[5vh]">
-                      <div className="flex flex-col justify-between items-start aspect-square w-[60vh] bg-red-500 p-[0.625rem] relative">
+                      <div className="flex flex-col justify-between items-start aspect-square w-[60vh] p-[0.625rem] relative">
                         <div className="absolute inset-0">
                           <img
                             className="max-h-full max-w-none h-full w-full object-cover"
