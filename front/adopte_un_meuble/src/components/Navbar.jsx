@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import ShoppingCartItem from "./ShoppingCartItem";
+import { Link } from 'react-router-dom';
 
 function Navbar() {
   //variable d'état qui contrôle l'affichage du menu
@@ -79,15 +80,18 @@ function Navbar() {
                 {Array.from({ length: numberOfItemsInCart }, (_, index) => (
                   <ShoppingCartItem />
                 ))}
-                <div className="w-full flex flex-col items-start gap-y-1">
+                {/* <div className="w-full flex flex-col items-start gap-y-1">
+
                   <h4 className="text-lightMode-secondarytext text-2xl font-bold">
                     total -&gt; <span>€500</span>
                   </h4>
-                </div>
+                </div> */}
               </div>
-              <Button className="w-[87%] absolute bottom-5 right-0 left-0 mx-auto">
-                payer
-              </Button>
+              <Link to="/Payment" >
+                <Button className="w-[87%] absolute bottom-5 right-0 left-0 mx-auto">
+                  Payer
+                </Button>
+              </Link>
             </SheetContent>
           </Sheet>
 
