@@ -19,6 +19,7 @@ function Login() {
   const [prenom, setPrenom] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  sessionStorage.clear();
 
   const navigate = useNavigate();
 
@@ -34,9 +35,9 @@ function Login() {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data.user);
-        sessionStorage.setItem("user", { user: data.user });
-        sessionStorage.setItem("session", { session: data.session });
+        console.log(data);
+        sessionStorage.setItem("user", JSON.stringify(data.user.user));
+        sessionStorage.setItem("session", JSON.stringify(data.user.session));
       });
 
     console.log("login");

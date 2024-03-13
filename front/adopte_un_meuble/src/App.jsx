@@ -1,6 +1,7 @@
 import Navbar from "./components/Navbar.jsx";
 import Footer from "./components/Footer.jsx";
 import "./App.css";
+import { useEffect, useState } from "react";
 import {
   Carousel,
   CarouselContent,
@@ -27,6 +28,26 @@ function App() {
   // const handleClick = () => {
   //   console.log("clicked");
   // };
+  const [session, setSession] = useState(null);
+  const [user, setUser] = useState(null);
+  useEffect(() => {
+    const checkSession = () => {
+      const session = JSON.parse(sessionStorage.getItem("session"));
+      const user = JSON.parse(sessionStorage.getItem("user"));
+      console.log("session", session);
+      console.log("user", user);
+
+      if (!session) {
+        console.log("no session found");
+        setSession(null);
+        return;
+      }
+
+      setUser(user);
+      setSession(session);
+    };
+    checkSession();
+  }, []);
 
   return (
     <div className="flex w-screen h-screen flex-col">

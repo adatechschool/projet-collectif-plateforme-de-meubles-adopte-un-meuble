@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Sheet,
   SheetContent,
@@ -24,6 +24,19 @@ function Navbar() {
   //variable d'état qui contrôle l'affichage du menu
   //initialisé sur false car menu fermé
   const [isOpen, setIsOpen] = useState(false);
+  const [isLogged, setIsLogged] = useState(false);
+
+  useEffect(() => {
+    const session = JSON.parse(sessionStorage.getItem("session"));
+    console.log("sessionNav", session);
+
+    if (session) {
+      console.log("session", session);
+      setIsLogged(true);
+    } else {
+      setIsLogged(false);
+    }
+  }, []);
 
   const numberOfItemsInCart = 1;
 
@@ -175,12 +188,20 @@ function Navbar() {
             className="pr-[0.9375rem] flex flex-col items-end"
             onClick={() => setIsOpen(false)}
           >
+            {isLogged ? (
+              <li>
+                <a href="/login">Déconnexion</a>
+              </li>
+            ) : (
+              <li>
+                <a href="/login">connexion</a>
+              </li>
+            )}
+
             <li>
-              <a href="/login">connexion</a>
+              <a href="/profile">profil</a>
             </li>
-            <li>
-              <a href="/deconnexion">déconnexion</a>
-            </li>
+
             <li>
               <a href="/sell">vendre</a>
             </li>
