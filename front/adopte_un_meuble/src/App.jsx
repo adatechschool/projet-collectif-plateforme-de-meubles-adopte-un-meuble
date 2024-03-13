@@ -12,6 +12,7 @@ import {
 import Autoplay from "embla-carousel-autoplay";
 import { Link } from "react-router-dom";
 import CategoryList from "./components/CategoryList.jsx";
+import { Toaster } from "@/components/ui/toaster";
 
 async function getArticles() {
   let response = await fetch("http://localhost:3000/api/publication/");
@@ -201,6 +202,7 @@ function App() {
         </div>
       </div>
       <Navbar />
+      <Toaster/>
       <Footer />
     </div>
   );

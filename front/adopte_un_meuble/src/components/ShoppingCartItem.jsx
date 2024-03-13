@@ -2,13 +2,17 @@ import React, { useEffect, useState } from "react";
 import { useToast } from "@/components/ui/use-toast"
 
 function ShoppingCartContainer() {
+//récupération session users
+  const userData = sessionStorage.getItem("user");
+  const userDataParse = JSON.parse(userData);
+  const idUser = userDataParse.id;
+  console.log(idUser);
+
+  // const idUser = "a4913f0f-7750-44ad-ae95-c3b7ec4b68de";
+
   const { toast } = useToast()
   const [publications, setPublications] = useState([]);
-  
-  //récupération session users
-  const idUser = sessionStorage.getItem("users");
-  //const idUser = "a4913f0f-7750-44ad-ae95-c3b7ec4b68de";
-  console.log(idUser)
+
   useEffect(() => {
     async function fetchPublications(id) {
       try {
@@ -35,11 +39,10 @@ async function handleSupprimerPublication(id,titre) {
         throw new Error("Erreur lors de la suppression de la publication du panier");
       }
       setPublications(prevPublications => prevPublications.filter(publication => publication.id !== id));
-      // alert(`L\'article ${titre} a été supprimé du panier avec succès.`)
-      toast("Information: ", {
-        description: `L'article ${titre} a bien été supprimé du panier`,
+      toast({
+        title: "Information: ", 
+        description: `L'article "${titre}" a bien été supprimé du panier`,
       })
-      console.log('ok')
 
     } catch (error) {
       console.error("Erreur:", error.message);
