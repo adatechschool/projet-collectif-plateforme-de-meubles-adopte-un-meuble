@@ -10,6 +10,7 @@ import CategoryPage from "./CategoryPage.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Articlepage from "./Articlepage.jsx";
 import AdminPage from "./AdminPage.jsx";
+import ThankYouPage from "./ThankYouPage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -43,6 +44,10 @@ const router = createBrowserRouter([
   {
     path: "/admin",
     element: <AdminPage />,
+  },
+  {
+    path: "/thanks",
+    element: <ThankYouPage />,
   },
 ]);
 
