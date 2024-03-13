@@ -39,10 +39,19 @@ async function getStatusList() {
 let statusList = await getStatusList();
 
 function AdminPage() {
-  const handleStatusChange = (event) => {
-    // setSelectedStatus(event.target.value);
-    console.log(event);
-  };
+  // const handleStatusChange = async (event) => {
+  //   const requestData = {
+  //     statut_id: event,
+  //   };
+  //   const update = await fetch(
+  //     `http://localhost:3000/api/publication/updatestatut/${adminTable.id}`,
+  //     {
+  //       method: "PUT",
+  //       body: JSON.stringify(requestData),
+  //     }
+  //   );
+  //   console.log(event);
+  // };
 
   return (
     <div>
@@ -69,7 +78,22 @@ function AdminPage() {
                 {article.Statut_Publication.statut}
               </TableCell> */}
               <TableCell className="text-right">
-                <Select onValueChange={handleStatusChange}>
+                <Select
+                  onValueChange={async (event) => {
+                    const requestData = {
+                      statut_id: event,
+                    };
+                    const update = await fetch(
+                      `http://localhost:3000/api/publication/updatestatut/${article.id}`,
+                      {
+                        method: "PUT",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify(requestData),
+                      }
+                    );
+                    console.log(event);
+                  }}
+                >
                   <SelectTrigger className="w-[180px]">
                     <SelectValue
                       placeholder={article.Statut_Publication.statut}

@@ -121,9 +121,10 @@ const getNewPost = async (req, res) => {
 const updateStatut = async (req, res) => {
   const { data, error } = await supabase
     .from("Publications")
-    .update({ statut_id: 1 })
+    .update({ statut_id: req.body.statut_id })
     .eq("id", req.params.id)
     .select();
+  console.log("req.body console.log", req.body);
   if (error) {
     console.log(error);
   }
