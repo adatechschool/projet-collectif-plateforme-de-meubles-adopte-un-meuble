@@ -19,6 +19,18 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 
 async function getAdminTable() {
   let response = await fetch("http://localhost:3000/api/publication/all");
@@ -55,8 +67,8 @@ function AdminPage() {
 
   return (
     <div className="w-sceen">
-      {/* <Navbar /> */}
-      <Table>
+      <Navbar />
+      <Table className="mt-16">
         <TableCaption>admin page table</TableCaption>
         <TableHeader>
           <TableRow>
@@ -64,7 +76,8 @@ function AdminPage() {
             <TableHead>nom de l'article</TableHead>
             <TableHead>vendeur</TableHead>
             <TableHead className="text-right">prix</TableHead>
-            <TableHead className="text-right">statut</TableHead>
+            <TableHead className="">statut</TableHead>
+            <TableHead className="">modifier</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -110,6 +123,42 @@ function AdminPage() {
                     </SelectGroup>
                   </SelectContent>
                 </Select>
+              </TableCell>
+              <TableCell>
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <Button variant="outline" className="w-full">
+                      modifier l'article
+                    </Button>
+                  </DialogTrigger>
+                  <DialogContent className="sm:max-w-[425px]">
+                    <div className="grid gap-4 py-4">
+                      <div className="grid grid-cols-4 items-center gap-4">
+                        <Label htmlFor="name" className="text-right">
+                          Name
+                        </Label>
+                        <Input
+                          id="name"
+                          defaultValue="Pedro Duarte"
+                          className="col-span-3"
+                        />
+                      </div>
+                      <div className="grid grid-cols-4 items-center gap-4">
+                        <Label htmlFor="username" className="text-right">
+                          Username
+                        </Label>
+                        <Input
+                          id="username"
+                          defaultValue="@peduarte"
+                          className="col-span-3"
+                        />
+                      </div>
+                    </div>
+                    <DialogFooter>
+                      <Button type="submit">Save changes</Button>
+                    </DialogFooter>
+                  </DialogContent>
+                </Dialog>
               </TableCell>
             </TableRow>
           ))}
