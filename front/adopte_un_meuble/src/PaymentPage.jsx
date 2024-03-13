@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
+import { Link } from "react-router-dom";
 
 function PaymentPage() {
   return (
@@ -104,7 +105,9 @@ function PaymentPage() {
           <Label htmlFor="titre">adresse</Label>
           <Input type="email" id="card" placeholder="" />
         </div>
-        <Button className="w-full">envoyer</Button>
+        <Link to="/thanks">
+          <Button className="w-full">envoyer</Button>
+        </Link>
       </div>
     </div>
   );
