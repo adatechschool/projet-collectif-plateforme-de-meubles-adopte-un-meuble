@@ -1,15 +1,6 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { createClient } from "@supabase/supabase-js";
-
-const supabaseKey =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inpmcm93a21od2huaG15end4bGV6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDk1NTg5NjUsImV4cCI6MjAyNTEzNDk2NX0.6HS7PaiqkOQtN3JPNCCBAW2058bJNQoAuECWeurKlYM";
-// Create a single supabase client for interacting with your database
-const supabase = createClient(
-  "https://zfrowkmhwhnhmyzwxlez.supabase.co",
-  supabaseKey
-);
 
 import { Button } from "@/components/ui/button";
 import {
@@ -43,8 +34,11 @@ function Login() {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        console.log(data.user);
+        sessionStorage.setItem("user", { user: data.user });
+        sessionStorage.setItem("session", { session: data.session });
       });
+
     console.log("login");
     navigate("/");
   };
