@@ -70,7 +70,6 @@ function AdminPage() {
     <div className="w-sceen">
       <Navbar />
       <Table className="mt-16">
-        <TableCaption>admin page table</TableCaption>
         <TableHeader>
           <TableRow>
             <TableHead className="w-[100px]">id</TableHead>
@@ -132,7 +131,7 @@ function AdminPage() {
                       modifier l'article
                     </Button>
                   </DialogTrigger>
-                  <DialogContent className="sm:max-w-[425px]">
+                  <DialogContent className="sm:max-w-[425px] max-h-screen overflow-scroll">
                     <div className="grid gap-4 py-4">
                       <div className="grid grid-cols-4 items-center gap-4">
                         <Label htmlFor="nom" className="text-right">
