@@ -37,6 +37,15 @@ async function getStatusList() {
 
 let statusList = await getStatusList();
 
+// const YourComponent = () => {
+//   const statusList = [
+//     /* Your status list goes here */
+//   ];
+//   const handleValueChange = (newValue) => {
+//     console.log("Selected item changed:", newValue);
+//   };
+// };
+
 function AdminPage() {
   return (
     <div>
@@ -73,7 +82,7 @@ function AdminPage() {
                     <SelectGroup>
                       <SelectLabel>statut</SelectLabel>
                       {statusList.map((status, index) => (
-                        <SelectItem value={status.id}>
+                        <SelectItem key={index} value={status.id}>
                           {status.statut}
                         </SelectItem>
                       ))}
