@@ -9,6 +9,15 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 async function getAdminTable() {
   let response = await fetch("http://localhost:3000/api/publication/all");
@@ -18,6 +27,15 @@ async function getAdminTable() {
 }
 
 let adminTable = await getAdminTable();
+
+async function getStatusList() {
+  let response = await fetch("http://localhost:3000/api/publication/status");
+  let data = await response.json();
+  console.log("STATUS DATA", data);
+  return data;
+}
+
+let statusList = await getStatusList();
 
 function AdminPage() {
   return (
@@ -41,8 +59,27 @@ function AdminPage() {
               <TableCell>{article.titre}</TableCell>
               <TableCell>{article.Utilisateur.pseudo}</TableCell>
               <TableCell className="text-right">€{article.prix}</TableCell>
-              <TableCell className="text-right">
+              {/* <TableCell className="text-right">
                 {article.Statut_Publication.statut}
+              </TableCell> */}
+              <TableCell className="text-right">
+                <Select>
+                  <SelectTrigger className="w-[180px]">
+                    <SelectValue
+                      placeholder={article.Statut_Publication.statut}
+                    />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectGroup>
+                      <SelectLabel>statut</SelectLabel>
+                      {statusList.map((status, index) => (
+                        <SelectItem value={status.id}>
+                          {status.statut}
+                        </SelectItem>
+                      ))}
+                    </SelectGroup>
+                  </SelectContent>
+                </Select>
               </TableCell>
             </TableRow>
           ))}

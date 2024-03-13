@@ -9,6 +9,7 @@ const router = express.Router();
 
 //Définition des méthodes GET :
 router.get("/category", publicationControllers.getCategoryList);
+router.get("/status", publicationControllers.getStatusList);
 router.get("/all", publicationControllers.getAllPublication);
 router.get("/filter", publicationControllers.filterPublication);
 router.get("/:id", publicationControllers.getPublicationById);
@@ -20,7 +21,7 @@ router.put("/updatestatut/:id", publicationControllers.updateStatut);
 
 //Méthode post pour créer une publi :
 router.post("/create", publicationControllers.getNewPost);
-router.post('/addpanier', publicationControllers.addCart);
+router.post("/addpanier", publicationControllers.addCart);
 
 //Méthode delete pour supprimer une publi :
 router.delete("/delete/:id", publicationControllers.getDeletePost);
