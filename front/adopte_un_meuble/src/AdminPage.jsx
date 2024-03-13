@@ -31,6 +31,7 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
 
 async function getAdminTable() {
   let response = await fetch("http://localhost:3000/api/publication/all");
@@ -134,28 +135,146 @@ function AdminPage() {
                   <DialogContent className="sm:max-w-[425px]">
                     <div className="grid gap-4 py-4">
                       <div className="grid grid-cols-4 items-center gap-4">
-                        <Label htmlFor="name" className="text-right">
-                          Name
+                        <Label htmlFor="nom" className="text-right">
+                          nom de l'article
                         </Label>
                         <Input
                           id="name"
-                          defaultValue="Pedro Duarte"
+                          defaultValue={article.titre}
+                          className="col-span-3"
+                        />
+                      </div>
+                      <div className="grid grid-cols-4 items-center gap-4">
+                        <Label htmlFor="prix" className="text-right">
+                          prix
+                        </Label>
+                        <Input
+                          id="prix"
+                          defaultValue={article.prix}
                           className="col-span-3"
                         />
                       </div>
                       <div className="grid grid-cols-4 items-center gap-4">
                         <Label htmlFor="username" className="text-right">
-                          Username
+                          description
                         </Label>
-                        <Input
-                          id="username"
-                          defaultValue="@peduarte"
+                        <Textarea
+                          id="description"
+                          defaultValue={article.description}
                           className="col-span-3"
                         />
                       </div>
+                      <div className="grid grid-cols-4 items-center gap-4">
+                        <Label htmlFor="état" className="text-right">
+                          état
+                        </Label>
+                        <Select>
+                          <SelectTrigger className="col-span-3">
+                            <SelectValue
+                              placeholder={article.État_Meuble.état}
+                            />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectGroup>
+                              <SelectLabel>état</SelectLabel>
+                              {statusList.map((status, index) => (
+                                <SelectItem key={index} value={status.id}>
+                                  {status.statut}
+                                </SelectItem>
+                              ))}
+                            </SelectGroup>
+                          </SelectContent>
+                        </Select>
+                      </div>
+                      <div className="grid grid-cols-4 items-center gap-4">
+                        <Label htmlFor="type" className="text-right">
+                          type
+                        </Label>
+                        <Select>
+                          <SelectTrigger className="col-span-3">
+                            <SelectValue placeholder={article.Type.type} />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectGroup>
+                              <SelectLabel>type</SelectLabel>
+                              {statusList.map((status, index) => (
+                                <SelectItem key={index} value={status.id}>
+                                  {status.statut}
+                                </SelectItem>
+                              ))}
+                            </SelectGroup>
+                          </SelectContent>
+                        </Select>
+                      </div>
+                      <div className="grid grid-cols-4 items-center gap-4">
+                        <Label htmlFor="matière" className="text-right">
+                          matière
+                        </Label>
+                        <Select>
+                          <SelectTrigger className="col-span-3">
+                            <SelectValue
+                              placeholder={article.Matière.matière}
+                            />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectGroup>
+                              <SelectLabel>type</SelectLabel>
+                              {statusList.map((status, index) => (
+                                <SelectItem key={index} value={status.id}>
+                                  {status.statut}
+                                </SelectItem>
+                              ))}
+                            </SelectGroup>
+                          </SelectContent>
+                        </Select>
+                      </div>
+                      <div className="grid grid-cols-4 items-center gap-4">
+                        <Label htmlFor="couleur" className="text-right">
+                          couleur
+                        </Label>
+                        <Select>
+                          <SelectTrigger className="col-span-3">
+                            <SelectValue
+                              placeholder={article.Couleur.couleur}
+                            />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectGroup>
+                              <SelectLabel>type</SelectLabel>
+                              {statusList.map((status, index) => (
+                                <SelectItem key={index} value={status.id}>
+                                  {status.statut}
+                                </SelectItem>
+                              ))}
+                            </SelectGroup>
+                          </SelectContent>
+                        </Select>
+                      </div>
+                      <div className="grid grid-cols-4 items-center gap-4">
+                        <Label htmlFor="pièce" className="text-right">
+                          pièce
+                        </Label>
+                        <Select>
+                          <SelectTrigger className="col-span-3">
+                            <SelectValue placeholder={article.Pièce.pièce} />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectGroup>
+                              <SelectLabel>type</SelectLabel>
+                              {statusList.map((status, index) => (
+                                <SelectItem key={index} value={status.id}>
+                                  {status.statut}
+                                </SelectItem>
+                              ))}
+                            </SelectGroup>
+                          </SelectContent>
+                        </Select>
+                      </div>
                     </div>
                     <DialogFooter>
-                      <Button type="submit">Save changes</Button>
+                      <Button type="submit">
+                        enregistrer les modifications
+                      </Button>
                     </DialogFooter>
                   </DialogContent>
                 </Dialog>
