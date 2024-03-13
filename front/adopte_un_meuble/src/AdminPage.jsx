@@ -1,4 +1,5 @@
 import React from "react";
+import { useState } from "react";
 import Navbar from "./components/Navbar";
 import {
   Table,
@@ -37,16 +38,12 @@ async function getStatusList() {
 
 let statusList = await getStatusList();
 
-// const YourComponent = () => {
-//   const statusList = [
-//     /* Your status list goes here */
-//   ];
-//   const handleValueChange = (newValue) => {
-//     console.log("Selected item changed:", newValue);
-//   };
-// };
-
 function AdminPage() {
+  const handleStatusChange = (event) => {
+    // setSelectedStatus(event.target.value);
+    console.log(event);
+  };
+
   return (
     <div>
       {/* <Navbar /> */}
@@ -72,7 +69,7 @@ function AdminPage() {
                 {article.Statut_Publication.statut}
               </TableCell> */}
               <TableCell className="text-right">
-                <Select>
+                <Select onValueChange={handleStatusChange}>
                   <SelectTrigger className="w-[180px]">
                     <SelectValue
                       placeholder={article.Statut_Publication.statut}
