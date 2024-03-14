@@ -60,7 +60,7 @@ async function handleSupprimerPublication(id,titre) {
     <div>
       <div>
         {publications.map((publication) => (
-        <div key={publication.id} className="w-full flex flex-col items-start gap-y-1">
+        <div key={publication.id} className="w-full flex flex-col items-start gap-y-1 mb-[3rem]">
           <h3 className="text-lightMode-text text-3xl font-bold">{publication.Publications.titre}</h3>
           <h4 className="text-lightMode-secondarytext text-2xl font-bold">{publication.Publications.prix} €</h4>
           <button onClick={() => handleSupprimerPublication(publication.id, publication.Publications.titre)} className="text-lightMode-secondarytext text-2xl font-bold underline">
