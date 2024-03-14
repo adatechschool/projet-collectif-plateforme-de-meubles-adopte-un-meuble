@@ -20,6 +20,7 @@ const createUser = async (email, password, nom, prenom) => {
     console.log("Sign Up Result:", { data, error });
     if (error) {
       console.log(error);
+      return { user: null, session: null, error: error.message };
     }
     const { user, session } = data;
     console.log("user", user);
@@ -38,15 +39,13 @@ const createUser = async (email, password, nom, prenom) => {
       ]);
     if (errorInsert) {
       console.log(errorInsert);
-      throw new Error(
-        "Erreur lors de l'insertion des détails de l'utilisateur"
-      );
+      return { user: null, session: null, error: errorInsert.message };
     }
 
-    // Retourner le token de session avec la réponse
     return { user, session };
   } catch (error) {
-    console.error(error);
+    console.log(error);
+    return { user: null, session: null, error: error.message };
   }
 };
 
@@ -57,12 +56,18 @@ const loginUser = async (email, password) => {
       email,
       password,
     });
-    if (error) console.error(error);
+    if (error) {
+      return {
+        user: null,
+        session: null,
+        error: "Adresse e-mail ou mot de passe incorrect.",
+      };
+    }
 
     const { user, session } = data;
     return { user, session };
   } catch (error) {
-    console.error(error);
+    return { user: null, session: null, error: error.message };
   }
 };
 module.exports = { createUser, loginUser };
