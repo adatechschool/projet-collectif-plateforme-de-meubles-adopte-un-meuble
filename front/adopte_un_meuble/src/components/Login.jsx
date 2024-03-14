@@ -19,6 +19,13 @@ function Login() {
   const [prenom, setPrenom] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [errorLogin, setErrorLogin] = useState(
+    "Connectez vous à votre compte."
+  );
+
+  const [errorRegister, setErrorRegister] = useState(
+    "Créer votre compte. Vous pourrez vous connecter ensuite."
+  );
   sessionStorage.clear();
 
   const navigate = useNavigate();
@@ -35,13 +42,21 @@ function Login() {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        console.log(data.error);
+        if (data.error) {
+          setErrorLogin(data.error);
+          return;
+        }
+
         sessionStorage.setItem("user", JSON.stringify(data.user.user));
         sessionStorage.setItem("session", JSON.stringify(data.user.session));
-      });
 
-    console.log("login");
-    navigate("/");
+        console.log("login");
+        navigate("/");
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
   };
 
   const handleRegister = (e) => {
@@ -56,10 +71,14 @@ function Login() {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        if (data.error) {
+          setErrorRegister(data.error);
+          return;
+        }
+        console.log("register", data);
+
+        navigate("/login");
       });
-    console.log("register");
-    navigate("/login");
   };
   return (
     <div className="w-screen flex justify-center pt-[5rem]">
@@ -68,7 +87,7 @@ function Login() {
           <div>
             {" "}
             <TabsTrigger value="account" className="w-full">
-              Connexion
+              Connection
             </TabsTrigger>
           </div>
           <TabsTrigger value="password" className="w-full">
@@ -79,7 +98,16 @@ function Login() {
           <Card>
             <CardHeader>
               <CardTitle>Compte</CardTitle>
-              <CardDescription>Connectez vous à votre compte.</CardDescription>
+
+              <CardDescription
+                className={
+                  errorLogin !== "Connectez vous à votre compte."
+                    ? "text-red-500"
+                    : ""
+                }
+              >
+                {errorLogin}
+              </CardDescription>
             </CardHeader>
             <form onSubmit={handleLogin}>
               <CardContent className="space-y-2">
@@ -93,6 +121,7 @@ function Login() {
                 <div className="space-y-1">
                   <Input
                     id="loginMdp"
+                    type="password"
                     placeHolder="votre mot de passe"
                     onChange={(e) => setPassword(e.target.value)}
                   />
@@ -108,8 +137,15 @@ function Login() {
           <Card>
             <CardHeader>
               <CardTitle>Création de compte</CardTitle>
-              <CardDescription>
-                Créer votre compte. Vous pourrez vous connecter ensuite.
+              <CardDescription
+                className={
+                  errorRegister !==
+                  "Créer votre compte. Vous pourrez vous connecter ensuite."
+                    ? "text-red-500"
+                    : ""
+                }
+              >
+                {errorRegister}
               </CardDescription>
             </CardHeader>
             <form onSubmit={handleRegister}>
