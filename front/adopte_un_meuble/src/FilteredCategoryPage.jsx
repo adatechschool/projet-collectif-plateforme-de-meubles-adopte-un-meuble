@@ -6,14 +6,13 @@ const fetchUrlCategoryType = new URLSearchParams(window.location.search);
 
 const type = fetchUrlCategoryType.get("type");
 
-console.log(type);
 
 async function getCategoryArticles() {
   let response = await fetch(
     `http://localhost:3000/api/publication/filter?type=${type}`
   );
   let data = await response.json();
-  console.log("TYPE", data);
+
   return data;
 }
 
