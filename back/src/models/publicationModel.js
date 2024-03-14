@@ -30,7 +30,7 @@ const getPublicationById = async (req, res) => {
   const { data, error } = await supabase
     .from("Publications")
     .select(
-      "Utilisateur!inner(pseudo),Type!inner(type), description, date, Statut_Publication!inner(statut), titre, prix, photos, Couleur!inner(couleur), Matière!inner(matière), État_Meuble!inner(état), Dimensions!inner(hauteur,largeur,longueur), Pièce!inner(pièce),id, en_valeur"
+      "Utilisateur!inner(pseudo, id), Type!inner(type), description, date, Statut_Publication!inner(statut), titre, prix, photos, Couleur!inner(couleur), Matière!inner(matière), État_Meuble!inner(état), Dimensions!inner(hauteur,largeur,longueur), Pièce!inner(pièce),id, en_valeur"
     )
     .eq("id", req.params.id);
   if (error) throw error;
@@ -184,15 +184,16 @@ const getStatusList = async (req, res) => {
 
 const addCart = async (req, res) => {
   try {
-    // const { statutId, acheteurId, vendeurId, publicationId } = req.body;
+    const { date, idUser, idPublication, idVendeur } = req.body;
+    const idUserObj = JSON.parse(idUser);
 
-    // Insérer les détails de l'article dans la table "panier"
     const { data, error } = await supabase.from("Panier").insert([
       {
-        date: req.body.date,
+        date: date,
         statut_id: 3,
-        // acheteur_id: req.body.idSession,
-        publications_id: req.body.idPublication,
+        acheteur_id: idUserObj.id,
+        publications_id: idPublication,
+        vendeur_id : idVendeur
       },
     ]);
 

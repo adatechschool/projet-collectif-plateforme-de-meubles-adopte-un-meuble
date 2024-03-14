@@ -17,7 +17,7 @@ import {
 } from "@/components/ui/breadcrumb";
 import { Button } from "@/components/ui/button";
 import ShoppingCartItem from "./ShoppingCartItem";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 
 function Navbar() {
@@ -138,7 +138,7 @@ function Navbar() {
                   </h4>
                 </div> */}
               </div>
-              <Link to="/Payment" >
+              <Link to="/Payment">
                 <Button className="w-[87%] absolute bottom-5 right-0 left-0 mx-auto">
                   Payer
                 </Button>
@@ -154,6 +154,7 @@ function Navbar() {
                 viewBox="0 0 16 17"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
+                className="cursor-pointer hover:rotate-12 transition-transform"
               >
                 <path
                   fillRule="evenodd"
@@ -169,6 +170,7 @@ function Navbar() {
                 viewBox="0 0 20 15"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
+                className="cursor-pointer hover:rotate-12 transition-transform"
               >
                 <path
                   fillRule="evenodd"
@@ -189,26 +191,26 @@ function Navbar() {
             onClick={() => setIsOpen(false)}
           >
             {isLogged ? (
-              <li>
+              <li className="hover:rotate-3 hover:text-lightMode-secondarytext hover:underline origin-bottom-right transition">
                 <a href="/login">Déconnexion</a>
               </li>
             ) : (
-              <li>
+              <li className="hover:rotate-3 hover:text-lightMode-secondarytext hover:underline origin-bottom-right transition">
                 <a href="/login">connexion</a>
               </li>
             )}
 
-            <li>
+            <li className="hover:rotate-3 hover:text-lightMode-secondarytext hover:underline origin-bottom-right transition">
               <a href="/profile">profil</a>
             </li>
 
-            <li>
+            <li className="hover:rotate-3 hover:text-lightMode-secondarytext hover:underline origin-bottom-right transition">
               <a href="/sell">vendre</a>
             </li>
-            <li>
+            <li className="hover:rotate-3 hover:text-lightMode-secondarytext hover:underline origin-bottom-right transition">
               <a href="/">recherche</a>
             </li>
-            <li>
+            <li className="hover:rotate-3 hover:text-lightMode-secondarytext hover:underline origin-bottom-right transition">
               <a href="/panier">panier</a>
             </li>
           </ul>
