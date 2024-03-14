@@ -8,19 +8,29 @@ function AboutPage() {
           <h2 className="text-2xl font-bold text-[#C49379]">back</h2>
           <ul className="*:font-medium *:text-xl *:text-[#1F2D5C]">
             <a href="https://github.com/Tianhong258">
-              <li>Tianhong</li>
+              <li className="hover:rotate-3 transition hover:text-[#C49379]">
+                Tianhong
+              </li>
             </a>
             <a href="https://github.com/FabienneLIS">
-              <li>Fabienne</li>
+              <li className="hover:-rotate-3 transition hover:text-[#C49379]">
+                Fabienne
+              </li>
             </a>
             <a href="https://github.com/realalexis">
-              <li>Alexis</li>
+              <li className="hover:rotate-3 transition hover:text-[#C49379]">
+                Alexis
+              </li>
             </a>
             <a href="https://github.com/MarieLeLamer">
-              <li>Marie</li>
+              <li className="hover:-rotate-3 transition hover:text-[#C49379]">
+                Marie
+              </li>
             </a>
             <a href="https://github.com/AudreyGgn">
-              <li>Λυδяэφ ♫</li>
+              <li className="hover:rotate-3 transition hover:text-[#C49379]">
+                Λυδяэφ ♫
+              </li>
             </a>
           </ul>
         </div>
@@ -28,19 +38,29 @@ function AboutPage() {
           <h2 className="text-2xl font-bold text-[#C49379]">front</h2>
           <ul className="*:font-medium *:text-xl *:text-[#1F2D5C]">
             <a href="https://github.com/magueloneguinaud">
-              <li>Maguelone</li>
+              <li className="hover:-rotate-3 transition hover:text-[#C49379]">
+                Maguelone
+              </li>
             </a>
             <a href="https://github.com/oudinyannick">
-              <li>Yannick</li>
+              <li className="hover:rotate-3 transition hover:text-[#C49379]">
+                Yannick
+              </li>
             </a>
             <a href="https://github.com/annatehiva">
-              <li>Anna</li>
+              <li className="hover:-rotate-3 transition hover:text-[#C49379]">
+                Anna
+              </li>
             </a>
             <a href="https://github.com/CorbiatFlorentin">
-              <li>Florentin</li>
+              <li className="hover:rotate-3 transition hover:text-[#C49379]">
+                Florentin
+              </li>
             </a>
             <a href="https://github.com/lemathurin">
-              <li>Mathurin</li>
+              <li className="hover:-rotate-3 transition hover:text-[#C49379]">
+                Mathurin
+              </li>
             </a>
           </ul>
         </div>
