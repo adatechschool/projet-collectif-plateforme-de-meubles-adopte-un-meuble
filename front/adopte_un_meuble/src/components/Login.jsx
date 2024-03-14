@@ -39,10 +39,10 @@ function Login() {
         console.log(data);
         sessionStorage.setItem("user", JSON.stringify(data.user.user));
         sessionStorage.setItem("session", JSON.stringify(data.user.session));
+        navigate("/");
       });
 
     console.log("login");
-    navigate("/");
   };
 
   const handleRegister = (e) => {
