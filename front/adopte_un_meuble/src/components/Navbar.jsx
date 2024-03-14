@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   Sheet,
   SheetContent,
@@ -25,6 +26,7 @@ function Navbar() {
   //initialisé sur false car menu fermé
   const [isOpen, setIsOpen] = useState(false);
   const [isLogged, setIsLogged] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const session = JSON.parse(sessionStorage.getItem("session"));
@@ -90,73 +92,118 @@ function Navbar() {
           </BreadcrumbList>
         </Breadcrumb>
         <div className="flex items-center gap-5">
-          <Sheet>
-            <SheetTrigger>
-              <svg
-                className="hidden sm:flex hover:rotate-12 transition-transform"
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="19"
-                viewBox="0 0 24 19"
-                fill="none"
-              >
-                <path
-                  d="M19.334 18.0571L23.0007 8.2793"
-                  stroke="black"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-                <path
-                  d="M4.66602 18.0571L0.999349 8.2793"
-                  stroke="black"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-                <path
-                  d="M4.66602 18.0566H19.3327"
-                  stroke="black"
-                  stroke-width="1.5"
-                  stroke-linejoin="round"
-                />
-                <path
-                  d="M1 8.2793H23"
-                  stroke="black"
-                  stroke-width="1.5"
-                  stroke-linejoin="round"
-                />
-                <path
-                  d="M5.88867 8.27865C5.88867 8.27865 8.27189 0.945312 11.9998 0.945312C15.7277 0.945312 18.1109 8.27865 18.1109 8.27865"
-                  stroke="black"
-                  stroke-width="1.5"
-                  stroke-linejoin="round"
-                />
-              </svg>
-            </SheetTrigger>
-            <SheetContent>
-              <SheetHeader>
-                <SheetTitle>votre panier</SheetTitle>
-                <SheetDescription></SheetDescription>
-              </SheetHeader>
-              <div className="w-full flex flex-col items-start gap-[3.125rem] pt-[1.5625rem] h-full overflow-auto pb-[10rem]">
-                {Array.from({ length: numberOfItemsInCart }, (_, index) => (
-                  <ShoppingCartItem />
-                ))}
-                {/* <div className="w-full flex flex-col items-start gap-y-1">
+          {isLogged ? (
+            <Sheet>
+              <SheetTrigger>
+                <svg
+                  className="hidden sm:flex hover:rotate-12 transition-transform"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="19"
+                  viewBox="0 0 24 19"
+                  fill="none"
+                >
+                  <path
+                    d="M19.334 18.0571L23.0007 8.2793"
+                    stroke="black"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M4.66602 18.0571L0.999349 8.2793"
+                    stroke="black"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M4.66602 18.0566H19.3327"
+                    stroke="black"
+                    stroke-width="1.5"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M1 8.2793H23"
+                    stroke="black"
+                    stroke-width="1.5"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M5.88867 8.27865C5.88867 8.27865 8.27189 0.945312 11.9998 0.945312C15.7277 0.945312 18.1109 8.27865 18.1109 8.27865"
+                    stroke="black"
+                    stroke-width="1.5"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </SheetTrigger>
+              <SheetContent>
+                <SheetHeader>
+                  <SheetTitle>votre panier</SheetTitle>
+                  <SheetDescription></SheetDescription>
+                </SheetHeader>
+                <div className="w-full flex flex-col items-start gap-[3.125rem] pt-[1.5625rem] h-full overflow-auto pb-[10rem]">
+                  {Array.from({ length: numberOfItemsInCart }, (_, index) => (
+                    <ShoppingCartItem />
+                  ))}
+                  {/* <div className="w-full flex flex-col items-start gap-y-1">
 
                   <h4 className="text-lightMode-secondarytext text-2xl font-bold">
                     total -&gt; <span>€500</span>
                   </h4>
                 </div> */}
-              </div>
-              <Link to="/Payment">
-                <Button className="w-[87%] absolute bottom-5 right-0 left-0 mx-auto">
-                  Payer
-                </Button>
-              </Link>
-            </SheetContent>
-          </Sheet>
+                </div>
+                <Link to="/Payment">
+                  <Button className="w-[87%] absolute bottom-5 right-0 left-0 mx-auto">
+                    Payer
+                  </Button>
+                </Link>
+              </SheetContent>
+            </Sheet>
+          ) : (
+            <svg
+              className="hidden sm:flex hover:rotate-12 transition-transform"
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="19"
+              viewBox="0 0 24 19"
+              fill="none"
+              onClick={() => navigate("/login")}
+            >
+              <path
+                d="M19.334 18.0571L23.0007 8.2793"
+                stroke="black"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M4.66602 18.0571L0.999349 8.2793"
+                stroke="black"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M4.66602 18.0566H19.3327"
+                stroke="black"
+                stroke-width="1.5"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M1 8.2793H23"
+                stroke="black"
+                stroke-width="1.5"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M5.88867 8.27865C5.88867 8.27865 8.27189 0.945312 11.9998 0.945312C15.7277 0.945312 18.1109 8.27865 18.1109 8.27865"
+                stroke="black"
+                stroke-width="1.5"
+                stroke-linejoin="round"
+              />
+            </svg>
+          )}
 
           <div onClick={() => setIsOpen(!isOpen)}>
             {isOpen ? (

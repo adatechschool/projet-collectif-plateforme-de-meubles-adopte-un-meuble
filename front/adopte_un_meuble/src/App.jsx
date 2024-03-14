@@ -202,7 +202,7 @@ function App() {
         </div>
       </div>
       <Navbar />
-      <Toaster/>
+      <Toaster />
       <Footer />
     </div>
   );
