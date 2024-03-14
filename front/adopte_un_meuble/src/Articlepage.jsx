@@ -4,10 +4,12 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 import Autoplay from "embla-carousel-autoplay";
 import { useNavigate } from "react-router-dom";
 
+
 function Articlepage() {
     const navigateTo = useNavigate();
     const [meuble, setMeuble] = useState(null);
     const [id, setId] = useState(null);
+
 
     useEffect(() => {
         const fetchId = async () => {
@@ -16,8 +18,10 @@ function Articlepage() {
             setId(fetchedId);
         };
 
+
         fetchId();
     }, []);
+
 
     useEffect(() => {
         if (id) {
@@ -27,20 +31,22 @@ function Articlepage() {
                     const publications = await response.json();
                     const publication = publications[0];
 
-          const meubleData = {
-            titre: publication.titre,
-            pseudoUtilisateur: publication.Utilisateur.pseudo,
-            vendeurId: publication.Utilisateur.id,
-            prix: publication.prix,
-            description: publication.description,
-            photos: publication.photos,
-            type: publication.Type.type,
-            couleur: publication.Couleur.couleur,
-            matiere: publication.Matière.matière,
-            etatMeuble: publication.État_Meuble.état,
-            dimensions: publication.Dimensions,
-            piece: publication.Pièce.pièce,
-          };
+
+                    const meubleData = {
+                        titre: publication.titre,
+                        pseudoUtilisateur: publication.Utilisateur.pseudo,
+                        vendeurId: publication.Utilisateur.id,
+                        prix: publication.prix,
+                        description: publication.description,
+                        photos: publication.photos,
+                        type: publication.Type.type,
+                        couleur: publication.Couleur.couleur,
+                        matiere: publication.Matière.matière,
+                        etatMeuble: publication.État_Meuble.état,
+                        dimensions: publication.Dimensions,
+                        piece: publication.Pièce.pièce,
+                    };
+
 
                     setMeuble(meubleData);
                 } catch (error) {
@@ -48,51 +54,27 @@ function Articlepage() {
                 }
             };
 
-      fetchData();
-    }
-  }, [id]);
 
-  const ajouterAuPanier = () => {
-    const date = new Date().toISOString();
-    const idUser = sessionStorage.getItem("user");
-    const idPublication = id;
-    const idVendeur = meuble ? meuble.vendeurId : null;
-
-    if (!idUser || !idPublication || !idVendeur) {
-      console.error("Impossible d'ajouter au panier: informations manquantes.");
-      return;
-    }
-
-    fetch("http://localhost:3000/api/publication/addpanier", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        date: date,
-        idUser: idUser,
-        idPublication: idPublication,
-        idVendeur: idVendeur,
-      }),
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Erreur lors de la requête");
+            fetchData();
         }
     }, [id]);
 
+
     const ajouterAuPanier = () => {
+
 
         const date = new Date().toISOString();
         const idUser = sessionStorage.getItem("user");
         const idPublication = id;
         const idVendeur = meuble ? meuble.vendeurId : null;
 
+
         if (!idUser || !idPublication || !idVendeur) {
             alert("Impossible d'ajouter cet au panier: veuillez vous connecter.");
             navigateTo("/login");
             return;
         }
+
 
         fetch("http://localhost:3000/api/publication/addpanier", {
             method: "POST",
@@ -120,9 +102,11 @@ function Articlepage() {
             });
     };
 
+
     if (!meuble) {
         return <div>Chargement...</div>;
     }
+
 
     return (
         <div className="w-screen h-screen flex overflow-hidden bg-lightMode-background">
@@ -161,6 +145,7 @@ function Articlepage() {
                 </Carousel>
             </div>
 
+
             <div className="flex flex-col gap-14 py-24 h-full w-1/2 px-11 overflow-scroll">
                 <div className="w-auto h-auto flex-col justify-start items-start gap-5 inline-flex">
                     <h1 className="text-lightMode-text font-bold text-3xl">{meuble.titre}</h1>
@@ -173,10 +158,12 @@ function Articlepage() {
                     </button>
                 </div>
 
+
                 <div className="w-auto flex-col justify-start items-start gap-5 flex">
                     <h3 className="text-lightMode-text font-bold text-xl">description</h3>
                     <div className="text-lightMode-text text-lg">{meuble.description}</div>
                 </div>
+
 
                 <div className="w-full flex flex-col gap-5">
                     <h3 className="text-lightMode-text font-bold text-xl">critères</h3>
@@ -224,5 +211,6 @@ function Articlepage() {
         </div>
     );
 }
+
 
 export default Articlepage;
