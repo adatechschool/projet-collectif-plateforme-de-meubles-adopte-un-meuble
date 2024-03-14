@@ -239,7 +239,7 @@ function Navbar() {
           >
             {isLogged ? (
               <li className="hover:rotate-3 hover:text-lightMode-secondarytext hover:underline origin-bottom-right transition">
-                <a href="/login">Déconnexion</a>
+                <a href="/login">déconnexion</a>
               </li>
             ) : (
               <li className="hover:rotate-3 hover:text-lightMode-secondarytext hover:underline origin-bottom-right transition">
