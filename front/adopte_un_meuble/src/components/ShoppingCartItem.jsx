@@ -72,7 +72,7 @@ async function handleSupprimerPublication(id,titre) {
       <div>
           <div className="text-lightMode-secondarytext text-2xl font-bold pt-[10rem]">
             <h4>
-              total -&gt; <span>{publications.reduce((acc, current) => (acc + current.Publications.prix),0)}</span>
+              total -&gt; <span>{publications.reduce((acc, current) => (acc + current.Publications.prix),0)} €</span>
             </h4>
           </div>
       </div>

@@ -3,12 +3,15 @@ import Navbar from "./components/Navbar";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
 import { useNavigate } from "react-router-dom";
+import { useToast } from "@/components/ui/use-toast"
+import { Toaster } from "@/components/ui/toaster";
 
 
 function Articlepage() {
     const navigateTo = useNavigate();
     const [meuble, setMeuble] = useState(null);
     const [id, setId] = useState(null);
+    const { toast } = useToast()
 
 
     useEffect(() => {
@@ -70,7 +73,7 @@ function Articlepage() {
 
 
         if (!idUser || !idPublication || !idVendeur) {
-            alert("Impossible d'ajouter cet au panier: veuillez vous connecter.");
+              alert("Impossible d'ajouter cet au panier: veuillez vous connecter.")
             navigateTo("/login");
             return;
         }
@@ -95,7 +98,11 @@ function Articlepage() {
                 return response.json();
             })
             .then((data) => {
-                alert("Article ajouté au panier avec succès !");
+                toast({
+                    title: "Information: ", 
+                    description: "Article ajouté au panier avec succès !",
+                  })
+                //alert("Article ajouté au panier avec succès !");
             })
             .catch((error) => {
                 console.error("Erreur:", error);
@@ -208,6 +215,7 @@ function Articlepage() {
                     </table>
                 </div>
             </div>
+            <Toaster/>
         </div>
     );
 }

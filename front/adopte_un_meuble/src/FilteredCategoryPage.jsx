@@ -1,6 +1,7 @@
 import React from "react";
 import ProductCard from "./components/ProductCard";
 import Navbar from "./components/Navbar";
+import { Toaster } from "@/components/ui/toaster";
 
 const fetchUrlCategoryType = new URLSearchParams(window.location.search);
 
@@ -43,6 +44,7 @@ function FilteredCategoryPage() {
         ))}
       </div>
       <Navbar />
+      <Toaster/>
     </div>
   );
 }
