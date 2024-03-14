@@ -77,18 +77,6 @@ function Navbar() {
                 </BreadcrumbItem>
               </BreadcrumbItem>
             )}
-            {currentPage.includes("article/filter") && (
-              <BreadcrumbItem>
-                <BreadcrumbSeparator>
-                  <p className="text-lg">-&gt;</p>
-                </BreadcrumbSeparator>
-                <BreadcrumbItem>
-                  <BreadcrumbLink href="/category">
-                    <p className="text-lg">{type}</p>
-                  </BreadcrumbLink>
-                </BreadcrumbItem>
-              </BreadcrumbItem>
-            )}
           </BreadcrumbList>
         </Breadcrumb>
         <div className="flex items-center gap-5">
@@ -258,11 +246,6 @@ function Navbar() {
                 <a href="/login">connexion</a>
               </li>
             )}
-
-            <li className="hover:rotate-3 hover:text-lightMode-secondarytext hover:underline origin-bottom-right transition">
-              <a href="/profile">profil</a>
-            </li>
-
             <li className="hover:rotate-3 hover:text-lightMode-secondarytext hover:underline origin-bottom-right transition">
               <a href="/sell">vendre</a>
             </li>
@@ -270,7 +253,7 @@ function Navbar() {
               <a href="/">recherche</a>
             </li>
             <li className="hover:rotate-3 hover:text-lightMode-secondarytext hover:underline origin-bottom-right transition">
-              <a href="/panier">panier</a>
+              <a href="/category">catégories</a>
             </li>
           </ul>
         )}

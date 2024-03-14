@@ -52,7 +52,7 @@ function PaymentPage() {
               </Select>
             </div>
             <div className="grid w-full max-w-sm items-center gap-1.5">
-              <Label htmlFor="titre">Année</Label>
+              <Label htmlFor="titre">année</Label>
               <Select>
                 <SelectTrigger className="w-full">
                   <SelectValue placeholder="" />
@@ -105,7 +105,7 @@ function PaymentPage() {
           <Label htmlFor="titre">adresse</Label>
           <Input type="email" id="card" placeholder="" />
         </div>
-        <Link to="/thanks">
+        <Link to="/thanks" className="w-full">
           <Button className="w-full">envoyer</Button>
         </Link>
       </div>
