@@ -191,26 +191,26 @@ function Navbar() {
             onClick={() => setIsOpen(false)}
           >
             {isLogged ? (
-              <li>
+              <li className="hover:rotate-3 hover:text-lightMode-secondarytext hover:underline origin-bottom-right transition">
                 <a href="/login">Déconnexion</a>
               </li>
             ) : (
-              <li>
+              <li className="hover:rotate-3 hover:text-lightMode-secondarytext hover:underline origin-bottom-right transition">
                 <a href="/login">connexion</a>
               </li>
             )}
 
-            <li>
+            <li className="hover:rotate-3 hover:text-lightMode-secondarytext hover:underline origin-bottom-right transition">
               <a href="/profile">profil</a>
             </li>
 
-            <li>
+            <li className="hover:rotate-3 hover:text-lightMode-secondarytext hover:underline origin-bottom-right transition">
               <a href="/sell">vendre</a>
             </li>
-            <li>
+            <li className="hover:rotate-3 hover:text-lightMode-secondarytext hover:underline origin-bottom-right transition">
               <a href="/">recherche</a>
             </li>
-            <li>
+            <li className="hover:rotate-3 hover:text-lightMode-secondarytext hover:underline origin-bottom-right transition">
               <a href="/panier">panier</a>
             </li>
           </ul>

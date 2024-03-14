@@ -156,7 +156,7 @@ function Articlepage() {
         </div>
         <div className="">
           <button
-            className="text-lightMode-text font-bold text-xl underline"
+            className="text-lightMode-text font-bold text-xl underline hover:-rotate-3 hover:text-lightMode-secondarytext hover:underline origin-bottom-left transition"
             onClick={ajouterAuPanier}
           >
             ajouter au panier
