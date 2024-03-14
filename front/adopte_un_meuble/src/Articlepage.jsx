@@ -27,20 +27,20 @@ function Articlepage() {
                     const publications = await response.json();
                     const publication = publications[0];
 
-                    const meubleData = {
-                        titre: publication.titre,
-                        pseudoUtilisateur: publication.Utilisateur.pseudo,
-                        vendeurId: publication.Utilisateur.id,
-                        prix: publication.prix,
-                        description: publication.description,
-                        photos: publication.photos,
-                        type: publication.Type.type,
-                        couleur: publication.Couleur.couleur,
-                        matiere: publication.Matière.matière,
-                        etatMeuble: publication.État_Meuble.état,
-                        dimensions: publication.Dimensions,
-                        piece: publication.Pièce.pièce,
-                    };
+          const meubleData = {
+            titre: publication.titre,
+            pseudoUtilisateur: publication.Utilisateur.pseudo,
+            vendeurId: publication.Utilisateur.id,
+            prix: publication.prix,
+            description: publication.description,
+            photos: publication.photos,
+            type: publication.Type.type,
+            couleur: publication.Couleur.couleur,
+            matiere: publication.Matière.matière,
+            etatMeuble: publication.État_Meuble.état,
+            dimensions: publication.Dimensions,
+            piece: publication.Pièce.pièce,
+          };
 
                     setMeuble(meubleData);
                 } catch (error) {
@@ -48,7 +48,36 @@ function Articlepage() {
                 }
             };
 
-            fetchData();
+      fetchData();
+    }
+  }, [id]);
+
+  const ajouterAuPanier = () => {
+    const date = new Date().toISOString();
+    const idUser = sessionStorage.getItem("user");
+    const idPublication = id;
+    const idVendeur = meuble ? meuble.vendeurId : null;
+
+    if (!idUser || !idPublication || !idVendeur) {
+      console.error("Impossible d'ajouter au panier: informations manquantes.");
+      return;
+    }
+
+    fetch("http://localhost:3000/api/publication/addpanier", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        date: date,
+        idUser: idUser,
+        idPublication: idPublication,
+        idVendeur: idVendeur,
+      }),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Erreur lors de la requête");
         }
     }, [id]);
 
@@ -96,7 +125,7 @@ function Articlepage() {
     }
 
     return (
-        <div className="w-screen h-screen flex overflow-hidden">
+        <div className="w-screen h-screen flex overflow-hidden bg-lightMode-background">
             <Navbar className="overflow-hidden" />
             <div className="h-auto w-1/2 overflow-hidden flex items-center ">
                 <Carousel

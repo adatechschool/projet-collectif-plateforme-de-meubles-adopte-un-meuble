@@ -182,6 +182,30 @@ const getStatusList = async (req, res) => {
   return data;
 };
 
+const getEtatList = async (req, res) => {
+  const { data, error } = await supabase.from("État_Meuble").select("*");
+  if (error) throw error;
+  return data;
+};
+
+const getMatiereList = async (req, res) => {
+  const { data, error } = await supabase.from("Matière").select("*");
+  if (error) throw error;
+  return data;
+};
+
+const getCouleurList = async (req, res) => {
+  const { data, error } = await supabase.from("Couleur").select("*");
+  if (error) throw error;
+  return data;
+};
+
+const getPieceList = async (req, res) => {
+  const { data, error } = await supabase.from("Pièce").select("*");
+  if (error) throw error;
+  return data;
+};
+
 const addCart = async (req, res) => {
   try {
     const { date, idUser, idPublication, idVendeur } = req.body;
@@ -193,7 +217,7 @@ const addCart = async (req, res) => {
         statut_id: 3,
         acheteur_id: idUserObj.id,
         publications_id: idPublication,
-        vendeur_id : idVendeur
+        vendeur_id: idVendeur,
       },
     ]);
 
@@ -224,4 +248,8 @@ module.exports = {
   getCategoryList,
   addCart,
   getStatusList,
+  getEtatList,
+  getMatiereList,
+  getCouleurList,
+  getPieceList,
 };

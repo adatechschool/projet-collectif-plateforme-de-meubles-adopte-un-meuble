@@ -82,7 +82,7 @@ function Login() {
       });
   };
   return (
-    <div className="w-screen flex justify-center pt-[5rem]">
+    <div className="w-screen flex justify-center pt-[5rem] bg-lightMode-background">
       <Navbar />
       <Tabs defaultValue="account" className="w-[400px]">
         <TabsList className="grid w-full grid-cols-2">

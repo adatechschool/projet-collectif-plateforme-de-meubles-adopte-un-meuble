@@ -10,6 +10,10 @@ const router = express.Router();
 //Définition des méthodes GET :
 router.get("/category", publicationControllers.getCategoryList);
 router.get("/status", publicationControllers.getStatusList);
+router.get("/etat", publicationControllers.getEtatList);
+router.get("/matiere", publicationControllers.getMatiereList);
+router.get("/couleur", publicationControllers.getCouleurList);
+router.get("/piece", publicationControllers.getPieceList);
 router.get("/all", publicationControllers.getAllPublication);
 router.get("/filter", publicationControllers.filterPublication);
 router.get("/:id", publicationControllers.getPublicationById);
