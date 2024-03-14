@@ -12,6 +12,7 @@ function ThankYouPage() {
         height="113"
         viewBox="0 0 110 113"
         fill="none"
+        className="hover:-rotate-6 hover:scale-125 transition"
       >
         <path
           fill-rule="evenodd"
