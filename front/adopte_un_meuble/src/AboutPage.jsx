@@ -2,7 +2,7 @@ import React from "react";
 
 function AboutPage() {
   return (
-    <div className="h-screen w-screen flex justify-center items-center bg-[#FCEDD8] overflow-hidden">
+    <div className="h-screen w-screen flex justify-center items-center bg-[#FCEDD8] overflow-hidden relative">
       <img
         src="./public/photo_front.png"
         className="absolute top-[6rem] right-[5rem] w-[23rem] rotate-12 rounded-lg drop-shadow-xl brightness-125 hover:scale-125 hover:-rotate-3 transition-all"
