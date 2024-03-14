@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
+import { Link } from "react-router-dom";
 
 function PaymentPage() {
   return (
@@ -29,11 +30,11 @@ function PaymentPage() {
               <Label htmlFor="titre">mois</Label>
               <Select>
                 <SelectTrigger className="w-full">
-                  <SelectValue placeholder="Mois" />
+                  <SelectValue placeholder="" />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectGroup>
-                    <SelectLabel>Mois</SelectLabel>
+                    <SelectLabel>mois</SelectLabel>
                     <SelectItem value="janvier">01</SelectItem>
                     <SelectItem value="février">02</SelectItem>
                     <SelectItem value="mars">03</SelectItem>
@@ -54,11 +55,11 @@ function PaymentPage() {
               <Label htmlFor="titre">Année</Label>
               <Select>
                 <SelectTrigger className="w-full">
-                  <SelectValue placeholder="Année" />
+                  <SelectValue placeholder="" />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectGroup>
-                    <SelectLabel>Année</SelectLabel>
+                    <SelectLabel>année</SelectLabel>
                     <SelectItem value="2024">2024</SelectItem>
                     <SelectItem value="2025">2025</SelectItem>
                     <SelectItem value="2026">2026</SelectItem>
@@ -104,7 +105,9 @@ function PaymentPage() {
           <Label htmlFor="titre">adresse</Label>
           <Input type="email" id="card" placeholder="" />
         </div>
-        <Button className="w-full">envoyer</Button>
+        <Link to="/thanks">
+          <Button className="w-full">envoyer</Button>
+        </Link>
       </div>
     </div>
   );

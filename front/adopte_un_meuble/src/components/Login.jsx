@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Navbar from "./Navbar";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -63,6 +64,7 @@ function Login() {
   };
   return (
     <div className="w-screen flex justify-center pt-[5rem]">
+      <Navbar />
       <Tabs defaultValue="account" className="w-[400px]">
         <TabsList className="grid w-full grid-cols-2">
           <div>

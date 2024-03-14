@@ -24,7 +24,7 @@ let categoryArticles = await getCategoryArticles();
 function FilteredCategoryPage() {
   // const numberOfCards = categoryArticles.length;
   return (
-    <div className="flex justify-center py-[5rem]">
+    <div className="flex justify-center py-[5rem] bg-lightMode-background">
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
         {categoryArticles.map((categoryArticle, index) => (
           <a href={"/article/filter?id=" + categoryArticle.id}>
