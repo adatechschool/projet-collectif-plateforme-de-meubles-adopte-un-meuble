@@ -8,7 +8,7 @@ function ShoppingCartContainer() {
   const idUser = userDataParse.id;
   console.log(idUser);
 
-  // const idUser = "a4913f0f-7750-44ad-ae95-c3b7ec4b68de";
+// const idUser = "a4913f0f-7750-44ad-ae95-c3b7ec4b68de";
 
   const { toast } = useToast()
   const [publications, setPublications] = useState([]);
