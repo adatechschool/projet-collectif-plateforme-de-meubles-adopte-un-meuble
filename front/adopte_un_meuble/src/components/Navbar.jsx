@@ -75,6 +75,18 @@ function Navbar() {
                 </BreadcrumbItem>
               </BreadcrumbItem>
             )}
+            {currentPage.includes("article/filter") && (
+              <BreadcrumbItem>
+                <BreadcrumbSeparator>
+                  <p className="text-lg">-&gt;</p>
+                </BreadcrumbSeparator>
+                <BreadcrumbItem>
+                  <BreadcrumbLink href="/category">
+                    <p className="text-lg">{article}</p>
+                  </BreadcrumbLink>
+                </BreadcrumbItem>
+              </BreadcrumbItem>
+            )}
           </BreadcrumbList>
         </Breadcrumb>
         <div className="flex items-center gap-5">
