@@ -3,42 +3,6 @@ import Navbar from "./components/Navbar";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
 
-const fetchUrlCategoryType = new URLSearchParams(window.location.search);
-
-const publicationId = fetchUrlCategoryType.get("id");
-
-function ajouterAuPanier() {
-    const date = new Date().toISOString();
-    const idUser = sessionStorage.getItem("user");
-    const idPublication = publicationId;
-
-    fetch("http://localhost:3000/api/publication/addpanier", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-            date: date,
-            idUser: idUser,
-            idPublication: idPublication,
-        }),
-    })
-        .then((response) => {
-            if (!response.ok) {
-                throw new Error("Erreur lors de la requête");
-            }
-            return response.json();
-        })
-        .then((data) => {
-            console.log("userid");
-            console.log(idUser);
-            alert("Article ajouté au panier avec succès !");
-        })
-        .catch((error) => {
-            console.error("Erreur:", error);
-        });
-}
-
 function Articlepage() {
     const [meuble, setMeuble] = useState(null);
     const [id, setId] = useState(null);
@@ -64,6 +28,7 @@ function Articlepage() {
                     const meubleData = {
                         titre: publication.titre,
                         pseudoUtilisateur: publication.Utilisateur.pseudo,
+                        vendeurId: publication.Utilisateur.id,
                         prix: publication.prix,
                         description: publication.description,
                         photos: publication.photos,
@@ -84,6 +49,43 @@ function Articlepage() {
             fetchData();
         }
     }, [id]);
+
+    const ajouterAuPanier = () => {
+        const date = new Date().toISOString();
+        const idUser = sessionStorage.getItem("user");
+        const idPublication = id;
+        const idVendeur = meuble ? meuble.vendeurId : null;
+
+        if (!idUser || !idPublication || !idVendeur) {
+            console.error("Impossible d'ajouter au panier: informations manquantes.");
+            return;
+        }
+
+        fetch("http://localhost:3000/api/publication/addpanier", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                date: date,
+                idUser: idUser,
+                idPublication: idPublication,
+                idVendeur: idVendeur,
+            }),
+        })
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error("Erreur lors de la requête");
+                }
+                return response.json();
+            })
+            .then((data) => {
+                alert("Article ajouté au panier avec succès !");
+            })
+            .catch((error) => {
+                console.error("Erreur:", error);
+            });
+    };
 
     if (!meuble) {
         return <div>Chargement...</div>;
@@ -131,7 +133,7 @@ function Articlepage() {
                     <div className="text-lightMode-text font-bold text-2xl">{meuble.titre}</div>
                     <div className="text-lightMode-text font-bold text-xl">€{meuble.prix}</div>
                     <div className="text-lightMode-text font-bold text-l">{meuble.pseudoUtilisateur}</div>
-                    <div className="mt-5">
+                    <div className="mt-5 pt-4 pb-4">
                         <button className="text-lightMode-text font-bold text-xl underline" onClick={ajouterAuPanier}>
                             ajouter au panier
                         </button>
@@ -140,10 +142,10 @@ function Articlepage() {
 
                 <div className="w-auto h-auto flex-col justify-start items-start gap-[5px] flex mt-5">
                     <div className="text-lightMode-text font-bold text-xl">description</div>
-                    <div className="text-lightMode-text text-l">{meuble.description}</div>
+                    <div className="pt-2 text-lightMode-text text-l">{meuble.description}</div>
                 </div>
 
-                <div className="w-auto h-auto flex-col justify-start items-start gap-[20px] inline-flex mt-10">
+                <div className="w-auto h-auto flex-col justify-start items-start gap-[5px] inline-flex mt-10">
                     <div className="text-lightMode-text font-bold text-xl">critères</div>
                     <table className="table-auto font-bold">
                         <thead>
@@ -166,7 +168,7 @@ function Articlepage() {
                         </tbody>
                     </table>
                 </div>
-                <div className="w-auto h-auto flex-col justify-start items-start gap-[20px] inline-flex mt-10">
+                <div className="w-auto h-auto flex-col justify-start items-start gap-[5px] inline-flex mt-10">
                     <div className="text-lightMode-text font-bold text-xl flex ">dimensions</div>
                     <table className="table-auto font-bold">
                         <thead>

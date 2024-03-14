@@ -93,13 +93,13 @@ function Login() {
                 <div className="space-y-1">
                   <Input
                     id="loginMdp"
-                    placeHolder="votre mot de passe"
+                    placeHolder="mot de passe"
                     onChange={(e) => setPassword(e.target.value)}
                   />
                 </div>
               </CardContent>
               <CardFooter>
-                <Button type="submit">Connection</Button>
+                <Button type="submit">Connexion</Button>
               </CardFooter>
             </form>
           </Card>
