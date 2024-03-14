@@ -11,6 +11,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Articlepage from "./Articlepage.jsx";
 import AdminPage from "./AdminPage.jsx";
 import ThankYouPage from "./ThankYouPage.jsx";
+import AboutPage from "./AboutPage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -48,6 +49,10 @@ const router = createBrowserRouter([
   {
     path: "/thanks",
     element: <ThankYouPage />,
+  },
+  {
+    path: "/about",
+    element: <AboutPage />,
   },
 ]);
 
