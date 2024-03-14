@@ -51,7 +51,7 @@ function Navbar() {
 
   //navBar avec titre du site, menu burger déroulant
   return (
-    <div className="flex fixed top-0 z-10 w-full flex-col items-start ">
+    <div className="flex fixed top-0 z-30 w-full flex-col items-start ">
       <nav className="flex p-[0.9375rem]  justify-between items-center shrink-0 self-stretch">
         {/* <h3 className="text-lg text-lightMode-text">
           <a href="/">adopte un meuble</a>

@@ -32,6 +32,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { Link } from "react-router-dom";
 
 async function getAdminTable() {
   let response = await fetch("http://localhost:3000/api/publication/all");
@@ -90,6 +91,7 @@ function AdminPage() {
   return (
     <div className="w-sceen">
       <Navbar />
+      <div className="w-screen h-[58px] bg-white fixed top-0 z-10 opacity-[0.80] backdrop-blur-[50px]"></div>
       <Table className="mt-16">
         <TableHeader>
           <TableRow>
@@ -105,7 +107,11 @@ function AdminPage() {
           {adminTable.map((article, index) => (
             <TableRow>
               <TableCell className="font-medium">{article.id}</TableCell>
-              <TableCell>{article.titre}</TableCell>
+              <TableCell className="hover:-rotate-2 hover:text-lightMode-secondarytext origin-bottom-left transition">
+                <Link to={"/article/filter?id=" + article.id}>
+                  {article.titre}
+                </Link>
+              </TableCell>
               <TableCell>{article.Utilisateur.pseudo}</TableCell>
               <TableCell className="text-right">€{article.prix}</TableCell>
               {/* <TableCell className="text-right">
