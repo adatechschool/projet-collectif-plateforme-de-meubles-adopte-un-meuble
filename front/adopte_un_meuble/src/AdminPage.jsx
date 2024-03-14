@@ -49,23 +49,44 @@ async function getStatusList() {
   return data;
 }
 
+async function getEtatList() {
+  let response = await fetch("http://localhost:3000/api/publication/etat");
+  let data = await response.json();
+  return data;
+}
+
+async function getMatiereList() {
+  let response = await fetch("http://localhost:3000/api/publication/matiere");
+  let data = await response.json();
+  return data;
+}
+
+async function getCouleurList() {
+  let response = await fetch("http://localhost:3000/api/publication/couleur");
+  let data = await response.json();
+  return data;
+}
+
+async function getPieceList() {
+  let response = await fetch("http://localhost:3000/api/publication/piece");
+  let data = await response.json();
+  return data;
+}
+
+async function getCategoryList() {
+  let response = await fetch("http://localhost:3000/api/publication/category");
+  let data = await response.json();
+  return data;
+}
+
 let statusList = await getStatusList();
+let etatList = await getEtatList();
+let pieceList = await getPieceList();
+let matiereList = await getMatiereList();
+let couleurList = await getCouleurList();
+let categoryList = await getCategoryList();
 
 function AdminPage() {
-  // const handleStatusChange = async (event) => {
-  //   const requestData = {
-  //     statut_id: event,
-  //   };
-  //   const update = await fetch(
-  //     `http://localhost:3000/api/publication/updatestatut/${adminTable.id}`,
-  //     {
-  //       method: "PUT",
-  //       body: JSON.stringify(requestData),
-  //     }
-  //   );
-  //   console.log(event);
-  // };
-
   return (
     <div className="w-sceen">
       <Navbar />
@@ -176,9 +197,9 @@ function AdminPage() {
                           <SelectContent>
                             <SelectGroup>
                               <SelectLabel>état</SelectLabel>
-                              {statusList.map((status, index) => (
-                                <SelectItem key={index} value={status.id}>
-                                  {status.statut}
+                              {etatList.map((etat, index) => (
+                                <SelectItem key={index} value={etat.id}>
+                                  {etat.état}
                                 </SelectItem>
                               ))}
                             </SelectGroup>
@@ -196,9 +217,9 @@ function AdminPage() {
                           <SelectContent>
                             <SelectGroup>
                               <SelectLabel>type</SelectLabel>
-                              {statusList.map((status, index) => (
-                                <SelectItem key={index} value={status.id}>
-                                  {status.statut}
+                              {categoryList.map((category, index) => (
+                                <SelectItem key={index} value={category.id}>
+                                  {category.type}
                                 </SelectItem>
                               ))}
                             </SelectGroup>
@@ -218,9 +239,9 @@ function AdminPage() {
                           <SelectContent>
                             <SelectGroup>
                               <SelectLabel>type</SelectLabel>
-                              {statusList.map((status, index) => (
-                                <SelectItem key={index} value={status.id}>
-                                  {status.statut}
+                              {matiereList.map((matiere, index) => (
+                                <SelectItem key={index} value={matiere.id}>
+                                  {matiere.matière}
                                 </SelectItem>
                               ))}
                             </SelectGroup>
@@ -240,9 +261,9 @@ function AdminPage() {
                           <SelectContent>
                             <SelectGroup>
                               <SelectLabel>type</SelectLabel>
-                              {statusList.map((status, index) => (
-                                <SelectItem key={index} value={status.id}>
-                                  {status.statut}
+                              {couleurList.map((couleur, index) => (
+                                <SelectItem key={index} value={couleur.id}>
+                                  {couleur.couleur}
                                 </SelectItem>
                               ))}
                             </SelectGroup>
@@ -260,9 +281,9 @@ function AdminPage() {
                           <SelectContent>
                             <SelectGroup>
                               <SelectLabel>type</SelectLabel>
-                              {statusList.map((status, index) => (
-                                <SelectItem key={index} value={status.id}>
-                                  {status.statut}
+                              {pieceList.map((piece, index) => (
+                                <SelectItem key={index} value={piece.id}>
+                                  {piece.pièce}
                                 </SelectItem>
                               ))}
                             </SelectGroup>

@@ -34,6 +34,46 @@ const getStatusList = async (req, res) => {
   }
 };
 
+const getEtatList = async (req, res) => {
+  try {
+    const etatList = await publicationModel.getEtatList();
+    res.send(etatList);
+    console.log(etatList);
+  } catch (error) {
+    res.etat(500).json({ error: error.message });
+  }
+};
+
+const getMatiereList = async (req, res) => {
+  try {
+    const matiereList = await publicationModel.getMatiereList();
+    res.send(matiereList);
+    console.log(matiereList);
+  } catch (error) {
+    res.matiere(500).json({ error: error.message });
+  }
+};
+
+const getCouleurList = async (req, res) => {
+  try {
+    const couleurList = await publicationModel.getCouleurList();
+    res.send(couleurList);
+    console.log(couleurList);
+  } catch (error) {
+    res.couleur(500).json({ error: error.message });
+  }
+};
+
+const getPieceList = async (req, res) => {
+  try {
+    const pieceList = await publicationModel.getPieceList();
+    res.send(pieceList);
+    console.log(pieceList);
+  } catch (error) {
+    res.piece(500).json({ error: error.message });
+  }
+};
+
 //Afficher une publication à partir de son id
 const getPublicationById = async (req, res) => {
   try {
@@ -138,4 +178,8 @@ module.exports = {
   getCategoryList,
   addCart,
   getStatusList,
+  getEtatList,
+  getMatiereList,
+  getCouleurList,
+  getPieceList,
 };
