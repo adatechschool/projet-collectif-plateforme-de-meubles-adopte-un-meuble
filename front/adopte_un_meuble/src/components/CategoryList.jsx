@@ -20,7 +20,9 @@ function CategoryList({ left }) {
         </h3>
         {categoryData.map((category, index) => (
           <a href={"/category/filter?type=" + category.type} key={index}>
-            <li className="text-lg text-lightMode-text">{category.type}</li>
+            <li className="text-lg text-lightMode-text hover:rotate-6 hover:text-lightMode-secondarytext hover:underline origin-bottom-right transition">
+              {category.type}
+            </li>
           </a>
         ))}
       </ul>
