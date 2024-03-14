@@ -82,7 +82,7 @@ function Navbar() {
                 </BreadcrumbSeparator>
                 <BreadcrumbItem>
                   <BreadcrumbLink href="/category">
-                    <p className="text-lg">{article}</p>
+                    <p className="text-lg">{type}</p>
                   </BreadcrumbLink>
                 </BreadcrumbItem>
               </BreadcrumbItem>
